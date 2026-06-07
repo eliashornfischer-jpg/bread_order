@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Microbiome Warrior – Brotbestellung (CNY)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(145deg, #2b2b1f 0%, #1e1c14 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', 'Noto Sans', sans-serif;
+            padding: 1rem;
+            padding-bottom: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Karten – warmer, edler Look */
+        .card {
+            background: rgba(30, 28, 20, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(210, 180, 110, 0.2);
+            padding: 1.3rem 1.2rem;
+            margin-bottom: 1.2rem;
+            transition: all 0.2s ease;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5e7c8, #dbb879);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h1::before {
+            content: "🍞";
+            font-size: 1.8rem;
+            background: none;
+            -webkit-background-clip: unset;
+            color: #e2b87a;
+        }
+
+        .subhead {
+            color: #c9b280;
+            font-size: 0.75rem;
+            margin: 0.25rem 0 0 0;
+            border-left: 3px solid #d9a857;
+            padding-left: 0.7rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #ecd9b0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #4a3a28;
+            padding-bottom: 0.4rem;
+        }
+
+        h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem 0;
+            color: #e2c28b;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 0.8rem;
+            margin-bottom: 0.25rem;
+            color: #eadbbd;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid #5f4e32;
+            background: #2d2a1e;
+            color: #f5e7ce;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #e2b87a;
+            box-shadow: 0 0 0 3px rgba(226, 184, 122, 0.2);
+        }
+
+        .mini-checkbox {
+            background: #35301f;
+            padding: 0.6rem 1rem;
+            border-radius: 2rem;
+            margin-top: 0.8rem;
+            border: 1px solid #5f4e32;
+        }
+
+        .mini-checkbox label {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            color: #e7cfaa;
+        }
+
+        button {
+            background: #d9a14b;
+            border: none;
+            color: #1f1c10;
+            font-weight: 700;
+            padding: 0.75rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 1.2rem;
+            width: 100%;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            background: #c28a3a;
+            transform: translateY(-1px);
+        }
+
+        .btn-reset {
+            background: #6b5a42;
+            color: #f7e9cf;
+            margin-top: 0.5rem;
+        }
+        .btn-reset:hover {
+            background: #56472f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            background: #262217;
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        th {
+            background-color: #403a28;
+            color: #f0ddb0;
+            padding: 7px 4px;
+            font-weight: 600;
+            font-size: 0.65rem;
+        }
+
+        td {
+            padding: 6px 4px;
+            border-bottom: 1px solid #4a412c;
+            background-color: #1f1d14;
+            color: #e5d5b6;
+        }
+
+        .price-badge {
+            font-weight: 700;
+            color: #fdcc7a;
+            background: #3b311e;
+            border-radius: 20px;
+            padding: 2px 8px;
+            display: inline-block;
+        }
+
+        .delete-btn {
+            background: #554428;
+            border: none;
+            border-radius: 40px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #ffda9e;
+            cursor: pointer;
+        }
+
+        .badge-time {
+            background: #2c6b2f;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+        }
+
+        .badge-pcs {
+            background: #ab8642;
+            color: #1e1a0e;
+            padding: 2px 8px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+        }
+
+        .total-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 0.5rem 0;
+        }
+        .total-flex > div {
+            flex: 1;
+            background: #282415;
+            border-radius: 1.2rem;
+            padding: 0.5rem;
+        }
+
+        .sub-table {
+            margin-top: 1rem;
+            border-top: 2px solid #4f432b;
+            padding-top: 0.8rem;
+        }
+
+        .info-text {
+            font-size: 0.65rem;
+            text-align: center;
+            color: #b7985c;
+            margin-top: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.6rem;
+            color: #9b864e;
+            margin-top: 1rem;
+        }
+
+        .total-sum {
+            font-weight: 800;
+            font-size: 1rem;
+            background: #2e281a;
+            border-radius: 2rem;
+            padding: 0.3rem 0.9rem;
+            display: inline-block;
+            color: #f5cd88;
+        }
+        .water-cell {
+            background-color: #2a3a2a;
+            font-weight: 600;
+        }
+        input::placeholder {
+            color: #7b6e4b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Bestellkarte -->
+    <div class="card">
+        <h1>Microbiome Warrior</h1>
+        <div class="subhead">88er · 138er · 150er · 188er · 208er | Mini-Brot (2 Mini = 1 Normal)</div>
+        
+        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+            <label>👤 Name des Bestellers</label>
+            <input type="text" id="customerName" placeholder="z. B. Herr Wang" autocomplete="off">
+            
+            <label>🍞 Brotsorte</label>
+            <select id="breadType">
+                <option value="88er">88er Brot</option>
+                <option value="138er">138er Brot</option>
+                <option value="150er">150er Brot</option>
+                <option value="188er">188er Brot</option>
+                <option value="208er">208er Brot</option>
+            </select>
+
+            <label>📏 Größe (pcs pro Brot)</label>
+            <select id="breadSize">
+                <option value="S">S (2 pcs)</option>
+                <option value="M">M (5 pcs)</option>
+                <option value="L">L (8 pcs)</option>
+                <option value="XM">XM (9 pcs)</option>
+                <option value="XL">XL (11 pcs)</option>
+            </select>
+
+            <div class="mini-checkbox">
+                <label><input type="checkbox" id="isMiniCheckbox"> 🥖 Mini-Brot (halber Preis & halbe pcs)</label>
+            </div>
+
+            <button id="addBtn">➕ Bestellung hinzufügen</button>
+            <button id="resetTableBtn" class="btn-reset">🗑️ Alle Bestellungen löschen</button>
+        </div>
+    </div>
+
+    <!-- Bestellübersicht mit Preisen (CNY) -->
+    <div class="card">
+        <h2>📋 Bestellungen (CNY)</h2>
+        <div style="overflow-x: auto;">
+            <table id="orderTable">
+                <thead><tr><th>Name</th><th>Sorte</th><th>Größe</th><th>pcs</th><th>Preis/Stk</th><th>Gesamt</th><th></th></tr></thead>
+                <tbody id="tableBody"><tr><td colspan="7" style="text-align:center">Keine Bestellungen 🥖</td></tr></tbody>
+            </table>
+        </div>
+        <div style="text-align:right; margin-top: 8px;"><span class="total-sum" id="totalPriceSum">0 CNY</span></div>
+    </div>
+
+    <!-- VORBEREITUNG & PREISE (CNY) -->
+    <div class="card">
+        <h2>📦 VORBEREITUNG & PREISE</h2>
+        <div style="background:#2e281a; border-radius:1.2rem; padding:0.7rem; margin-bottom:1rem;">
+            <p style="font-weight:bold; margin-bottom:6px; color:#e7cd93;">💰 Preise pro Brot (Normal, CNY):</p>
+            <div style="font-size:0.7rem; color:#ccb47a;">
+                88er: S=88, M=190, L=278, XM=308, XL=350 &nbsp;&nbsp;|&nbsp;
+                138er: S=208, M=402, L=596, XM=658, XL=766 &nbsp;&nbsp;|&nbsp;
+                150er: S=288, M=588, L=888, XM=988, XL=1138<br>
+                188er: S=328, M=788, L=1108, XM=1288, XL=1468 (208er identisch)
+            </div>
+        </div>
+
+        <h3>🥣 PREPARATION · 88er Basismischung</h3>
+        <table><thead><tr><th>Benötigte 88er Mischung</th><th>Gramm</th><th>Boxen (1400g)</th></tr></thead><tbody id="preparationRow"><tr><td colspan="3">– wird berechnet –</td></tr></tbody></table>
+
+        <h3>🔥 THERMOMIX MAX · pro 1 time (13 pcs)</h3>
+        <table><thead><tr><th>Brot</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead>
+        <tbody>
+            <tr><td>88er</td><td>745g</td><td>0g</td><td>0g</td><td>0g</td><td class="water-cell">360g</td></tr>
+            <tr><td>138er</td><td>650g</td><td>97g</td><td>0g</td><td>0g</td><td class="water-cell">360g</td></tr>
+            <tr><td>150er</td><td>630g</td><td>97g</td><td>15g</td><td>0g</td><td class="water-cell">360g</td></tr>
+            <tr><td>188er</td><td>620g</td><td>97g</td><td>15g</td><td>13g</td><td class="water-cell">360g</td></tr>
+            <tr><td>208er</td><td>620g</td><td>97g</td><td>15g</td><td>13g</td><td class="water-cell">360g</td></tr>
+        </tbody></table>
+
+        <h3>📦 REST QUANTITY · pro 1 pcs</h3>
+        <table id="perPcsTable"><thead><tr><th>Brot</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead><tbody id="perPcsRow"></tbody></table>
+
+        <h3>📊 TOTAL · times / pcs</h3>
+        <div class="total-flex">
+            <div><strong>⏱️ times (13 pcs)</strong><table><tbody id="timesTableBody"></tbody></table></div>
+            <div><strong>🔢 pcs (Rest)</strong><table><tbody id="pcsTableBody"></tbody></table></div>
+        </div>
+
+        <div class="sub-table">
+            <h3>🔥 BERECHNETE THERMOMIX CHARGE</h3>
+            <table><thead><tr><th>Sorte</th><th>time</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead><tbody id="calculatedThermomixTable"></tbody></table>
+        </div>
+
+        <div class="sub-table">
+            <h3>📦 BERECHNETE REST QUANTITY</h3>
+            <table><thead><tr><th>Sorte</th><th>pcs</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead><tbody id="calculatedRestTable"></tbody><tfoot id="calculatedRestFooter"></tfoot></table>
+        </div>
+        <div class="info-text">💡 1 time = 13 pcs (volle Ladung) | Mini: halber Preis & halbe pcs | Alle Preise in CNY (¥)</div>
+    </div>
+    <footer>🌾 Rezepturdaten original | 208er = 188er Rezeptur | CNY</footer>
+</div>
+
+<script>
+    // ---------- PREISLISTE (CNY) ----------
+    const priceDB = {
+        "88er": { "S": 88, "M": 190, "L": 278, "XM": 308, "XL": 350 },
+        "138er": { "S": 208, "M": 402, "L": 596, "XM": 658, "XL": 766 },
+        "150er": { "S": 288, "M": 588, "L": 888, "XM": 988, "XL": 1138 },
+        "188er": { "S": 328, "M": 788, "L": 1108, "XM": 1288, "XL": 1468 },
+        "208er": { "S": 328, "M": 788, "L": 1108, "XM": 1288, "XL": 1468 }
+    };
+
+    const sizeToPcs = { "S":2, "M":5, "L":8, "XM":9, "XL":11 };
+    // Rezeptur pro 13 pcs (Gramm)
+    const recipeFor13 = {
+        "88er": { mix88:745, mix138:0, mix150:0, mix188:0, water:360 },
+        "138er": { mix88:650, mix138:97, mix150:0, mix188:0, water:360 },
+        "150er": { mix88:630, mix138:97, mix150:15, mix188:0, water:360 },
+        "188er": { mix88:620, mix138:97, mix150:15, mix188:13, water:360 },
+        "208er": { mix88:620, mix138:97, mix150:15, mix188:13, water:360 }
+    };
+    function getPerPcs(btype) {
+        let r = recipeFor13[btype];
+        return { mix88: r.mix88/13, mix138: r.mix138/13, mix150: r.mix150/13, mix188: r.mix188/13, water: r.water/13 };
+    }
+
+    let orders = [];
+    let nextId = 1;
+
+    // DOM
+    const customerName = document.getElementById("customerName");
+    const breadType = document.getElementById("breadType");
+    const breadSize = document.getElementById("breadSize");
+    const isMini = document.getElementById("isMiniCheckbox");
+    const tableBodyEl = document.getElementById("tableBody");
+    const addBtn = document.getElementById("addBtn");
+    const resetBtn = document.getElementById("resetTableBtn");
+    const totalSpan = document.getElementById("totalPriceSum");
+
+    function getPcsForOrder(order) {
+        let base = sizeToPcs[order.size];
+        return order.isMini ? base/2 : base;
+    }
+    function getPriceForOrder(order) {
+        let basePrice = priceDB[order.breadType]?.[order.size] || 0;
+        return order.isMini ? basePrice / 2 : basePrice;
+    }
+    function totalPriceAll() {
+        return orders.reduce((sum, o) => sum + getPriceForOrder(o), 0);
+    }
+
+    function getTotalPcsPerType() {
+        let totals = { "88er":0,"138er":0,"150er":0,"188er":0,"208er":0 };
+        orders.forEach(o => { totals[o.breadType] += getPcsForOrder(o); });
+        return totals;
+    }
+    function getTotalRequirements() {
+        let pcs = getTotalPcsPerType();
+        let total88=0,total138=0,total150=0,total188=0,totalWater=0;
+        for(let [type, p] of Object.entries(pcs)) {
+            if(p===0) continue;
+            let per = getPerPcs(type);
+            total88 += per.mix88 * p;
+            total138 += per.mix138 * p;
+            total150 += per.mix150 * p;
+            total188 += per.mix188 * p;
+            totalWater += per.water * p;
+        }
+        return { mix88:total88, mix138:total138, mix150:total150, mix188:total188, water:totalWater };
+    }
+    function getTimesPcsBreakdown() {
+        let pcs = getTotalPcsPerType();
+        let res = [];
+        for(let [type, total] of Object.entries(pcs)) {
+            if(total===0) continue;
+            let full = Math.floor(total / 13);
+            let rest = total % 13;
+            res.push({ type, fullCharges: full, restPcs: rest });
+        }
+        return res;
+    }
+
+    function renderAll() {
+        // Bestelltabelle mit Preisen CNY
+        if(orders.length===0) {
+            tableBodyEl.innerHTML = '<tr><td colspan="7" style="text-align:center">Keine Bestellungen 🥖</td></tr>';
+        } else {
+            tableBodyEl.innerHTML = "";
+            orders.forEach(order => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td style="text-align:left">${escapeHtml(order.name)}</td>
+                    <td>${order.breadType}er</td>
+                    <td>${order.size}</td>
+                    <td>${getPcsForOrder(order)}</td>
+                    <td>${getPriceForOrder(order).toFixed(2)} ¥</td>
+                    <td>${getPriceForOrder(order).toFixed(2)} ¥</td>
+                    <td><button class="delete-btn" data-id="${order.id}">✖</button></td>
+                `;
+                tableBodyEl.appendChild(row);
+            });
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    let id = parseInt(btn.getAttribute('data-id'));
+                    orders = orders.filter(o => o.id !== id);
+                    renderAll();
+                    saveToLocal();
+                });
+            });
+        }
+        totalSpan.innerText = totalPriceAll().toFixed(2) + " ¥";
+
+        let pcsPer = getTotalPcsPerType();
+        let req = getTotalRequirements();
+        let breakdown = getTimesPcsBreakdown();
+
+        // PREPARATION Boxen aufgerundet
+        let needed88 = req.mix88;
+        let boxes = needed88 / 1400;
+        let rounded = Math.ceil(boxes);
+        if(rounded===0 && needed88>0) rounded=1;
+        document.getElementById("preparationRow").innerHTML = `<tr><td>88er Basismischung</td><td>${needed88.toFixed(1)} g</td><td>${rounded} Boxen</td></tr>`;
+
+        // REST QUANTITY pro pcs
+        let perBody = document.getElementById("perPcsRow");
+        perBody.innerHTML = `
+            <tr><td>88er</td><td>${(745/13).toFixed(1)}g</td><td>0g</td><td>0g</td><td>0g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
+            <tr><td>138er</td><td>${(650/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>0g</td><td>0g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
+            <tr><td>150er</td><td>${(630/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>${(15/13).toFixed(1)}g</td><td>0g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
+            <tr><td>188er</td><td>${(620/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>${(15/13).toFixed(1)}g</td><td>${(13/13).toFixed(1)}g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
+            <tr><td>208er</td><td>${(620/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>${(15/13).toFixed(1)}g</td><td>${(13/13).toFixed(1)}g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
+        `;
+
+        // times/pcs Übersicht
+        let timesHtml = "", pcsHtml = "";
+        if(breakdown.length===0 || breakdown.every(b=>b.fullCharges===0)) timesHtml = '<tr><td colspan="2">Keine times</td></tr>';
+        else timesHtml = breakdown.filter(b=>b.fullCharges>0).map(b=>`<tr><td>${b.type}er</td><td class="badge-time">${b.fullCharges} time</td></tr>`).join('');
+        if(breakdown.length===0 || !breakdown.some(b=>b.restPcs>0)) pcsHtml = '<tr><td colspan="2">Keine Rest-pcs</td></tr>';
+        else pcsHtml = breakdown.filter(b=>b.restPcs>0).map(b=>`<tr><td>${b.type}er</td><td class="badge-pcs">${b.restPcs} pcs</td></tr>`).join('');
+        document.getElementById("timesTableBody").innerHTML = timesHtml;
+        document.getElementById("pcsTableBody").innerHTML = pcsHtml;
+
+        // Berechnete Thermomix (feste werte pro time)
+        let thermHtml = "";
+        if(breakdown.some(b=>b.fullCharges>0)) {
+            thermHtml = breakdown.filter(b=>b.fullCharges>0).map(b=>{
+                let r = recipeFor13[b.type];
+                return `<tr><td>${b.type}er</td><td>${b.fullCharges} time</td><td>${r.mix88}g</td><td>${r.mix138}g</td><td>${r.mix150}g</td><td>${r.mix188}g</td><td class="water-cell">${r.water}g</td></tr>`;
+            }).join('');
+        } else thermHtml = '<tr><td colspan="7">Keine times</td></tr>';
+        document.getElementById("calculatedThermomixTable").innerHTML = thermHtml;
+
+        // Berechnete Rest quantity mit Summe
+        let restHtml = "", sum88=0, sum138=0, sum150=0, sum188=0, sumW=0;
+        if(breakdown.some(b=>b.restPcs>0)) {
+            restHtml = breakdown.filter(b=>b.restPcs>0).map(b=>{
+                let per = getPerPcs(b.type);
+                let t88 = per.mix88 * b.restPcs;
+                let t138 = per.mix138 * b.restPcs;
+                let t150 = per.mix150 * b.restPcs;
+                let t188 = per.mix188 * b.restPcs;
+                let tw = per.water * b.restPcs;
+                sum88+=t88; sum138+=t138; sum150+=t150; sum188+=t188; sumW+=tw;
+                return `<tr><td>${b.type}er</td><td>${b.restPcs} pcs</td><td>${t88.toFixed(1)}g</td><td>${t138.toFixed(1)}g</td><td>${t150.toFixed(1)}g</td><td>${t188.toFixed(1)}g</td><td class="water-cell">${tw.toFixed(1)}g</td></tr>`;
+            }).join('');
+            document.getElementById("calculatedRestFooter").innerHTML = `<tr style="background:#3a3220;"><td colspan="2">📊 GESAMT Rest</td><td>${sum88.toFixed(1)}g</td><td>${sum138.toFixed(1)}g</td><td>${sum150.toFixed(1)}g</td><td>${sum188.toFixed(1)}g</td><td class="water-cell">${sumW.toFixed(1)}g</td></tr>`;
+        } else {
+            restHtml = '<tr><td colspan="7">Keine Rest-pcs</td></tr>';
+            document.getElementById("calculatedRestFooter").innerHTML = "";
+        }
+        document.getElementById("calculatedRestTable").innerHTML = restHtml;
+    }
+
+    function addOrderHandler(e) {
+        e.preventDefault();
+        let name = customerName.value.trim();
+        if(!name) { alert("Bitte Namen eingeben."); return; }
+        let newOrder = {
+            id: nextId++,
+            name: name,
+            breadType: breadType.value,
+            size: breadSize.value,
+            isMini: isMini.checked
+        };
+        orders.push(newOrder);
+        renderAll();
+        saveToLocal();
+        customerName.value = "";
+        isMini.checked = false;
+        customerName.focus();
+    }
+
+    function resetAll() {
+        if(orders.length && confirm("Alle Bestellungen löschen?")) {
+            orders = [];
+            renderAll();
+            saveToLocal();
+            nextId = 1;
+        } else if(!orders.length) alert("Keine Bestellungen");
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if(m === '&') return '&amp;';
+            if(m === '<') return '&lt;';
+            if(m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    function saveToLocal() {
+        localStorage.setItem("microbiome_cny_final", JSON.stringify({ orders, nextId }));
+    }
+    function loadFromLocal() {
+        let data = localStorage.getItem("microbiome_cny_final");
+        if(data) {
+            try {
+                let parsed = JSON.parse(data);
+                if(parsed.orders) orders = parsed.orders;
+                if(parsed.nextId) nextId = parsed.nextId;
+            } catch(e) {}
+        }
+        renderAll();
+    }
+
+    addBtn.addEventListener("click", addOrderHandler);
+    resetBtn.addEventListener("click", resetAll);
+    loadFromLocal();
+</script>
+</body>
+</html>
