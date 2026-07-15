@@ -308,7 +308,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     </span>
 </button>
 
-<div class="auto-route-info">✅ Click button above → opens Apple Maps instantly</div>
+<div class="auto-route-info">✅ Click button → opens Apple Maps instantly</div>
 </div>
 
 <footer style="text-align:center;font-size:0.55rem;color:#c29d5a;margin-top:8px;">🌾 Original recipe | 200er & 208er share same recipe | CNY</footer>
@@ -1064,7 +1064,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
-        // Apple Maps App öffnen
+        // Apple Maps App öffnen - DIREKT ohne Verzögerung
         var appUrl = 'maps://maps.apple.com/?';
         var params = [];
         params.push('saddr=' + encodeURIComponent(start));
@@ -1074,22 +1074,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         params.push('dirflg=d');
         appUrl += params.join('&');
         
-        // Sofort öffnen
+        // Sofort öffnen - OHNE setTimeout
         window.location.href = appUrl;
-        
-        // Fallback nach 500ms
-        setTimeout(function() {
-            var webUrl = 'https://maps.apple.com/?';
-            var webParams = [];
-            webParams.push('saddr=' + encodeURIComponent(start));
-            deliveries.forEach(function(addr) {
-                webParams.push('daddr=' + encodeURIComponent(addr));
-            });
-            webParams.push('dirflg=d');
-            webParams.push('hl=zh-CN');
-            webUrl += webParams.join('&');
-            window.open(webUrl, '_blank');
-        }, 500);
     };
 
     // ============ MAIN RENDER ============
