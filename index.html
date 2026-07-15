@@ -1,598 +1,1384 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Microbiome Warrior – Brotbestellung (CNY)</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background: linear-gradient(145deg, #2b2b1f 0%, #1e1c14 100%);
-            font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', 'Noto Sans', sans-serif;
-            padding: 1rem;
-            padding-bottom: 2rem;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 550px;
-            margin: 0 auto;
-        }
-
-        /* Karten – warmer, edler Look */
-        .card {
-            background: rgba(30, 28, 20, 0.92);
-            backdrop-filter: blur(4px);
-            border-radius: 2rem;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(210, 180, 110, 0.2);
-            padding: 1.3rem 1.2rem;
-            margin-bottom: 1.2rem;
-            transition: all 0.2s ease;
-        }
-
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #f5e7c8, #dbb879);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        h1::before {
-            content: "🍞";
-            font-size: 1.8rem;
-            background: none;
-            -webkit-background-clip: unset;
-            color: #e2b87a;
-        }
-
-        .subhead {
-            color: #c9b280;
-            font-size: 0.75rem;
-            margin: 0.25rem 0 0 0;
-            border-left: 3px solid #d9a857;
-            padding-left: 0.7rem;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: #ecd9b0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 2px solid #4a3a28;
-            padding-bottom: 0.4rem;
-        }
-
-        h3 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin: 1rem 0 0.5rem 0;
-            color: #e2c28b;
-        }
-
-        label {
-            font-weight: 600;
-            font-size: 0.8rem;
-            display: block;
-            margin-top: 0.8rem;
-            margin-bottom: 0.25rem;
-            color: #eadbbd;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border-radius: 2rem;
-            border: 1px solid #5f4e32;
-            background: #2d2a1e;
-            color: #f5e7ce;
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #e2b87a;
-            box-shadow: 0 0 0 3px rgba(226, 184, 122, 0.2);
-        }
-
-        .mini-checkbox {
-            background: #35301f;
-            padding: 0.6rem 1rem;
-            border-radius: 2rem;
-            margin-top: 0.8rem;
-            border: 1px solid #5f4e32;
-        }
-
-        .mini-checkbox label {
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-            color: #e7cfaa;
-        }
-
-        button {
-            background: #d9a14b;
-            border: none;
-            color: #1f1c10;
-            font-weight: 700;
-            padding: 0.75rem;
-            border-radius: 3rem;
-            font-size: 0.95rem;
-            cursor: pointer;
-            margin-top: 1.2rem;
-            width: 100%;
-            transition: 0.2s;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
-
-        button:hover {
-            background: #c28a3a;
-            transform: translateY(-1px);
-        }
-
-        .btn-reset {
-            background: #6b5a42;
-            color: #f7e9cf;
-            margin-top: 0.5rem;
-        }
-        .btn-reset:hover {
-            background: #56472f;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.7rem;
-            border-radius: 1.2rem;
-            overflow: hidden;
-            background: #262217;
-            margin: 0.5rem 0 1rem 0;
-        }
-
-        th {
-            background-color: #403a28;
-            color: #f0ddb0;
-            padding: 7px 4px;
-            font-weight: 600;
-            font-size: 0.65rem;
-        }
-
-        td {
-            padding: 6px 4px;
-            border-bottom: 1px solid #4a412c;
-            background-color: #1f1d14;
-            color: #e5d5b6;
-        }
-
-        .price-badge {
-            font-weight: 700;
-            color: #fdcc7a;
-            background: #3b311e;
-            border-radius: 20px;
-            padding: 2px 8px;
-            display: inline-block;
-        }
-
-        .delete-btn {
-            background: #554428;
-            border: none;
-            border-radius: 40px;
-            padding: 4px 10px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #ffda9e;
-            cursor: pointer;
-        }
-
-        .badge-time {
-            background: #2c6b2f;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-        }
-
-        .badge-pcs {
-            background: #ab8642;
-            color: #1e1a0e;
-            padding: 2px 8px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-        }
-
-        .total-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin: 0.5rem 0;
-        }
-        .total-flex > div {
-            flex: 1;
-            background: #282415;
-            border-radius: 1.2rem;
-            padding: 0.5rem;
-        }
-
-        .sub-table {
-            margin-top: 1rem;
-            border-top: 2px solid #4f432b;
-            padding-top: 0.8rem;
-        }
-
-        .info-text {
-            font-size: 0.65rem;
-            text-align: center;
-            color: #b7985c;
-            margin-top: 0.8rem;
-        }
-
-        footer {
-            text-align: center;
-            font-size: 0.6rem;
-            color: #9b864e;
-            margin-top: 1rem;
-        }
-
-        .total-sum {
-            font-weight: 800;
-            font-size: 1rem;
-            background: #2e281a;
-            border-radius: 2rem;
-            padding: 0.3rem 0.9rem;
-            display: inline-block;
-            color: #f5cd88;
-        }
-        .water-cell {
-            background-color: #2a3a2a;
-            font-weight: 600;
-        }
-        input::placeholder {
-            color: #7b6e4b;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>Microbiome Warrior – FINAL BOSS MODE</title>
+<meta name="theme-color" content="#e2aa54">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;min-height:100vh;display:flex;justify-content:center;padding:10px;background:radial-gradient(circle at 15% 20%,rgba(226,170,84,0.3),transparent 40%),radial-gradient(circle at 85% 25%,rgba(143,170,74,0.25),transparent 45%),linear-gradient(135deg,#f7f1dd,#e8d7a8,#d8c08a);background-size:200% 200%;animation:bgMove 20s ease infinite;}
+@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.container{max-width:520px;width:100%;margin:0 auto;}
+.card{background:rgba(255,255,255,0.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:24px;padding:16px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.5);box-shadow:0 8px 32px rgba(0,0,0,0.08);}
+h1{font-size:1.5rem;color:#b87a2a;font-weight:900;letter-spacing:-0.3px;}
+h1::before{content:"🧬 ";}
+h2{font-size:1.1rem;color:#8a5e20;margin-bottom:10px;font-weight:800;}
+h3{font-size:0.85rem;color:#9b6e2c;margin:12px 0 6px 0;font-weight:700;}
+label{font-size:0.75rem;font-weight:700;display:block;margin-top:10px;margin-bottom:2px;color:#6b4a1c;}
+input,select{width:100%;padding:10px 14px;border-radius:28px;border:1px solid #e0d0a0;background:white;font-size:0.85rem;margin-top:4px;}
+input:focus,select:focus{outline:none;border-color:#e2aa54;box-shadow:0 0 0 3px rgba(226,170,84,0.2);}
+.checkbox-group{background:rgba(255,255,255,0.5);padding:8px 12px;border-radius:28px;margin-top:8px;}
+.checkbox-group label{margin:0;display:flex;align-items:center;gap:8px;cursor:pointer;}
+.checkbox-group input{width:18px;height:18px;margin:0;}
+button{width:100%;padding:12px;margin-top:12px;border-radius:28px;border:none;font-weight:900;font-size:0.9rem;background:linear-gradient(135deg,#f2b357,#d6993a);color:#2a1a08;cursor:pointer;transition:all 0.2s ease;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+button:active{transform:scale(0.97);}
+.btn-reset{background:#d4c090;margin-top:8px;}
+.btn-screenshot{background:linear-gradient(135deg,#6c8ebf,#4a6f9e);color:white;width:auto;padding:8px 16px;margin:0;font-size:0.75rem;}
+.btn-screenshot:active{transform:scale(0.97);}
+table{width:100%;border-collapse:collapse;font-size:0.7rem;background:white;border-radius:16px;overflow:hidden;margin:8px 0;}
+th{padding:8px 4px;font-weight:800;color:#2a1a08;}
+th.bread-th{background:#e2aa54;}
+th.hummus-th{background:#8faa4a;color:white;}
+td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
+.scrollable{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.badge-time{background:#c9a256;color:white;padding:3px 10px;border-radius:20px;font-size:0.65rem;display:inline-block;}
+.badge-pcs{background:#e2a743;color:#2c1e08;padding:3px 10px;border-radius:20px;font-size:0.65rem;display:inline-block;}
+.water-cell{background:#f0e8d4;font-weight:700;}
+.total-flex{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;}
+.total-flex>div{flex:1;background:#fff8e8;padding:10px;border-radius:16px;text-align:center;}
+.total-sum{font-weight:800;font-size:1rem;background:#ecdba8;padding:4px 14px;border-radius:30px;display:inline-block;}
+.info-text{font-size:0.6rem;text-align:center;color:#b88c48;margin-top:8px;padding:6px;background:#fff8e8;border-radius:20px;}
+.delete-btn{background:#eeddbb;border:none;border-radius:20px;padding:4px 10px;font-weight:700;color:#9b6a2a;cursor:pointer;}
+.hummus-tag{display:inline-block;background:#8faa4a;color:white;padding:2px 8px;border-radius:12px;font-size:0.6rem;}
+.yingyang-tag{display:inline-block;background:#d4a843;color:white;padding:2px 8px;border-radius:12px;font-size:0.6rem;font-weight:700;}
+.hummus-section{border-left:4px solid #8faa4a;margin-top:12px;padding-top:8px;border-top:2px dashed #d4c090;}
+.hummus-section label{color:#6d8a30;}
+.table-title{font-size:0.8rem;font-weight:800;margin-top:8px;display:flex;align-items:center;gap:6px;}
+.table-title.bread-title{color:#b87a2a;}
+.table-title.hummus-title{color:#6d8a30;}
+.yingyang-available{background:#f5edd8;border-radius:16px;padding:4px 12px;font-size:0.65rem;color:#8a6a2a;display:none;margin-top:4px;border:1px solid #d4a843;}
+.yingyang-available.show{display:block;}
+.header-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;}
+.header-left{display:flex;align-items:center;gap:8px;}
+.header-right{display:flex;align-items:center;gap:8px;}
+.week-selector{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.6);padding:4px 10px 4px 14px;border-radius:28px;border:1px solid #e0d0a0;}
+.week-selector label{margin:0;font-size:0.7rem;color:#6b4a1c;}
+.week-selector input{width:46px;padding:4px 6px;border-radius:16px;border:1px solid #e0d0a0;text-align:center;font-size:0.85rem;font-weight:700;margin:0;background:#f5f0e0;}
+.week-selector input:focus{outline:none;border-color:#e2aa54;box-shadow:0 0 0 3px rgba(226,170,84,0.2);}
+.week-selector input:disabled{opacity:0.8;cursor:not-allowed;}
+.week-badge{background:#e2aa54;color:#2a1a08;padding:2px 12px;border-radius:20px;font-size:0.7rem;font-weight:800;}
+.screenshot-btn-wrap{display:flex;gap:6px;}
+#screenshotStatus{font-size:0.6rem;color:#4a6f9e;padding:4px 8px;border-radius:12px;background:rgba(255,255,255,0.5);display:none;}
+.salary-container{background:rgba(255,255,255,0.5);padding:12px 16px;border-radius:16px;margin-top:12px;border:2px solid #e2aa54;}
+.salary-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:0.8rem;}
+.salary-row .salary-label{font-weight:700;color:#6b4a1c;}
+.salary-row .salary-amount{font-weight:800;color:#b87a2a;font-size:0.9rem;}
+.commission-badge{display:inline-block;background:#c0392b;color:white;padding:0px 8px;border-radius:10px;font-size:0.55rem;font-weight:700;}
+.auto-week-badge{display:inline-block;background:#27ae60;color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;font-weight:700;margin-left:4px;}
+.add-section{background:rgba(226,170,84,0.08);border-radius:16px;padding:12px;margin-top:8px;border:2px dashed #d4c090;}
+.add-section .add-title{font-size:0.7rem;font-weight:800;color:#b87a2a;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.add-section .add-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.add-section .add-row select{flex:1;min-width:100px;padding:6px 10px;font-size:0.7rem;margin:0;}
+.add-section .add-row .add-btn{padding:6px 16px;border-radius:20px;border:none;font-weight:800;font-size:0.7rem;background:linear-gradient(135deg,#f2b357,#d6993a);color:#2a1a08;cursor:pointer;margin:0;white-space:nowrap;}
+.add-section .add-row .add-btn:active{transform:scale(0.95);}
+.add-section .add-row .add-count{font-size:0.9rem;font-weight:900;color:#b87a2a;min-width:35px;text-align:center;}
+.add-section .add-row .add-count-btn{width:34px;height:34px;border-radius:50%;border:none;font-size:1.2rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;margin:0;}
+.add-section .add-row .add-count-btn:active{transform:scale(0.9);}
+.add-section .add-row .add-count-btn-minus{background:#e67e22;color:white;}
+.add-section .add-row .add-count-btn-plus{background:#27ae60;color:white;}
+.add-orders-list{margin-top:8px;font-size:0.6rem;}
+.add-orders-list .add-item{display:inline-block;background:rgba(255,255,255,0.6);padding:2px 8px;border-radius:12px;margin:2px;}
+.add-orders-list .add-item .qty{font-weight:800;color:#b87a2a;}
+.add-orders-list .add-item .del{cursor:pointer;color:#c0392b;margin-left:4px;font-weight:700;}
+.commission-order-row{display:flex;align-items:center;gap:8px;background:rgba(226,170,84,0.1);padding:6px 12px;border-radius:16px;margin-top:6px;}
+.commission-order-row label{margin:0;font-size:0.7rem;display:flex;align-items:center;gap:5px;cursor:pointer;color:#6b4a1c;}
+.commission-order-row input{width:16px;height:16px;margin:0;}
+.comm-tag{font-size:0.5rem;padding:0px 6px;border-radius:8px;font-weight:700;}
+.comm-yes{background:#c0392b;color:white;}
+.comm-no{background:#27ae60;color:white;}
+.no-hummus-tag{display:inline-block;background:#95a5a6;color:white;padding:0px 6px;border-radius:8px;font-size:0.5rem;font-weight:700;}
+.comm-toggle{display:inline-flex;align-items:center;gap:4px;cursor:pointer;padding:2px 8px;border-radius:12px;font-size:0.55rem;font-weight:700;transition:all 0.2s;border:1px solid transparent;user-select:none;background:#e8e8e8;color:#555;}
+.comm-toggle.active{background:#c0392b;color:white;border-color:#a93226;}
+.comm-toggle.inactive{background:#e8e8e8;color:#555;border-color:#ccc;}
+.comm-toggle .toggle-dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.comm-toggle.active .toggle-dot{background:#2ecc71;}
+.comm-toggle.inactive .toggle-dot{background:#95a5a6;}
+.comm-toggle .toggle-label{font-size:0.5rem;}
+/* Route Planning */
+.route-container{background:rgba(46,204,113,0.08);border-radius:16px;padding:12px;margin-top:12px;border:2px solid #27ae60;}
+.route-step{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(39,174,96,0.15);font-size:0.65rem;}
+.route-step:last-child{border-bottom:none;}
+.route-step .step-num{background:#27ae60;color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:800;flex-shrink:0;}
+.route-step .step-name{flex:1;font-weight:600;color:#2a1a08;word-break:break-all;font-size:0.6rem;}
+.route-step .step-detail{color:#6b4a1c;font-size:0.55rem;flex-shrink:0;}
+.route-empty{color:#b88c48;font-size:0.6rem;text-align:center;padding:8px;}
+.route-input-group{display:grid;grid-template-columns:1fr;gap:6px;margin-top:6px;}
+.route-input-group input{width:100%;padding:8px 12px;border-radius:16px;border:1px solid #e0d0a0;font-size:0.75rem;}
+.route-input-group input:focus{outline:none;border-color:#27ae60;box-shadow:0 0 0 3px rgba(39,174,96,0.2);}
+.route-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.route-actions button{flex:1;min-width:70px;padding:8px;font-size:0.65rem;margin:0;border-radius:20px;}
+.route-actions .btn-get-orders{background:#e2aa54;color:#2a1a08;}
+.route-actions .btn-get-orders:hover{background:#d6993a;}
+.route-result{margin-top:10px;}
+.route-apple-btn{width:100%;padding:12px;margin-top:8px;border-radius:20px;border:none;font-weight:700;font-size:0.8rem;background:linear-gradient(135deg,#007aff,#0055cc);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;box-shadow:0 4px 12px rgba(0,122,255,0.3);}
+.route-apple-btn:active{transform:scale(0.97);}
+.route-apple-btn svg{width:20px;height:20px;fill:white;}
+.route-apple-btn:disabled{opacity:0.4;cursor:not-allowed;box-shadow:none;}
+.route-apple-btn .btn-icon{display:flex;align-items:center;justify-content:center;}
+.route-apple-btn .btn-text{display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;}
+.route-apple-btn .btn-text .sub{font-weight:400;font-size:0.55rem;opacity:0.8;}
+/* Address Manager - KOMPAKT */
+.address-manager{font-size:0.6rem;margin-top:6px;padding:6px 8px;background:rgba(255,255,255,0.4);border-radius:12px;border:1px dashed #d4c090;}
+.address-manager .am-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:2px 0;}
+.address-manager .am-header .am-label{font-weight:700;color:#6b4a1c;font-size:0.55rem;}
+.address-manager .am-header .am-toggle{background:none;border:none;color:#8a6a2a;font-size:0.5rem;cursor:pointer;padding:2px 6px;}
+.address-manager .am-body{display:none;margin-top:4px;}
+.address-manager .am-body.open{display:block;}
+.address-manager .am-row{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:3px;}
+.address-manager .am-row input{flex:1;min-width:60px;padding:4px 8px;font-size:0.6rem;border-radius:12px;border:1px solid #e0d0a0;margin:0;}
+.address-manager .am-row button{padding:4px 10px;font-size:0.55rem;margin:0;border-radius:12px;width:auto;}
+.address-manager .am-tag{display:inline-block;background:rgba(226,170,84,0.15);padding:1px 8px;border-radius:10px;margin:2px;font-size:0.55rem;border:1px solid #e0d0a0;}
+.address-manager .am-tag .del{color:#c0392b;cursor:pointer;margin-left:4px;font-weight:700;}
+.address-manager .am-empty{color:#b88c48;font-size:0.5rem;text-align:center;padding:4px;}
+.auto-route-info{font-size:0.55rem;color:#6b4a1c;padding:4px 8px;background:#f0e5cd;border-radius:8px;margin-top:4px;text-align:center;}
+.route-no-distance{font-size:0.55rem;color:#8a6a2a;margin-top:4px;text-align:center;}
+.address-stats{font-size:0.5rem;color:#8a6a2a;}
+.route-start-container{position:relative;}
+.route-start-container input{padding-right:70px;}
+.route-start-container .start-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:0.5rem;background:#27ae60;color:white;padding:2px 8px;border-radius:10px;}
+</style>
 </head>
 <body>
-<div class="container">
-    <!-- Bestellkarte -->
-    <div class="card">
-        <h1>Microbiome Warrior</h1>
-        <div class="subhead">88er · 138er · 150er · 188er · 208er | Mini-Brot (2 Mini = 1 Normal)</div>
-        
-        <div style="display: flex; flex-direction: column; gap: 0.2rem;">
-            <label>👤 Name des Bestellers</label>
-            <input type="text" id="customerName" placeholder="z. B. Herr Wang" autocomplete="off">
-            
-            <label>🍞 Brotsorte</label>
-            <select id="breadType">
-                <option value="88er">88er Brot</option>
-                <option value="138er">138er Brot</option>
-                <option value="150er">150er Brot</option>
-                <option value="188er">188er Brot</option>
-                <option value="208er">208er Brot</option>
-            </select>
+<div class="container" id="captureArea">
+<!-- ====== ORDER CARD ====== -->
+<div class="card">
+<div class="header-row">
+<div class="header-left"><h1>Microbiome Warrior</h1></div>
+<div class="header-right">
+<div class="week-selector"><label>📅 W</label><input type="number" id="weekNumber" value="27" min="1" max="53" disabled><span class="auto-week-badge">auto</span></div>
+<div class="screenshot-btn-wrap"><button class="btn-screenshot" id="screenshotBtn">📸 Screenshot</button></div>
+</div>
+</div>
+<div id="screenshotStatus">✅ Screenshot saved!</div>
 
-            <label>📏 Größe (pcs pro Brot)</label>
-            <select id="breadSize">
-                <option value="S">S (2 pcs)</option>
-                <option value="M">M (5 pcs)</option>
-                <option value="L">L (8 pcs)</option>
-                <option value="XM">XM (9 pcs)</option>
-                <option value="XL">XL (11 pcs)</option>
-            </select>
+<label>Customer Name</label>
+<input id="customerName" placeholder="e.g. Anna" autocomplete="off" style="text-transform:capitalize;">
 
-            <div class="mini-checkbox">
-                <label><input type="checkbox" id="isMiniCheckbox"> 🥖 Mini-Brot (halber Preis & halbe pcs)</label>
-            </div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+<div><label>Variety</label><select id="breadType"><option value="88er">88er</option><option value="150er">150er</option><option value="188er">188er</option><option value="200er">200er</option><option value="208er">208er</option></select></div>
+<div><label>Size</label><select id="breadSize"><option value="S">S (2 pcs)</option><option value="S+">S+ (3 pcs) −12.4%</option><option value="M">M (5 pcs)</option><option value="M+">M+ (6 pcs) no hummus</option><option value="L">L (8 pcs)</option><option value="XM">XM (9 pcs)</option><option value="XL">XL (11 pcs)</option><option value="XL+">XL+ (12 pcs) no hummus</option></select></div>
+</div>
 
-            <button id="addBtn">➕ Bestellung hinzufügen</button>
-            <button id="resetTableBtn" class="btn-reset">🗑️ Alle Bestellungen löschen</button>
+<div class="commission-order-row">
+<label><input type="checkbox" id="commissionCheckbox"> 💰 Commission active</label>
+<span style="font-size:0.55rem;color:#8a6a2a;">(15% → 13.5% for this order)</span>
+</div>
+
+<div class="checkbox-group" style="margin-top:4px;">
+<label><input type="checkbox" id="miniCheckbox"> 🥖 Mini (half price & half pcs)</label>
+</div>
+
+<div class="hummus-section">
+<div style="font-size:0.8rem;font-weight:800;color:#6d8a30;margin-bottom:4px;">🫒 HUMMUS (free)</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+<div><label>Type</label><select id="hummusType"><option value="none">❌ No Hummus</option><option value="hummus">🫒 Hummus</option><option value="yingyang">☯️ Ying & Yang</option></select></div>
+<div><label>Size</label><select id="hummusSize"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XM">XM</option><option value="XL">XL</option></select></div>
+</div>
+<div id="yingYangInfo" class="yingyang-available">✅ ☯️ Ying & Yang available for 188er, 200er & 208er</div>
+<div id="yingYangWarning" style="font-size:0.6rem;color:#c0392b;margin-top:4px;padding:4px 12px;background:#fde8e8;border-radius:16px;display:none;">⚠️ Ying & Yang only available for 188er, 200er & 208er!</div>
+</div>
+
+<button id="addBtn">➕ Add Order</button>
+<button id="resetTableBtn" class="btn-reset">🗑️ Delete All Orders</button>
+</div>
+
+<!-- ====== ADD BREAD ====== -->
+<div class="card">
+<div class="add-section">
+<div class="add-title">➕ ADD BREAD (no name, no commission, free)</div>
+<div class="add-row">
+<select id="addBreadType"><option value="88er">88er</option><option value="150er">150er</option><option value="188er">188er</option><option value="200er">200er</option><option value="208er">208er</option></select>
+<button class="add-count-btn add-count-btn-minus" id="addBreadMinusBtn">−</button>
+<span class="add-count" id="addBreadCountDisplay">1</span>
+<button class="add-count-btn add-count-btn-plus" id="addBreadPlusBtn">+</button>
+<button class="add-btn" id="addBreadAddBtn">➕ Add Bread</button>
+</div>
+<div class="add-orders-list" id="addBreadOrdersList"><span style="color:#b88c48;">No added bread orders yet</span></div>
+</div>
+</div>
+
+<!-- ====== ADD HUMMUS ====== -->
+<div class="card">
+<div class="add-section" style="border-color:#8faa4a;">
+<div class="add-title" style="color:#6d8a30;">🫒 ADD HUMMUS (no name, no commission, free)</div>
+<div class="add-row">
+<select id="addHummusType"><option value="hummus">🫒 Hummus</option><option value="yingyang">☯️ Ying & Yang</option></select>
+<select id="addHummusSize" style="flex:0.7;min-width:60px;"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XM">XM</option><option value="XL">XL</option></select>
+<button class="add-count-btn add-count-btn-minus" id="addHummusMinusBtn">−</button>
+<span class="add-count" id="addHummusCountDisplay">1</span>
+<button class="add-count-btn add-count-btn-plus" id="addHummusPlusBtn">+</button>
+<button class="add-btn" id="addHummusAddBtn" style="background:linear-gradient(135deg,#8faa4a,#6d8a30);color:white;">🫒 Add Hummus</button>
+</div>
+<div class="add-orders-list" id="addHummusOrdersList"><span style="color:#b88c48;">No added hummus orders yet</span></div>
+</div>
+</div>
+
+<!-- ====== ORDER OVERVIEW ====== -->
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center;"><h2>📋 Orders (CNY)</h2><span class="week-badge" id="weekBadge">Week 27</span></div>
+
+<div class="table-title bread-title">🥖 Bread Orders</div>
+<div class="scrollable"><table><thead><th class="bread-th">#</th><th class="bread-th">Name</th><th class="bread-th">Variety</th><th class="bread-th">Size</th><th class="bread-th">pcs</th><th class="bread-th">Price</th><th class="bread-th">Comm</th><th class="bread-th"></th></thead><tbody id="breadTableBody"><tr><td colspan="8" style="text-align:center">No bread orders 🥖</td></tr></tbody></table></div>
+
+<div class="table-title" style="color:#b87a2a;margin-top:12px;">➕ ADD Bread Summary (free)</div>
+<div class="scrollable"><table><thead><th class="bread-th">Variety</th><th class="bread-th">Total pcs</th><th class="bread-th"></th></thead><tbody id="addBreadSummaryBody"><tr><td colspan="3" style="text-align:center">No ADD bread orders yet</td></tr></tbody></table></div>
+
+<div class="table-title hummus-title" style="margin-top:12px;">🫒 HUMMUS SUMMARY (all orders)</div>
+<div class="scrollable"><table><thead><th class="hummus-th">Type</th><th class="hummus-th">Size</th><th class="hummus-th">Total pcs</th></thead><tbody id="hummusSummaryBody"><tr><td colspan="3" style="text-align:center">No hummus orders yet</td></tr></tbody></table></div>
+
+<div class="table-title hummus-title" style="margin-top:12px;">🫒 Hummus Orders Detail (free)</div>
+<div class="scrollable"><table><thead><th class="hummus-th">#</th><th class="hummus-th">Name</th><th class="hummus-th">Variety</th><th class="hummus-th">Size</th><th class="hummus-th">Type</th><th class="hummus-th"></th></thead><tbody id="hummusTableBody"><tr><td colspan="6" style="text-align:center">No hummus orders 🫒</td></tr></tbody></table></div>
+
+<div style="display:flex;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:4px;">
+<span class="total-sum" id="hummusCount" style="background:#8faa4a;padding:2px 16px;color:white;">🫒 0</span>
+<span class="total-sum" id="totalPriceSum">0 CNY</span>
+</div>
+
+<!-- SALARY -->
+<div class="salary-container">
+<div style="font-weight:800;font-size:0.8rem;color:#b87a2a;margin-bottom:6px;">💰 SALARY <span id="salaryPercentDisplay" style="font-size:0.7rem;color:#8a5e20;">(15%)</span></div>
+<div class="salary-row"><span class="salary-label">👤 Salary</span><span class="salary-amount" id="salaryAmount">0.00 ¥</span></div>
+<div style="font-size:0.55rem;color:#8a6a2a;text-align:center;margin-top:4px;">ℹ️ Commission orders: 13.5% | Non-commission: 15%</div>
+</div>
+</div>
+
+<!-- ====== PREPARATION ====== -->
+<div class="card">
+<h2>📦 PREPARATION</h2>
+<h3>🥣 88er Base Mix</h3>
+<div class="scrollable"><table><thead><th>Required 88er Mix</th><th>Grams</th><th>Boxes (1400g)</th></thead><tbody id="preparationRow"><tr><td colspan="3">calculating...</td></tr></tbody></table></div>
+<h3>🔥 THERMOMIX MAX · per 1 time (13 pcs)</h3>
+<div class="scrollable"><table><thead><th>Variety</th><th>88er</th><th>150er</th><th>188er</th><th>200/208er</th><th>Water</th></thead><tbody><tr><td>88er</td><td>745g</td><td>0g</td><td>0g</td><td>0g</td><td class="water-cell">360g</td></tr><tr><td>150er</td><td>650g</td><td>97g</td><td>0g</td><td>0g</td><td class="water-cell">360g</td></tr><tr><td>188er</td><td>630g</td><td>97g</td><td>15g</td><td>0g</td><td class="water-cell">360g</td></tr><tr><td>200er</td><td>620g</td><td>97g</td><td>15g</td><td>13g</td><td class="water-cell">360g</td></tr><tr><td>208er</td><td>620g</td><td>97g</td><td>15g</td><td>13g</td><td class="water-cell">360g</td></tr></tbody></table></div>
+<h3>📦 REST QUANTITY · per 1 pcs</h3>
+<div class="scrollable"><table id="perPcsTable"><thead><th>Variety</th><th>88er</th><th>150er</th><th>188er</th><th>200/208er</th><th>Water</th></thead><tbody id="perPcsRow"></tbody></table></div>
+<h3>📊 TOTAL · times / pcs</h3>
+<div class="total-flex"><div><strong>⏱️ times (13 pcs)</strong><table><tbody id="timesTableBody"></tbody></table></div><div><strong>🔢 pcs (Rest)</strong><table><tbody id="pcsTableBody"></tbody></table></div></div>
+<h3>🔥 CALCULATED THERMOMIX CHARGE</h3>
+<div class="scrollable"><table><thead><th>Variety</th><th>time</th><th>88er</th><th>150er</th><th>188er</th><th>200/208er</th><th>Water</th></thead><tbody id="calculatedThermomixTable"></tbody></table></div>
+<h3>📦 CALCULATED REST QUANTITY</h3>
+<div class="scrollable"><table><thead><th>Variety</th><th>pcs</th><th>88er</th><th>150er</th><th>188er</th><th>200/208er</th><th>Water</th></thead><tbody id="calculatedRestTable"></tbody><tfoot id="calculatedRestFooter"></tfoot></table></div>
+<div class="info-text">💡 1 time = 13 pcs (full batch) | Mini: half price & half pcs | Hummus: free</div>
+</div>
+
+<!-- ====== ROUTE PLANNING ====== -->
+<div class="card">
+<div style="font-weight:800;font-size:0.9rem;color:#27ae60;margin-bottom:8px;">🚚 ROUTE PLANNING</div>
+
+<!-- ADDRESS MANAGER - KOMPAKT + EIN-/AUSKLAPPBAR -->
+<div class="address-manager">
+    <div class="am-header" id="addressToggle">
+        <span class="am-label">📌 Address Book <span class="address-stats" id="addressCount">(0 entries)</span></span>
+        <span class="am-toggle" id="addressToggleBtn">▼ Show</span>
+    </div>
+    <div class="am-body" id="addressBody">
+        <div id="addressList">
+            <div class="am-empty">No addresses saved yet</div>
+        </div>
+        <div class="am-row">
+            <input id="addressNameInput" placeholder="Name" style="flex:0.8;text-transform:capitalize;">
+            <input id="addressAddrInput" placeholder="Address" style="flex:1.2;">
+            <button id="addAddressBtn" style="background:#27ae60;color:white;padding:4px 10px;">➕</button>
         </div>
     </div>
+</div>
 
-    <!-- Bestellübersicht mit Preisen (CNY) -->
-    <div class="card">
-        <h2>📋 Bestellungen (CNY)</h2>
-        <div style="overflow-x: auto;">
-            <table id="orderTable">
-                <thead><tr><th>Name</th><th>Sorte</th><th>Größe</th><th>pcs</th><th>Preis/Stk</th><th>Gesamt</th><th></th></tr></thead>
-                <tbody id="tableBody"><tr><td colspan="7" style="text-align:center">Keine Bestellungen 🥖</td></tr></tbody>
-            </table>
-        </div>
-        <div style="text-align:right; margin-top: 8px;"><span class="total-sum" id="totalPriceSum">0 CNY</span></div>
-    </div>
+<div class="route-input-group">
+<label style="font-size:0.7rem;color:#6b4a1c;margin-bottom:2px;">🏠 Your Start Address</label>
+<div class="route-start-container">
+    <input id="routeStart" placeholder="e.g. 中国上海市青浦区湖畔佳苑391号" value="中国上海市青浦区湖畔佳苑391号">
+    <span class="start-badge">📍 fixed</span>
+</div>
+</div>
 
-    <!-- VORBEREITUNG & PREISE (CNY) -->
-    <div class="card">
-        <h2>📦 VORBEREITUNG & PREISE</h2>
-        <div style="background:#2e281a; border-radius:1.2rem; padding:0.7rem; margin-bottom:1rem;">
-            <p style="font-weight:bold; margin-bottom:6px; color:#e7cd93;">💰 Preise pro Brot (Normal, CNY):</p>
-            <div style="font-size:0.7rem; color:#ccb47a;">
-                88er: S=88, M=190, L=278, XM=308, XL=350 &nbsp;&nbsp;|&nbsp;
-                138er: S=208, M=402, L=596, XM=658, XL=766 &nbsp;&nbsp;|&nbsp;
-                150er: S=288, M=588, L=888, XM=988, XL=1138<br>
-                188er: S=328, M=788, L=1108, XM=1288, XL=1468 (208er identisch)
-            </div>
-        </div>
+<div style="margin-top:8px;background:rgba(46,204,113,0.06);border-radius:12px;padding:8px;border:1px solid #d4c090;">
+    <div style="font-weight:700;font-size:0.7rem;color:#27ae60;">📋 ORDERS FOR DELIVERY</div>
+    <div id="autoRouteList" style="font-size:0.6rem;padding:4px 0;color:#6b4a1c;">No orders yet</div>
+</div>
 
-        <h3>🥣 PREPARATION · 88er Basismischung</h3>
-        <table><thead><tr><th>Benötigte 88er Mischung</th><th>Gramm</th><th>Boxen (1400g)</th></tr></thead><tbody id="preparationRow"><tr><td colspan="3">– wird berechnet –</td></tr></tbody></table>
+<div class="route-container route-result" id="routeResult">
+<div class="route-empty">Add orders → route will auto-update</div>
+</div>
 
-        <h3>🔥 THERMOMIX MAX · pro 1 time (13 pcs)</h3>
-        <table><thead><tr><th>Brot</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead>
-        <tbody>
-            <tr><td>88er</td><td>745g</td><td>0g</td><td>0g</td><td>0g</td><td class="water-cell">360g</td></tr>
-            <tr><td>138er</td><td>650g</td><td>97g</td><td>0g</td><td>0g</td><td class="water-cell">360g</td></tr>
-            <tr><td>150er</td><td>630g</td><td>97g</td><td>15g</td><td>0g</td><td class="water-cell">360g</td></tr>
-            <tr><td>188er</td><td>620g</td><td>97g</td><td>15g</td><td>13g</td><td class="water-cell">360g</td></tr>
-            <tr><td>208er</td><td>620g</td><td>97g</td><td>15g</td><td>13g</td><td class="water-cell">360g</td></tr>
-        </tbody></table>
+<button class="route-apple-btn" id="appleMapsBtn" disabled>
+    <span class="btn-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    </span>
+    <span class="btn-text">
+        <span>🗺️ Open in Apple Maps</span>
+        <span class="sub">📍 China · real-time navigation</span>
+    </span>
+</button>
 
-        <h3>📦 REST QUANTITY · pro 1 pcs</h3>
-        <table id="perPcsTable"><thead><tr><th>Brot</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead><tbody id="perPcsRow"></tbody></table>
+<div class="auto-route-info">✅ Route auto-updates | Tap button above for real distance & traffic</div>
+</div>
 
-        <h3>📊 TOTAL · times / pcs</h3>
-        <div class="total-flex">
-            <div><strong>⏱️ times (13 pcs)</strong><table><tbody id="timesTableBody"></tbody></table></div>
-            <div><strong>🔢 pcs (Rest)</strong><table><tbody id="pcsTableBody"></tbody></table></div>
-        </div>
-
-        <div class="sub-table">
-            <h3>🔥 BERECHNETE THERMOMIX CHARGE</h3>
-            <table><thead><tr><th>Sorte</th><th>time</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead><tbody id="calculatedThermomixTable"></tbody></table>
-        </div>
-
-        <div class="sub-table">
-            <h3>📦 BERECHNETE REST QUANTITY</h3>
-            <table><thead><tr><th>Sorte</th><th>pcs</th><th>88er</th><th>138er</th><th>150er</th><th>188/208er</th><th>Wasser</th></tr></thead><tbody id="calculatedRestTable"></tbody><tfoot id="calculatedRestFooter"></tfoot></table>
-        </div>
-        <div class="info-text">💡 1 time = 13 pcs (volle Ladung) | Mini: halber Preis & halbe pcs | Alle Preise in CNY (¥)</div>
-    </div>
-    <footer>🌾 Rezepturdaten original | 208er = 188er Rezeptur | CNY</footer>
+<footer style="text-align:center;font-size:0.55rem;color:#c29d5a;margin-top:8px;">🌾 Original recipe | 200er & 208er share same recipe | CNY</footer>
 </div>
 
 <script>
-    // ---------- PREISLISTE (CNY) ----------
-    const priceDB = {
-        "88er": { "S": 88, "M": 190, "L": 278, "XM": 308, "XL": 350 },
-        "138er": { "S": 208, "M": 402, "L": 596, "XM": 658, "XL": 766 },
-        "150er": { "S": 288, "M": 588, "L": 888, "XM": 988, "XL": 1138 },
-        "188er": { "S": 328, "M": 788, "L": 1108, "XM": 1288, "XL": 1468 },
-        "208er": { "S": 328, "M": 788, "L": 1108, "XM": 1288, "XL": 1468 }
-    };
-
-    const sizeToPcs = { "S":2, "M":5, "L":8, "XM":9, "XL":11 };
-    // Rezeptur pro 13 pcs (Gramm)
-    const recipeFor13 = {
-        "88er": { mix88:745, mix138:0, mix150:0, mix188:0, water:360 },
-        "138er": { mix88:650, mix138:97, mix150:0, mix188:0, water:360 },
-        "150er": { mix88:630, mix138:97, mix150:15, mix188:0, water:360 },
-        "188er": { mix88:620, mix138:97, mix150:15, mix188:13, water:360 },
-        "208er": { mix88:620, mix138:97, mix150:15, mix188:13, water:360 }
-    };
-    function getPerPcs(btype) {
-        let r = recipeFor13[btype];
-        return { mix88: r.mix88/13, mix138: r.mix138/13, mix150: r.mix150/13, mix188: r.mix188/13, water: r.water/13 };
+(function() {
+    // ============ WEEK CALCULATION ============
+    function calculateCurrentWeek() {
+        var startDate = new Date(2025, 11, 22);
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        var diffTime = today.getTime() - startDate.getTime();
+        var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        var weekNum = Math.floor(diffDays / 7) + 1;
+        if (weekNum < 1) weekNum = 1;
+        if (weekNum > 53) weekNum = 53;
+        return weekNum;
     }
 
-    let orders = [];
-    let nextId = 1;
+    // ============ PRICE DATABASE ============
+    var priceDB = {
+        "88er": {"S":102, "S+":(102/2)*3*0.875817, "M":190, "M+":190, "L":278, "XM":308, "XL":350, "XL+":350},
+        "150er": {"S":208, "S+":(208/2)*3*0.875817, "M":402, "M+":402, "L":596, "XM":658, "XL":766, "XL+":766},
+        "188er": {"S":288, "S+":(288/2)*3*0.875817, "M":588, "M+":588, "L":888, "XM":988, "XL":1138, "XL+":1138},
+        "200er": {"S":308, "S+":(308/2)*3*0.875817, "M":688, "M+":688, "L":968, "XM":1080, "XL":1288, "XL+":1288},
+        "208er": {"S":328, "S+":(328/2)*3*0.875817, "M":788, "M+":788, "L":1108, "XM":1288, "XL":1468, "XL+":1468}
+    };
 
-    // DOM
-    const customerName = document.getElementById("customerName");
-    const breadType = document.getElementById("breadType");
-    const breadSize = document.getElementById("breadSize");
-    const isMini = document.getElementById("isMiniCheckbox");
-    const tableBodyEl = document.getElementById("tableBody");
-    const addBtn = document.getElementById("addBtn");
-    const resetBtn = document.getElementById("resetTableBtn");
-    const totalSpan = document.getElementById("totalPriceSum");
+    var sizeToPcs = {"S":2, "S+":3, "M":5, "M+":6, "L":8, "XM":9, "XL":11, "XL+":12};
 
+    var recipeFor13 = {
+        "88er": {mix88:745, mix150:0, mix188:0, mix200:0, water:360},
+        "150er": {mix88:650, mix150:97, mix188:0, mix200:0, water:360},
+        "188er": {mix88:630, mix150:97, mix188:15, mix200:0, water:360},
+        "200er": {mix88:620, mix150:97, mix188:15, mix200:13, water:360},
+        "208er": {mix88:620, mix150:97, mix188:15, mix200:13, water:360}
+    };
+
+    function getPerPcs(type) {
+        var r = recipeFor13[type];
+        return {mix88: r.mix88/13, mix150: r.mix150/13, mix188: r.mix188/13, mix200: r.mix200/13, water: r.water/13};
+    }
+
+    // ============ DATA STORE ============
+    var breadOrders = [];
+    var hummusOrders = [];
+    var addBreadOrders = [];
+    var addHummusOrders = [];
+    var addressBook = {};
+    var nextId = 1;
+    var currentWeek = calculateCurrentWeek();
+    var addBreadCount = 1;
+    var addHummusCount = 1;
+    var addressBookOpen = false;
+
+    // ============ DOM REFS ============
+    var customerName = document.getElementById("customerName");
+    var breadType = document.getElementById("breadType");
+    var breadSize = document.getElementById("breadSize");
+    var miniCheckbox = document.getElementById("miniCheckbox");
+    var hummusType = document.getElementById("hummusType");
+    var hummusSize = document.getElementById("hummusSize");
+    var yingYangInfo = document.getElementById("yingYangInfo");
+    var yingYangWarning = document.getElementById("yingYangWarning");
+    var breadTableBody = document.getElementById("breadTableBody");
+    var addBreadSummaryBody = document.getElementById("addBreadSummaryBody");
+    var hummusSummaryBody = document.getElementById("hummusSummaryBody");
+    var hummusTableBody = document.getElementById("hummusTableBody");
+    var totalSpan = document.getElementById("totalPriceSum");
+    var hummusCountSpan = document.getElementById("hummusCount");
+    var weekNumber = document.getElementById("weekNumber");
+    var weekBadge = document.getElementById("weekBadge");
+    var screenshotBtn = document.getElementById("screenshotBtn");
+    var screenshotStatus = document.getElementById("screenshotStatus");
+    var commissionCheckbox = document.getElementById("commissionCheckbox");
+    var addBreadType = document.getElementById("addBreadType");
+    var addBreadCountDisplay = document.getElementById("addBreadCountDisplay");
+    var addBreadMinusBtn = document.getElementById("addBreadMinusBtn");
+    var addBreadPlusBtn = document.getElementById("addBreadPlusBtn");
+    var addBreadAddBtn = document.getElementById("addBreadAddBtn");
+    var addBreadOrdersList = document.getElementById("addBreadOrdersList");
+    var addHummusType = document.getElementById("addHummusType");
+    var addHummusSize = document.getElementById("addHummusSize");
+    var addHummusCountDisplay = document.getElementById("addHummusCountDisplay");
+    var addHummusMinusBtn = document.getElementById("addHummusMinusBtn");
+    var addHummusPlusBtn = document.getElementById("addHummusPlusBtn");
+    var addHummusAddBtn = document.getElementById("addHummusAddBtn");
+    var addHummusOrdersList = document.getElementById("addHummusOrdersList");
+    var salaryAmount = document.getElementById("salaryAmount");
+    var salaryPercentDisplay = document.getElementById("salaryPercentDisplay");
+
+    var routeStart = document.getElementById("routeStart");
+    var routeResult = document.getElementById("routeResult");
+    var appleMapsBtn = document.getElementById("appleMapsBtn");
+    var autoRouteList = document.getElementById("autoRouteList");
+    var addressList = document.getElementById("addressList");
+    var addressNameInput = document.getElementById("addressNameInput");
+    var addressAddrInput = document.getElementById("addressAddrInput");
+    var addAddressBtn = document.getElementById("addAddressBtn");
+    var addressCount = document.getElementById("addressCount");
+    var addressToggleBtn = document.getElementById("addressToggleBtn");
+    var addressBody = document.getElementById("addressBody");
+    var addressToggle = document.getElementById("addressToggle");
+
+    // ============ ADDRESS TOGGLE ============
+    addressToggle.addEventListener('click', function() {
+        addressBookOpen = !addressBookOpen;
+        addressBody.classList.toggle('open');
+        addressToggleBtn.textContent = addressBookOpen ? '▲ Hide' : '▼ Show';
+    });
+
+    // ============ AUTO CAPITALIZE ============
+    function capitalizeName(input) {
+        if (!input) return '';
+        return input.charAt(0).toUpperCase() + input.slice(1);
+    }
+
+    customerName.addEventListener('blur', function() {
+        this.value = capitalizeName(this.value.trim());
+    });
+
+    addressNameInput.addEventListener('blur', function() {
+        this.value = capitalizeName(this.value.trim());
+    });
+
+    // ============ ADD BREAD COUNT CONTROLS ============
+    addBreadMinusBtn.addEventListener('click', function() {
+        if (addBreadCount > 1) { addBreadCount--; addBreadCountDisplay.textContent = addBreadCount; }
+    });
+    addBreadPlusBtn.addEventListener('click', function() {
+        if (addBreadCount < 99) { addBreadCount++; addBreadCountDisplay.textContent = addBreadCount; }
+    });
+
+    addHummusMinusBtn.addEventListener('click', function() {
+        if (addHummusCount > 1) { addHummusCount--; addHummusCountDisplay.textContent = addHummusCount; }
+    });
+    addHummusPlusBtn.addEventListener('click', function() {
+        if (addHummusCount < 99) { addHummusCount++; addHummusCountDisplay.textContent = addHummusCount; }
+    });
+
+    // ============ WEEK DISPLAY ============
+    function updateWeekDisplay() {
+        currentWeek = calculateCurrentWeek();
+        weekNumber.value = currentWeek;
+        weekBadge.textContent = 'Week ' + currentWeek;
+    }
+    updateWeekDisplay();
+
+    // ============ SCREENSHOT ============
+    screenshotBtn.addEventListener('click', function() {
+        var element = document.getElementById('captureArea');
+        var status = document.getElementById('screenshotStatus');
+        html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: null,
+            logging: false,
+            width: element.scrollWidth,
+            height: element.scrollHeight,
+            windowWidth: element.scrollWidth,
+            windowHeight: element.scrollHeight
+        }).then(function(canvas) {
+            var link = document.createElement('a');
+            link.download = 'microbiome_warrior_week_' + currentWeek + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            status.style.display = 'block';
+            status.textContent = '✅ Screenshot downloaded!';
+            status.style.background = '#e8f5e9';
+            setTimeout(function() { status.style.display = 'none'; }, 3000);
+        }).catch(function(error) {
+            console.error('Screenshot error:', error);
+            status.style.display = 'block';
+            status.textContent = '❌ Error taking screenshot';
+            status.style.background = '#fde8e8';
+            setTimeout(function() { status.style.display = 'none'; }, 3000);
+        });
+    });
+
+    // ============ AUTO HUMMUS SELECTION ============
+    function getHummusSizeForBreadSize(breadSizeVal) {
+        if (breadSizeVal === 'S+') return 'S';
+        return breadSizeVal;
+    }
+
+    function autoSelectHummus() {
+        var val = breadType.value;
+        var sizeVal = breadSize.value;
+        var hummusSelect = hummusType;
+        var hummusSizeSelect = hummusSize;
+        
+        if (sizeVal === 'M+' || sizeVal === 'XL+') {
+            hummusSelect.value = 'none';
+            yingYangInfo.classList.remove('show');
+            yingYangWarning.style.display = 'none';
+            return;
+        }
+        
+        var hummusSizeVal = getHummusSizeForBreadSize(sizeVal);
+        hummusSizeSelect.value = hummusSizeVal;
+        
+        if (val === '88er' || val === '150er') {
+            hummusSelect.value = 'hummus';
+            yingYangInfo.classList.remove('show');
+            yingYangWarning.style.display = 'none';
+        } else if (val === '188er' || val === '200er' || val === '208er') {
+            hummusSelect.value = 'yingyang';
+            yingYangInfo.classList.add('show');
+            yingYangWarning.style.display = 'none';
+        }
+    }
+
+    breadType.addEventListener('change', autoSelectHummus);
+    breadSize.addEventListener('change', autoSelectHummus);
+    autoSelectHummus();
+
+    hummusType.addEventListener('change', function() {
+        var sizeVal = breadSize.value;
+        if ((sizeVal === 'M+' || sizeVal === 'XL+') && this.value !== 'none') {
+            alert('❌ ' + sizeVal + ' comes without hummus as standard!');
+            this.value = 'none';
+            return;
+        }
+        if (this.value === 'yingyang') {
+            var val = breadType.value;
+            if (val !== '188er' && val !== '200er' && val !== '208er') {
+                yingYangWarning.style.display = 'block';
+                alert('☯️ Ying & Yang is only available for 188er, 200er and 208er!');
+                this.value = 'hummus';
+                yingYangWarning.style.display = 'none';
+            } else {
+                yingYangWarning.style.display = 'none';
+            }
+        } else {
+            yingYangWarning.style.display = 'none';
+        }
+    });
+
+    // ============ ADDRESS BOOK ============
+    function loadAddressBook() {
+        var data = localStorage.getItem("microbiome_address_book");
+        if (data) {
+            try { addressBook = JSON.parse(data); } catch(e) { addressBook = {}; }
+        } else {
+            addressBook = {
+                "Anna": "上海市黄浦区淮海路123号",
+                "Tom": "上海市浦东新区陆家嘴环路456号",
+                "Lisa": "上海市徐汇区衡山路789号",
+                "Max": "上海市静安区南京西路321号"
+            };
+            saveAddressBook();
+        }
+        renderAddressBook();
+    }
+
+    function saveAddressBook() {
+        localStorage.setItem("microbiome_address_book", JSON.stringify(addressBook));
+        renderAddressBook();
+    }
+
+    function renderAddressBook() {
+        var keys = Object.keys(addressBook);
+        addressCount.textContent = '(' + keys.length + ' entries)';
+        
+        if (keys.length === 0) {
+            addressList.innerHTML = '<div class="am-empty">No addresses saved yet</div>';
+        } else {
+            var html = '';
+            keys.forEach(function(name) {
+                var addr = addressBook[name] || '';
+                html += '<span class="am-tag">' + escapeHtml(name) + ' → ' + escapeHtml(addr) + ' <span class="del" data-name="' + escapeHtml(name) + '">✖</span></span>';
+            });
+            addressList.innerHTML = html;
+            document.querySelectorAll('.am-tag .del').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    var name = this.dataset.name;
+                    delete addressBook[name];
+                    saveAddressBook();
+                    updateRoute();
+                });
+            });
+        }
+    }
+
+    function addAddressToBook(name, addr) {
+        name = capitalizeName(name.trim());
+        if (!name) { alert('Please enter a name.'); return; }
+        addressBook[name] = addr || '';
+        saveAddressBook();
+        addressNameInput.value = '';
+        addressAddrInput.value = '';
+        addressNameInput.focus();
+        updateRoute();
+    }
+
+    // ============ HELPERS ============
     function getPcsForOrder(order) {
-        let base = sizeToPcs[order.size];
-        return order.isMini ? base/2 : base;
+        var base = sizeToPcs[order.size] || 0;
+        return order.isMini ? base / 2 : base;
     }
+
     function getPriceForOrder(order) {
-        let basePrice = priceDB[order.breadType]?.[order.size] || 0;
+        var basePrice = priceDB[order.breadType]?.[order.size] || 0;
         return order.isMini ? basePrice / 2 : basePrice;
     }
+
     function totalPriceAll() {
-        return orders.reduce((sum, o) => sum + getPriceForOrder(o), 0);
+        var sum = 0;
+        breadOrders.forEach(function(o) {
+            if (!o.isAdd && !o.isAddBread) {
+                sum += getPriceForOrder(o);
+            }
+        });
+        return sum;
+    }
+
+    function totalHummusCount() {
+        return hummusOrders.length;
     }
 
     function getTotalPcsPerType() {
-        let totals = { "88er":0,"138er":0,"150er":0,"188er":0,"208er":0 };
-        orders.forEach(o => { totals[o.breadType] += getPcsForOrder(o); });
+        var totals = {"88er":0, "150er":0, "188er":0, "200er":0, "208er":0};
+        breadOrders.forEach(function(o) {
+            var pcs = getPcsForOrder(o);
+            totals[o.breadType] += pcs;
+        });
         return totals;
     }
+
     function getTotalRequirements() {
-        let pcs = getTotalPcsPerType();
-        let total88=0,total138=0,total150=0,total188=0,totalWater=0;
-        for(let [type, p] of Object.entries(pcs)) {
-            if(p===0) continue;
-            let per = getPerPcs(type);
+        var pcs = getTotalPcsPerType();
+        var total88 = 0, total150 = 0, total188 = 0, total200 = 0, totalWater = 0;
+        for (var type in pcs) {
+            var p = pcs[type];
+            if (p === 0) continue;
+            var per = getPerPcs(type);
             total88 += per.mix88 * p;
-            total138 += per.mix138 * p;
             total150 += per.mix150 * p;
             total188 += per.mix188 * p;
+            total200 += per.mix200 * p;
             totalWater += per.water * p;
         }
-        return { mix88:total88, mix138:total138, mix150:total150, mix188:total188, water:totalWater };
+        return {mix88: total88, mix150: total150, mix188: total188, mix200: total200, water: totalWater};
     }
+
     function getTimesPcsBreakdown() {
-        let pcs = getTotalPcsPerType();
-        let res = [];
-        for(let [type, total] of Object.entries(pcs)) {
-            if(total===0) continue;
-            let full = Math.floor(total / 13);
-            let rest = total % 13;
-            res.push({ type, fullCharges: full, restPcs: rest });
+        var pcs = getTotalPcsPerType();
+        var res = [];
+        for (var type in pcs) {
+            var total = pcs[type];
+            if (total === 0) continue;
+            var full = Math.floor(total / 13);
+            var rest = total % 13;
+            res.push({type: type, fullCharges: full, restPcs: rest});
         }
         return res;
     }
 
-    function renderAll() {
-        // Bestelltabelle mit Preisen CNY
-        if(orders.length===0) {
-            tableBodyEl.innerHTML = '<tr><td colspan="7" style="text-align:center">Keine Bestellungen 🥖</td></tr>';
-        } else {
-            tableBodyEl.innerHTML = "";
-            orders.forEach(order => {
-                let row = document.createElement("tr");
-                row.innerHTML = `
-                    <td style="text-align:left">${escapeHtml(order.name)}</td>
-                    <td>${order.breadType}er</td>
-                    <td>${order.size}</td>
-                    <td>${getPcsForOrder(order)}</td>
-                    <td>${getPriceForOrder(order).toFixed(2)} ¥</td>
-                    <td>${getPriceForOrder(order).toFixed(2)} ¥</td>
-                    <td><button class="delete-btn" data-id="${order.id}">✖</button></td>
-                `;
-                tableBodyEl.appendChild(row);
-            });
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    let id = parseInt(btn.getAttribute('data-id'));
-                    orders = orders.filter(o => o.id !== id);
-                    renderAll();
-                    saveToLocal();
-                });
-            });
-        }
-        totalSpan.innerText = totalPriceAll().toFixed(2) + " ¥";
-
-        let pcsPer = getTotalPcsPerType();
-        let req = getTotalRequirements();
-        let breakdown = getTimesPcsBreakdown();
-
-        // PREPARATION Boxen aufgerundet
-        let needed88 = req.mix88;
-        let boxes = needed88 / 1400;
-        let rounded = Math.ceil(boxes);
-        if(rounded===0 && needed88>0) rounded=1;
-        document.getElementById("preparationRow").innerHTML = `<tr><td>88er Basismischung</td><td>${needed88.toFixed(1)} g</td><td>${rounded} Boxen</td></tr>`;
-
-        // REST QUANTITY pro pcs
-        let perBody = document.getElementById("perPcsRow");
-        perBody.innerHTML = `
-            <tr><td>88er</td><td>${(745/13).toFixed(1)}g</td><td>0g</td><td>0g</td><td>0g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
-            <tr><td>138er</td><td>${(650/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>0g</td><td>0g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
-            <tr><td>150er</td><td>${(630/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>${(15/13).toFixed(1)}g</td><td>0g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
-            <tr><td>188er</td><td>${(620/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>${(15/13).toFixed(1)}g</td><td>${(13/13).toFixed(1)}g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
-            <tr><td>208er</td><td>${(620/13).toFixed(1)}g</td><td>${(97/13).toFixed(1)}g</td><td>${(15/13).toFixed(1)}g</td><td>${(13/13).toFixed(1)}g</td><td class="water-cell">${(360/13).toFixed(1)}g</td></tr>
-        `;
-
-        // times/pcs Übersicht
-        let timesHtml = "", pcsHtml = "";
-        if(breakdown.length===0 || breakdown.every(b=>b.fullCharges===0)) timesHtml = '<tr><td colspan="2">Keine times</td></tr>';
-        else timesHtml = breakdown.filter(b=>b.fullCharges>0).map(b=>`<tr><td>${b.type}er</td><td class="badge-time">${b.fullCharges} time</td></tr>`).join('');
-        if(breakdown.length===0 || !breakdown.some(b=>b.restPcs>0)) pcsHtml = '<tr><td colspan="2">Keine Rest-pcs</td></tr>';
-        else pcsHtml = breakdown.filter(b=>b.restPcs>0).map(b=>`<tr><td>${b.type}er</td><td class="badge-pcs">${b.restPcs} pcs</td></tr>`).join('');
-        document.getElementById("timesTableBody").innerHTML = timesHtml;
-        document.getElementById("pcsTableBody").innerHTML = pcsHtml;
-
-        // Berechnete Thermomix (feste werte pro time)
-        let thermHtml = "";
-        if(breakdown.some(b=>b.fullCharges>0)) {
-            thermHtml = breakdown.filter(b=>b.fullCharges>0).map(b=>{
-                let r = recipeFor13[b.type];
-                return `<tr><td>${b.type}er</td><td>${b.fullCharges} time</td><td>${r.mix88}g</td><td>${r.mix138}g</td><td>${r.mix150}g</td><td>${r.mix188}g</td><td class="water-cell">${r.water}g</td></tr>`;
-            }).join('');
-        } else thermHtml = '<tr><td colspan="7">Keine times</td></tr>';
-        document.getElementById("calculatedThermomixTable").innerHTML = thermHtml;
-
-        // Berechnete Rest quantity mit Summe
-        let restHtml = "", sum88=0, sum138=0, sum150=0, sum188=0, sumW=0;
-        if(breakdown.some(b=>b.restPcs>0)) {
-            restHtml = breakdown.filter(b=>b.restPcs>0).map(b=>{
-                let per = getPerPcs(b.type);
-                let t88 = per.mix88 * b.restPcs;
-                let t138 = per.mix138 * b.restPcs;
-                let t150 = per.mix150 * b.restPcs;
-                let t188 = per.mix188 * b.restPcs;
-                let tw = per.water * b.restPcs;
-                sum88+=t88; sum138+=t138; sum150+=t150; sum188+=t188; sumW+=tw;
-                return `<tr><td>${b.type}er</td><td>${b.restPcs} pcs</td><td>${t88.toFixed(1)}g</td><td>${t138.toFixed(1)}g</td><td>${t150.toFixed(1)}g</td><td>${t188.toFixed(1)}g</td><td class="water-cell">${tw.toFixed(1)}g</td></tr>`;
-            }).join('');
-            document.getElementById("calculatedRestFooter").innerHTML = `<tr style="background:#3a3220;"><td colspan="2">📊 GESAMT Rest</td><td>${sum88.toFixed(1)}g</td><td>${sum138.toFixed(1)}g</td><td>${sum150.toFixed(1)}g</td><td>${sum188.toFixed(1)}g</td><td class="water-cell">${sumW.toFixed(1)}g</td></tr>`;
-        } else {
-            restHtml = '<tr><td colspan="7">Keine Rest-pcs</td></tr>';
-            document.getElementById("calculatedRestFooter").innerHTML = "";
-        }
-        document.getElementById("calculatedRestTable").innerHTML = restHtml;
-    }
-
-    function addOrderHandler(e) {
-        e.preventDefault();
-        let name = customerName.value.trim();
-        if(!name) { alert("Bitte Namen eingeben."); return; }
-        let newOrder = {
-            id: nextId++,
-            name: name,
-            breadType: breadType.value,
-            size: breadSize.value,
-            isMini: isMini.checked
-        };
-        orders.push(newOrder);
-        renderAll();
-        saveToLocal();
-        customerName.value = "";
-        isMini.checked = false;
-        customerName.focus();
-    }
-
-    function resetAll() {
-        if(orders.length && confirm("Alle Bestellungen löschen?")) {
-            orders = [];
-            renderAll();
-            saveToLocal();
-            nextId = 1;
-        } else if(!orders.length) alert("Keine Bestellungen");
-    }
-
     function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-            if(m === '&') return '&amp;';
-            if(m === '<') return '&lt;';
-            if(m === '>') return '&gt;';
+        if (!str) return '';
+        return String(str).replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
             return m;
         });
     }
 
+    // ============ LOCAL STORAGE ============
     function saveToLocal() {
-        localStorage.setItem("microbiome_cny_final", JSON.stringify({ orders, nextId }));
-    }
-    function loadFromLocal() {
-        let data = localStorage.getItem("microbiome_cny_final");
-        if(data) {
-            try {
-                let parsed = JSON.parse(data);
-                if(parsed.orders) orders = parsed.orders;
-                if(parsed.nextId) nextId = parsed.nextId;
-            } catch(e) {}
-        }
-        renderAll();
+        localStorage.setItem("microbiome_bread", JSON.stringify({orders: breadOrders, nextId: nextId}));
+        localStorage.setItem("microbiome_hummus", JSON.stringify({orders: hummusOrders}));
+        localStorage.setItem("microbiome_add_bread", JSON.stringify({orders: addBreadOrders}));
+        localStorage.setItem("microbiome_add_hummus", JSON.stringify({orders: addHummusOrders}));
     }
 
-    addBtn.addEventListener("click", addOrderHandler);
-    resetBtn.addEventListener("click", resetAll);
+    function loadFromLocal() {
+        var breadData = localStorage.getItem("microbiome_bread");
+        if (breadData) {
+            try {
+                var parsed = JSON.parse(breadData);
+                if (parsed.orders) breadOrders = parsed.orders;
+                if (parsed.nextId) nextId = parsed.nextId;
+            } catch(e) {}
+        }
+        var hummusData = localStorage.getItem("microbiome_hummus");
+        if (hummusData) {
+            try {
+                var parsed = JSON.parse(hummusData);
+                if (parsed.orders) hummusOrders = parsed.orders;
+            } catch(e) {}
+        }
+        var addBreadData = localStorage.getItem("microbiome_add_bread");
+        if (addBreadData) {
+            try {
+                var parsed = JSON.parse(addBreadData);
+                if (parsed.orders) addBreadOrders = parsed.orders;
+            } catch(e) {}
+        }
+        var addHummusData = localStorage.getItem("microbiome_add_hummus");
+        if (addHummusData) {
+            try {
+                var parsed = JSON.parse(addHummusData);
+                if (parsed.orders) addHummusOrders = parsed.orders;
+            } catch(e) {}
+        }
+        render();
+    }
+
+    // ============ SALARY DISPLAY ============
+    function updateSalaryDisplay() {
+        var totalWithComm = 0;
+        var totalWithoutComm = 0;
+        
+        breadOrders.forEach(function(o) {
+            if (o.isAdd || o.isAddBread) return;
+            var price = getPriceForOrder(o);
+            if (o.hasCommission) {
+                totalWithComm += price;
+            } else {
+                totalWithoutComm += price;
+            }
+        });
+        
+        var salaryWithComm = totalWithComm * 0.135;
+        var salaryWithoutComm = totalWithoutComm * 0.15;
+        var totalSalary = salaryWithComm + salaryWithoutComm;
+        
+        salaryAmount.textContent = totalSalary.toFixed(2) + ' ¥';
+        
+        var infoText = '';
+        if (totalWithComm > 0 && totalWithoutComm > 0) {
+            infoText = '(mix: 13.5% + 15%)';
+        } else if (totalWithComm > 0) {
+            infoText = '(13.5%)';
+        } else {
+            infoText = '(15%)';
+        }
+        salaryPercentDisplay.textContent = infoText;
+    }
+
+    // ============ TOGGLE COMMISSION ============
+    function toggleCommission(orderId) {
+        var order = breadOrders.find(function(o) { return o.id === orderId; });
+        if (order && !order.isAdd && !order.isAddBread) {
+            order.hasCommission = !order.hasCommission;
+            render();
+            saveToLocal();
+            updateRoute();
+        }
+    }
+
+    // ============ RENDER ADD ORDERS ============
+    function renderAddOrders() {
+        if (addBreadOrders.length === 0) {
+            addBreadOrdersList.innerHTML = '<span style="color:#b88c48;">No added bread orders yet</span>';
+        } else {
+            var html = '';
+            addBreadOrders.forEach(function(item, index) {
+                html += '<span class="add-item"><span class="qty">' + item.count + '×</span> ' + item.type + ' <span class="del" data-bread-index="' + index + '">✖</span></span> ';
+            });
+            addBreadOrdersList.innerHTML = html;
+            document.querySelectorAll('.add-item .del[data-bread-index]').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    var idx = parseInt(this.dataset.breadIndex);
+                    var removed = addBreadOrders[idx];
+                    addBreadOrders.splice(idx, 1);
+                    var removedCount = 0;
+                    breadOrders = breadOrders.filter(function(o) {
+                        if (o.isAddBread && o.breadType === removed.type && removedCount < removed.count) {
+                            removedCount++;
+                            return false;
+                        }
+                        return true;
+                    });
+                    render();
+                    saveToLocal();
+                    updateRoute();
+                });
+            });
+        }
+        
+        if (addBreadOrders.length === 0) {
+            addBreadSummaryBody.innerHTML = '<tr><td colspan="3" style="text-align:center">No ADD bread orders yet</td></tr>';
+        } else {
+            addBreadSummaryBody.innerHTML = '';
+            addBreadOrders.forEach(function(item, index) {
+                var row = document.createElement('tr');
+                row.innerHTML = '<td>' + item.type + '</td><td>' + item.count + '</td><td><button class="delete-btn" data-add-bread-index="' + index + '" style="background:#eeddbb;border:none;border-radius:20px;padding:2px 10px;font-weight:700;color:#9b6a2a;cursor:pointer;">✖</button></td>';
+                addBreadSummaryBody.appendChild(row);
+            });
+            document.querySelectorAll('#addBreadSummaryBody .delete-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var idx = parseInt(this.dataset.addBreadIndex);
+                    var removed = addBreadOrders[idx];
+                    addBreadOrders.splice(idx, 1);
+                    var removedCount = 0;
+                    breadOrders = breadOrders.filter(function(o) {
+                        if (o.isAddBread && o.breadType === removed.type && removedCount < removed.count) {
+                            removedCount++;
+                            return false;
+                        }
+                        return true;
+                    });
+                    render();
+                    saveToLocal();
+                    updateRoute();
+                });
+            });
+        }
+        
+        if (addHummusOrders.length === 0) {
+            addHummusOrdersList.innerHTML = '<span style="color:#b88c48;">No added hummus orders yet</span>';
+        } else {
+            var html = '';
+            addHummusOrders.forEach(function(item, index) {
+                var typeLabel = item.type === 'yingyang' ? '☯️ Ying&Yang' : '🫒 Hummus';
+                html += '<span class="add-item"><span class="qty">' + item.count + '×</span> ' + typeLabel + ' (' + item.size + ') <span class="del" data-hummus-index="' + index + '">✖</span></span> ';
+            });
+            addHummusOrdersList.innerHTML = html;
+            document.querySelectorAll('.add-item .del[data-hummus-index]').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    var idx = parseInt(this.dataset.hummusIndex);
+                    var removed = addHummusOrders[idx];
+                    addHummusOrders.splice(idx, 1);
+                    var removedCount = 0;
+                    hummusOrders = hummusOrders.filter(function(o) {
+                        if (o.isAddHummus && o.hummusType === removed.type && o.size === removed.size && removedCount < removed.count) {
+                            removedCount++;
+                            return false;
+                        }
+                        return true;
+                    });
+                    render();
+                    saveToLocal();
+                    updateRoute();
+                });
+            });
+        }
+    }
+
+    // ============ RENDER HUMMUS SUMMARY ============
+    function renderHummusSummary() {
+        var allHummus = [];
+        
+        hummusOrders.forEach(function(o) {
+            if (!o.isAddHummus) {
+                allHummus.push(o);
+            }
+        });
+        
+        addHummusOrders.forEach(function(item) {
+            for (var i = 0; i < item.count; i++) {
+                allHummus.push({
+                    hummusType: item.type,
+                    size: item.size,
+                    isAdd: true
+                });
+            }
+        });
+        
+        var summary = {};
+        allHummus.forEach(function(o) {
+            var key = o.hummusType + '|' + o.size;
+            if (!summary[key]) {
+                summary[key] = { type: o.hummusType, size: o.size, count: 0 };
+            }
+            summary[key].count++;
+        });
+        
+        var keys = Object.keys(summary);
+        if (keys.length === 0) {
+            hummusSummaryBody.innerHTML = '<tr><td colspan="3" style="text-align:center">No hummus orders yet</td></tr>';
+        } else {
+            hummusSummaryBody.innerHTML = '';
+            keys.forEach(function(key) {
+                var item = summary[key];
+                var row = document.createElement('tr');
+                var typeLabel = item.type === 'yingyang' ? '☯️ Ying&Yang' : '🫒 Hummus';
+                row.innerHTML = '<td>' + typeLabel + '</td><td>' + item.size + '</td><td>' + item.count + '</td>';
+                hummusSummaryBody.appendChild(row);
+            });
+        }
+    }
+
+    // ============ DELETE BREAD WITH HUMMUS ============
+    function deleteBreadAndHummus(breadId) {
+        var breadToDelete = breadOrders.find(function(o) { return o.id === breadId; });
+        if (!breadToDelete) return;
+        
+        breadOrders = breadOrders.filter(function(o) { return o.id !== breadId; });
+        
+        hummusOrders = hummusOrders.filter(function(o) {
+            return !(o.name === breadToDelete.name && o.breadType === breadToDelete.breadType);
+        });
+    }
+
+    // ============ ROUTE PLANNING ============
+    function updateRoute() {
+        var start = routeStart.value.trim();
+        if (!start) {
+            routeResult.innerHTML = '<div class="route-empty">⚠️ Please enter your start address.</div>';
+            autoRouteList.innerHTML = 'No start address set';
+            appleMapsBtn.disabled = true;
+            return;
+        }
+        
+        var normalOrders = breadOrders.filter(function(o) { return !o.isAdd && !o.isAddBread; });
+        
+        if (normalOrders.length === 0) {
+            routeResult.innerHTML = '<div class="route-empty">No orders yet → add some!</div>';
+            autoRouteList.innerHTML = 'No orders yet';
+            appleMapsBtn.disabled = true;
+            return;
+        }
+        
+        var customers = [];
+        var noAddress = [];
+        
+        normalOrders.forEach(function(order) {
+            var addr = addressBook[order.name] || '';
+            if (addr && addr.trim()) {
+                customers.push({ name: order.name, address: addr, order: order });
+            } else {
+                noAddress.push(order.name);
+            }
+        });
+        
+        // AutoRouteList - all orders with status
+        var listHtml = '';
+        normalOrders.forEach(function(order) {
+            var addr = addressBook[order.name] || '';
+            var hasAddr = addr && addr.trim();
+            var statusIcon = hasAddr ? '✅' : '⚠️';
+            var statusText = hasAddr ? '📍 ' + addr : 'no address';
+            listHtml += '<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #f0e2c8;font-size:0.6rem;">' +
+                '<span>' + escapeHtml(order.name) + ' (' + order.breadType + ' ' + order.size + ')</span>' +
+                '<span style="color:' + (hasAddr ? '#27ae60' : '#c0392b') + ';">' + statusIcon + ' ' + statusText + '</span>' +
+            '</div>';
+        });
+        autoRouteList.innerHTML = listHtml;
+        
+        if (customers.length === 0) {
+            routeResult.innerHTML = '<div class="route-empty">⚠️ No customers with address found. Add addresses in Address Book.</div>';
+            appleMapsBtn.disabled = true;
+            return;
+        }
+        
+        var routeDeliveries = customers.map(function(c) { return c.address; });
+        
+        var html = '<div style="font-weight:600;font-size:0.7rem;color:#27ae60;margin-bottom:6px;">📍 Start: ' + escapeHtml(start) + '</div>';
+        html += '<div style="font-weight:600;font-size:0.65rem;color:#6b4a1c;margin-bottom:6px;">📦 Delivery Order (' + customers.length + ' stops):</div>';
+        
+        customers.forEach(function(c, index) {
+            html += '<div class="route-step">' +
+                '<span class="step-num">' + (index + 1) + '</span>' +
+                '<span class="step-name">' + escapeHtml(c.name) + ' (' + c.order.breadType + ' ' + c.order.size + ')</span>' +
+                '<span class="step-detail">📍 ' + escapeHtml(c.address) + '</span>' +
+            '</div>';
+        });
+        
+        if (noAddress.length > 0) {
+            html += '<div style="margin-top:4px;padding:4px 8px;background:#fde8e8;border-radius:8px;font-size:0.55rem;color:#c0392b;">⚠️ No address for: ' + noAddress.join(', ') + ' (not in route)</div>';
+        }
+        
+        html += '<div class="route-no-distance">📱 Tap Apple Maps button below for real distance & traffic</div>';
+        
+        routeResult.innerHTML = html;
+        appleMapsBtn.disabled = false;
+        
+        window._routeDeliveries = routeDeliveries;
+        window._routeStart = start;
+    }
+
+    // ============ OPEN IN APPLE MAPS (CHINA) - IMPROVED ============
+    function openInAppleMaps() {
+        var start = window._routeStart || routeStart.value.trim();
+        var deliveries = window._routeDeliveries || [];
+        
+        if (!start || deliveries.length === 0) {
+            alert('Please add orders with addresses first.');
+            return;
+        }
+        
+        // Build URL with proper encoding for Chinese addresses
+        var url = 'http://maps.apple.com/?';
+        var params = [];
+        
+        // Start address
+        params.push('saddr=' + encodeURIComponent(start));
+        
+        // Destination addresses
+        deliveries.forEach(function(addr) {
+            params.push('daddr=' + encodeURIComponent(addr));
+        });
+        
+        // Add navigation mode (driving)
+        params.push('dirflg=d');
+        
+        // Add language parameter for Chinese
+        params.push('hl=zh-CN');
+        
+        url += params.join('&');
+        
+        // Try to open Apple Maps app directly (works on iOS)
+        // First try the app URL scheme, then fallback to web
+        var appUrl = 'maps://maps.apple.com/?';
+        var appParams = [];
+        appParams.push('saddr=' + encodeURIComponent(start));
+        deliveries.forEach(function(addr) {
+            appParams.push('daddr=' + encodeURIComponent(addr));
+        });
+        appParams.push('dirflg=d');
+        appUrl += appParams.join('&');
+        
+        // Try app first, then web fallback
+        var appleMapsWindow = window.open(appUrl, '_blank');
+        
+        // If the app doesn't open (or user is on non-iOS), fallback to web
+        setTimeout(function() {
+            if (appleMapsWindow && !appleMapsWindow.closed) {
+                // Check if the window is still open - if yes, it might be a new tab that stayed open
+                // For iOS, the app would have opened and the window might be closed
+            }
+        }, 500);
+        
+        // Also open web version as backup in a new tab
+        // This ensures it works on all devices
+        setTimeout(function() {
+            window.open(url, '_blank');
+        }, 300);
+    }
+
+    // ============ MAIN RENDER ============
+    function render() {
+        var normalOrders = breadOrders.filter(function(o) { return !o.isAdd && !o.isAddBread; });
+        if (normalOrders.length === 0) {
+            breadTableBody.innerHTML = '<tr><td colspan="8" style="text-align:center">No bread orders 🥖</td></tr>';
+        } else {
+            breadTableBody.innerHTML = '';
+            normalOrders.forEach(function(order, index) {
+                var row = document.createElement('tr');
+                var sizeDisplay = order.isMini ? order.size + ' (Mini)' : order.size;
+                var price = getPriceForOrder(order);
+                var pcs = getPcsForOrder(order);
+                var nameDisplay = order.name;
+                var noHummusTag = (order.size === 'XL+' || order.size === 'M+') ? ' <span class="no-hummus-tag">no hummus</span>' : '';
+                var commClass = order.hasCommission ? 'active' : 'inactive';
+                var commLabel = order.hasCommission ? '13.5%' : '15%';
+                
+                row.innerHTML = '<td>#' + (index + 1) + '</td><td style="text-align:left">' + escapeHtml(nameDisplay) + '</td><td>' + order.breadType + '</td><td>' + sizeDisplay + noHummusTag + '</td><td>' + pcs + '</td><td>' + price.toFixed(2) + ' ¥</td><td><span class="comm-toggle ' + commClass + '" data-id="' + order.id + '"><span class="toggle-dot"></span><span class="toggle-label">' + commLabel + '</span></span></td><td><button class="delete-btn" data-id="' + order.id + '" data-type="bread">✖</button></td>';
+                breadTableBody.appendChild(row);
+            });
+        }
+        
+        var normalHummus = hummusOrders.filter(function(o) { return !o.isAddHummus; });
+        if (normalHummus.length === 0) {
+            hummusTableBody.innerHTML = '<tr><td colspan="6" style="text-align:center">No hummus orders 🫒</td></tr>';
+        } else {
+            hummusTableBody.innerHTML = '';
+            normalHummus.forEach(function(order, index) {
+                var row = document.createElement('tr');
+                var hummusLabel = order.hummusType === 'yingyang' ? '☯️ Ying&Yang' : '🫒 Hummus';
+                var hummusClass = order.hummusType === 'yingyang' ? 'yingyang-tag' : 'hummus-tag';
+                var nameDisplay = order.name;
+                row.innerHTML = '<td>#' + (index + 1) + '</td><td style="text-align:left">' + escapeHtml(nameDisplay) + '</td><td>' + order.breadType + '</td><td>' + order.size + '</td><td><span class="' + hummusClass + '">' + hummusLabel + '</span></td><td><button class="delete-btn" data-id="' + order.id + '" data-type="hummus">✖</button></td>';
+                hummusTableBody.appendChild(row);
+            });
+        }
+        
+        document.querySelectorAll('.comm-toggle').forEach(function(el) {
+            el.addEventListener('click', function() {
+                var id = parseInt(this.getAttribute('data-id'));
+                toggleCommission(id);
+            });
+        });
+        
+        document.querySelectorAll('.delete-btn[data-type="bread"]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var id = parseInt(this.getAttribute('data-id'));
+                deleteBreadAndHummus(id);
+                render();
+                saveToLocal();
+                updateRoute();
+            });
+        });
+        
+        document.querySelectorAll('.delete-btn[data-type="hummus"]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var id = parseInt(this.getAttribute('data-id'));
+                hummusOrders = hummusOrders.filter(function(o) { return o.id !== id; });
+                render();
+                saveToLocal();
+                updateRoute();
+            });
+        });
+        
+        var total = totalPriceAll();
+        totalSpan.innerText = total.toFixed(2) + ' ¥';
+        hummusCountSpan.innerText = '🫒 ' + totalHummusCount();
+        updateSalaryDisplay();
+        renderHummusSummary();
+        
+        var req = getTotalRequirements();
+        var breakdown = getTimesPcsBreakdown();
+        
+        var needed88 = req.mix88;
+        var boxes = Math.ceil(needed88 / 1400);
+        if (boxes === 0 && needed88 > 0) boxes = 1;
+        document.getElementById("preparationRow").innerHTML = '<tr><td>88er Base Mix</td><td>' + needed88.toFixed(1) + ' g</td><td>' + boxes + ' Boxes</td></tr>';
+        
+        document.getElementById("perPcsRow").innerHTML = 
+            '<tr><td>88er</td><td>' + (745/13).toFixed(1) + 'g</td><td>0g</td><td>0g</td><td>0g</td><td class="water-cell">' + (360/13).toFixed(1) + 'g</td></tr>' +
+            '<tr><td>150er</td><td>' + (650/13).toFixed(1) + 'g</td><td>' + (97/13).toFixed(1) + 'g</td><td>0g</td><td>0g</td><td class="water-cell">' + (360/13).toFixed(1) + 'g</td></tr>' +
+            '<tr><td>188er</td><td>' + (630/13).toFixed(1) + 'g</td><td>' + (97/13).toFixed(1) + 'g</td><td>' + (15/13).toFixed(1) + 'g</td><td>0g</td><td class="water-cell">' + (360/13).toFixed(1) + 'g</td></tr>' +
+            '<tr><td>200er</td><td>' + (620/13).toFixed(1) + 'g</td><td>' + (97/13).toFixed(1) + 'g</td><td>' + (15/13).toFixed(1) + 'g</td><td>' + (13/13).toFixed(1) + 'g</td><td class="water-cell">' + (360/13).toFixed(1) + 'g</td></tr>' +
+            '<tr><td>208er</td><td>' + (620/13).toFixed(1) + 'g</td><td>' + (97/13).toFixed(1) + 'g</td><td>' + (15/13).toFixed(1) + 'g</td><td>' + (13/13).toFixed(1) + 'g</td><td class="water-cell">' + (360/13).toFixed(1) + 'g</td></tr>';
+        
+        var timesHtml = '', pcsHtml = '';
+        if (breakdown.length === 0 || breakdown.every(function(b) { return b.fullCharges === 0; })) {
+            timesHtml = '<tr><td colspan="2">No times</td></tr>';
+        } else {
+            timesHtml = breakdown.filter(function(b) { return b.fullCharges > 0; }).map(function(b) {
+                return '<tr><td>' + b.type + '</td><td><span class="badge-time">' + b.fullCharges + ' time</span></td></tr>';
+            }).join('');
+        }
+        if (breakdown.length === 0 || !breakdown.some(function(b) { return b.restPcs > 0; })) {
+            pcsHtml = '<tr><td colspan="2">No rest pcs</td></tr>';
+        } else {
+            pcsHtml = breakdown.filter(function(b) { return b.restPcs > 0; }).map(function(b) {
+                return '<tr><td>' + b.type + '</td><td><span class="badge-pcs">' + b.restPcs + ' pcs</span></td></tr>';
+            }).join('');
+        }
+        document.getElementById("timesTableBody").innerHTML = timesHtml;
+        document.getElementById("pcsTableBody").innerHTML = pcsHtml;
+        
+        var thermHtml = '';
+        if (breakdown.some(function(b) { return b.fullCharges > 0; })) {
+            thermHtml = breakdown.filter(function(b) { return b.fullCharges > 0; }).map(function(b) {
+                var r = recipeFor13[b.type];
+                return '<tr><td>' + b.type + '</td><td>' + b.fullCharges + ' time</td><td>' + r.mix88 + 'g</td><td>' + r.mix150 + 'g</td><td>' + r.mix188 + 'g</td><td>' + r.mix200 + 'g</td><td class="water-cell">' + r.water + 'g</td></tr>';
+            }).join('');
+        } else {
+            thermHtml = '<tr><td colspan="7">No times</td></tr>';
+        }
+        document.getElementById("calculatedThermomixTable").innerHTML = thermHtml;
+        
+        var restHtml = '', sum88 = 0, sum150 = 0, sum188 = 0, sum200 = 0, sumW = 0;
+        if (breakdown.some(function(b) { return b.restPcs > 0; })) {
+            restHtml = breakdown.filter(function(b) { return b.restPcs > 0; }).map(function(b) {
+                var per = getPerPcs(b.type);
+                var t88 = per.mix88 * b.restPcs;
+                var t150 = per.mix150 * b.restPcs;
+                var t188 = per.mix188 * b.restPcs;
+                var t200 = per.mix200 * b.restPcs;
+                var tw = per.water * b.restPcs;
+                sum88 += t88; sum150 += t150; sum188 += t188; sum200 += t200; sumW += tw;
+                return '<tr><td>' + b.type + '</td><td>' + b.restPcs + ' pcs</td><td>' + t88.toFixed(1) + 'g</td><td>' + t150.toFixed(1) + 'g</td><td>' + t188.toFixed(1) + 'g</td><td>' + t200.toFixed(1) + 'g</td><td class="water-cell">' + tw.toFixed(1) + 'g</td></tr>';
+            }).join('');
+            document.getElementById("calculatedRestFooter").innerHTML = '<tr style="background:#f0e5cd;"><td colspan="2">📊 TOTAL Rest</td><td>' + sum88.toFixed(1) + 'g</td><td>' + sum150.toFixed(1) + 'g</td><td>' + sum188.toFixed(1) + 'g</td><td>' + sum200.toFixed(1) + 'g</td><td class="water-cell">' + sumW.toFixed(1) + 'g</td></tr>';
+        } else {
+            restHtml = '<tr><td colspan="7">No rest pcs</td></tr>';
+            document.getElementById("calculatedRestFooter").innerHTML = '';
+        }
+        document.getElementById("calculatedRestTable").innerHTML = restHtml;
+        
+        renderAddOrders();
+        updateRoute();
+    }
+
+    // ============ RESET FORM ============
+    function resetForm() {
+        customerName.value = "";
+        miniCheckbox.checked = false;
+        commissionCheckbox.checked = false;
+        autoSelectHummus();
+        customerName.focus();
+    }
+
+    // ============ ADD ORDER ============
+    function addOrder() {
+        var name = capitalizeName(customerName.value.trim());
+        if (!name) { alert("Please enter a name."); return; }
+        
+        var breadVal = breadType.value;
+        var sizeVal = breadSize.value;
+        var isMini = miniCheckbox.checked;
+        var hummusVal = hummusType.value;
+        var hummusSizeVal = hummusSize.value;
+        var hasCommission = commissionCheckbox.checked;
+        
+        if ((sizeVal === 'M+' || sizeVal === 'XL+') && hummusVal !== 'none') {
+            alert('❌ ' + sizeVal + ' comes without hummus as standard!');
+            return;
+        }
+        
+        if (hummusVal === 'yingyang' && breadVal !== '188er' && breadVal !== '200er' && breadVal !== '208er') {
+            alert('☯️ Ying & Yang is only available for 188er, 200er and 208er!');
+            return;
+        }
+        
+        updateWeekDisplay();
+        
+        breadOrders.push({
+            id: nextId++,
+            name: name,
+            breadType: breadVal,
+            size: sizeVal,
+            isMini: isMini,
+            hasCommission: hasCommission,
+            week: currentWeek,
+            isAdd: false,
+            isAddBread: false
+        });
+        
+        if (hummusVal !== 'none') {
+            hummusOrders.push({
+                id: nextId++,
+                name: name,
+                breadType: breadVal,
+                size: hummusSizeVal,
+                hummusType: hummusVal,
+                week: currentWeek,
+                isAdd: false,
+                isAddHummus: false
+            });
+        }
+        
+        render();
+        saveToLocal();
+        resetForm();
+    }
+
+    // ============ ADD BREAD ============
+    function addAddBreadOrder() {
+        var breadVal = addBreadType.value;
+        var count = addBreadCount;
+        
+        var existing = addBreadOrders.find(function(item) { return item.type === breadVal; });
+        if (existing) {
+            existing.count += count;
+        } else {
+            addBreadOrders.push({type: breadVal, count: count});
+        }
+        
+        for (var i = 0; i < count; i++) {
+            breadOrders.push({
+                id: nextId++,
+                name: '⚡ Add Bread',
+                breadType: breadVal,
+                size: 'S',
+                isMini: false,
+                hasCommission: false,
+                week: currentWeek,
+                isAdd: true,
+                isAddBread: true
+            });
+        }
+        
+        render();
+        saveToLocal();
+        addBreadCount = 1;
+        addBreadCountDisplay.textContent = addBreadCount;
+    }
+
+    // ============ ADD HUMMUS ============
+    function addAddHummusOrder() {
+        var hummusVal = addHummusType.value;
+        var hummusSizeVal = addHummusSize.value;
+        var count = addHummusCount;
+        
+        var existing = addHummusOrders.find(function(item) { 
+            return item.type === hummusVal && item.size === hummusSizeVal; 
+        });
+        if (existing) {
+            existing.count += count;
+        } else {
+            addHummusOrders.push({type: hummusVal, size: hummusSizeVal, count: count});
+        }
+        
+        for (var i = 0; i < count; i++) {
+            hummusOrders.push({
+                id: nextId++,
+                name: '⚡ Add Hummus',
+                breadType: '—',
+                size: hummusSizeVal,
+                hummusType: hummusVal,
+                week: currentWeek,
+                isAdd: true,
+                isAddHummus: true
+            });
+        }
+        
+        render();
+        saveToLocal();
+        addHummusCount = 1;
+        addHummusCountDisplay.textContent = addHummusCount;
+    }
+
+    // ============ EVENT LISTENERS ============
+    document.getElementById("addBtn").addEventListener("click", addOrder);
+    document.getElementById("addBreadAddBtn").addEventListener("click", addAddBreadOrder);
+    document.getElementById("addHummusAddBtn").addEventListener("click", addAddHummusOrder);
+
+    document.getElementById("resetTableBtn").addEventListener("click", function() {
+        if ((breadOrders.length || hummusOrders.length || addBreadOrders.length || addHummusOrders.length) && confirm("Delete all orders?")) {
+            breadOrders = [];
+            hummusOrders = [];
+            addBreadOrders = [];
+            addHummusOrders = [];
+            render();
+            saveToLocal();
+            nextId = 1;
+            updateRoute();
+        } else if (!breadOrders.length && !hummusOrders.length && !addBreadOrders.length && !addHummusOrders.length) {
+            alert("No orders");
+        }
+    });
+
+    document.getElementById("appleMapsBtn").addEventListener("click", openInAppleMaps);
+    routeStart.addEventListener('change', updateRoute);
+    routeStart.addEventListener('input', updateRoute);
+
+    // Address Book Add
+    document.getElementById("addAddressBtn").addEventListener("click", function() {
+        var name = capitalizeName(addressNameInput.value.trim());
+        var addr = addressAddrInput.value.trim();
+        if (!name) { 
+            alert('Please enter a name.'); 
+            return; 
+        }
+        addressBook[name] = addr || '';
+        saveAddressBook();
+        addressNameInput.value = '';
+        addressAddrInput.value = '';
+        addressNameInput.focus();
+        updateRoute();
+    });
+
+    addressAddrInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            var name = capitalizeName(addressNameInput.value.trim());
+            var addr = addressAddrInput.value.trim();
+            if (!name) { 
+                alert('Please enter a name.'); 
+                return; 
+            }
+            addressBook[name] = addr || '';
+            saveAddressBook();
+            addressNameInput.value = '';
+            addressAddrInput.value = '';
+            addressNameInput.focus();
+            updateRoute();
+        }
+    });
+
+    // ============ INIT ============
+    loadAddressBook();
     loadFromLocal();
+    updateRoute();
+    appleMapsBtn.disabled = true;
+
+    console.log("✅ Microbiome Warrior started!");
+})();
 </script>
 </body>
 </html>
