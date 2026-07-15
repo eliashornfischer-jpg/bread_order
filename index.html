@@ -136,7 +136,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-start-container input{padding-right:70px;}
 .route-start-container .start-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:0.5rem;background:#27ae60;color:white;padding:2px 8px;border-radius:10px;}
 
-/* STATIC MAP - SOFORT LADEND */
+/* STATIC MAP */
 .static-map-container{background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:14px;margin-top:12px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
 .static-map-container .map-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
 .static-map-container .map-header .map-title{font-size:0.7rem;font-weight:800;color:#6b4a1c;display:flex;align-items:center;gap:6px;}
@@ -156,6 +156,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .map-legend-modern .legend-dot.dest{background:#e74c3c;}
 .map-legend-modern .legend-dot.route{background:#3498db;width:16px;height:2px;border-radius:1px;border:none;}
 .map-legend-modern .legend-dot.route-heavy{background:#e74c3c;width:16px;height:0;border-top:2px dashed #e74c3c;}
+.map-legend-modern .legend-dot.arrow{background:transparent;border:none;font-size:0.6rem;}
 .map-status-modern{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.45rem;margin-top:6px;padding:4px 10px;background:rgba(255,255,255,0.3);border-radius:12px;}
 .map-status-modern .status-item{display:flex;align-items:center;gap:3px;font-weight:600;}
 .map-status-modern .status-item .icon{font-size:0.6rem;}
@@ -323,7 +324,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 <div class="route-empty">Add orders → route will auto-update</div>
 </div>
 
-<!-- STATIC MAP - SOFORT LADEND -->
+<!-- STATIC MAP -->
 <div class="static-map-container">
     <div class="map-header">
         <span class="map-title">🗺️ Shanghai Route <span class="city-badge">SH</span></span>
@@ -337,45 +338,30 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 
     <div class="static-map-wrapper">
         <svg viewBox="0 0 500 280" preserveAspectRatio="xMidYMid meet" id="routeSvg">
-            <!-- Background -->
             <defs>
-                <filter id="shadow">
-                    <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.15"/>
-                </filter>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="blur"/>
-                    <feMerge>
-                        <feMergeNode in="blur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
+                <filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.15"/></filter>
+                <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#3498db"/>
+                </marker>
+                <marker id="arrowhead-heavy" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="#e74c3c"/>
+                </marker>
             </defs>
-
             <rect width="500" height="280" fill="#eef3e8" rx="8"/>
-
-            <!-- Shanghai districts (simplified) -->
+            <!-- Shanghai Bezirke -->
             <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M80,30 L180,20 L230,70 L200,130 L130,150 L70,120 L50,70 Z"/>
             <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M230,20 L380,15 L420,60 L380,120 L280,140 L230,100 Z"/>
             <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M130,150 L230,130 L280,140 L320,190 L250,240 L140,230 L80,190 Z"/>
-            <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M320,40 L440,30 L480,80 L450,140 L380,120 L320,90 Z"/>
-
-            <!-- Huangpu River (simplified) -->
-            <path d="M90,5 C110,50 130,100 150,160 C170,220 190,255 200,270" stroke="rgba(52,152,219,0.15)" stroke-width="14" fill="none" stroke-linecap="round"/>
-            <path d="M200,5 C220,50 240,100 260,160 C280,220 300,255 310,270" stroke="rgba(52,152,219,0.10)" stroke-width="10" fill="none" stroke-linecap="round"/>
-            <path d="M150,160 C210,170 270,160 310,180" stroke="rgba(52,152,219,0.08)" stroke-width="6" fill="none"/>
-
-            <!-- Major roads -->
+            <!-- Huangpu Fluss -->
+            <path d="M90,5 C110,50 130,100 150,160 C170,220 190,255 200,270" stroke="rgba(52,152,219,0.15)" stroke-width="14" fill="none"/>
+            <path d="M200,5 C220,50 240,100 260,160 C280,220 300,255 310,270" stroke="rgba(52,152,219,0.10)" stroke-width="10" fill="none"/>
+            <!-- Straßen -->
             <g stroke="rgba(180,190,170,0.10)" stroke-width="1.5" fill="none">
                 <line x1="40" y1="140" x2="460" y2="140"/>
                 <line x1="40" y1="190" x2="460" y2="190"/>
                 <line x1="250" y1="10" x2="250" y2="270"/>
-                <line x1="150" y1="10" x2="150" y2="270"/>
-                <line x1="350" y1="10" x2="350" y2="270"/>
             </g>
-
-            <!-- Map content group -->
             <g id="mapGroup" filter="url(#shadow)">
-                <!-- Empty state -->
                 <text x="250" y="135" text-anchor="middle" font-size="13" fill="#b88c48" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600">Add orders to see route</text>
                 <text x="250" y="155" text-anchor="middle" font-size="9" fill="#c9a256" font-family="-apple-system,BlinkMacSystemFont,sans-serif">📍 中国上海市青浦区湖畔佳苑391号</text>
             </g>
@@ -386,6 +372,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         <span class="legend-item"><span class="legend-dot start"></span> Start</span>
         <span class="legend-item"><span class="legend-dot dest"></span> Dest</span>
         <span class="legend-item"><span class="legend-dot route"></span> Route</span>
+        <span class="legend-item"><span class="legend-dot arrow">▶</span> Direction</span>
         <span class="legend-item" id="legendTrafficLabel" style="font-weight:700;color:#27ae60;">🚦 Light</span>
     </div>
 
@@ -396,17 +383,17 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     </div>
 </div>
 
-<button class="route-apple-btn" id="appleMapsBtn" disabled>
+<button class="route-apple-btn" id="appleMapsBtn" disabled onclick="openAppleMapsDirect()">
     <span class="btn-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
     </span>
     <span class="btn-text">
         <span>🗺️ Open in Apple Maps</span>
-        <span class="sub">📍 Shanghai · real-time traffic & navigation</span>
+        <span class="sub">📍 Shanghai · real-time navigation</span>
     </span>
 </button>
 
-<div class="auto-route-info">✅ Live traffic updates every 30s | Tap above for full navigation</div>
+<div class="auto-route-info">✅ Click button above → opens Apple Maps instantly</div>
 </div>
 
 <footer style="text-align:center;font-size:0.55rem;color:#c29d5a;margin-top:8px;">🌾 Original recipe | 200er & 208er share same recipe | CNY</footer>
@@ -1062,26 +1049,27 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 
     function updateMapTraffic() {
         var traffic = currentTraffic;
-        
         mapTraffic.className = 'stat traffic-' + traffic.level;
         mapTraffic.innerHTML = '🚦 <span class="val">' + traffic.label + '</span>';
-        
         legendTrafficLabel.textContent = '🚦 ' + traffic.label;
         legendTrafficLabel.style.color = traffic.color;
-        
         drawStaticMap();
     }
 
     function updateRouteTraffic() {
-        var routeResultDiv = document.getElementById('routeResult');
-        var trafficInfo = routeResultDiv.querySelector('.traffic-info-display');
+        var trafficInfo = document.querySelector('.traffic-info-display');
         if (trafficInfo) {
             trafficInfo.textContent = '🚦 ' + currentTraffic.label;
             trafficInfo.style.color = currentTraffic.color;
         }
     }
 
-    // ============ DRAW STATIC MAP (SOFORT) ============
+    // ============ BERECHNE DISTANZ ZWISCHEN 2 PUNKTEN ============
+    function calculateDistance(x1, y1, x2, y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    // ============ DRAW STATIC MAP (MIT RICHTIGEN RICHTUNGEN) ============
     function drawStaticMap() {
         var start = routeStart.value.trim();
         var customers = getCustomersWithAddress();
@@ -1089,14 +1077,11 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         
         var group = mapGroup;
         if (!group) return;
-        
-        // Clear previous content
         group.innerHTML = '';
         
         if (!start || customers.length === 0) {
             var text1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text1.setAttribute('x', '250');
-            text1.setAttribute('y', '135');
+            text1.setAttribute('x', '250'); text1.setAttribute('y', '135');
             text1.setAttribute('text-anchor', 'middle');
             text1.setAttribute('font-size', '13');
             text1.setAttribute('fill', '#b88c48');
@@ -1105,8 +1090,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             group.appendChild(text1);
             
             var text2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text2.setAttribute('x', '250');
-            text2.setAttribute('y', '155');
+            text2.setAttribute('x', '250'); text2.setAttribute('y', '155');
             text2.setAttribute('text-anchor', 'middle');
             text2.setAttribute('font-size', '9');
             text2.setAttribute('fill', '#c9a256');
@@ -1123,33 +1107,14 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
-        // Update stats
+        // Stats berechnen
         mapStopCount.innerHTML = '📍 <span class="val">' + customers.length + '</span>';
         
-        var baseDist = customers.length * 2.5 + 1.5;
-        var dist = baseDist * traffic.delay;
-        var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
-        
-        mapDistance.innerHTML = '📏 <span class="val">' + dist.toFixed(1) + '</span> km';
-        mapTime.innerHTML = '⏱️ <span class="val">' + timeMin + '</span> min';
-        mapStartDisplay.textContent = start.length > 18 ? start.substring(0, 18) + '…' : start;
-        mapLastDisplay.textContent = customers.length > 0 ? customers[customers.length - 1].name : '—';
-        mapStatusTime.innerHTML = '⏱️ <span style="font-weight:400;">' + timeMin + ' min</span>';
-        appleMapsBtn.disabled = false;
-        
-        // Store for button
-        window._routeDeliveries = customers.map(function(c) { return c.address; });
-        window._routeStart = start;
-        
-        // Calculate positions on the map
+        // Punkte auf der Karte verteilen
         var points = [];
-        
-        // Start point - Qingpu (west)
         points.push({ x: 75, y: 110, label: 'Start', isStart: true });
         
         var destColors = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#1abc9c', '#e74c3c'];
-        
-        // Shanghai locations
         var locations = [
             { x: 350, y: 55 }, { x: 400, y: 95 }, { x: 310, y: 135 },
             { x: 260, y: 165 }, { x: 200, y: 195 }, { x: 330, y: 205 },
@@ -1158,8 +1123,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         
         customers.forEach(function(c, index) {
             var loc = locations[index % locations.length];
-            var x = loc.x + (Math.random() - 0.5) * 30;
-            var y = loc.y + (Math.random() - 0.5) * 25;
+            var x = loc.x + (Math.random() - 0.5) * 25;
+            var y = loc.y + (Math.random() - 0.5) * 20;
             x = Math.max(60, Math.min(460, x));
             y = Math.max(35, Math.min(255, y));
             points.push({
@@ -1169,7 +1134,33 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             });
         });
         
-        // Draw route lines
+        // ECHTE DISTANZEN BERECHNEN (in Pixeln)
+        var totalPixelDist = 0;
+        var segmentDistances = [];
+        for (var i = 0; i < points.length - 1; i++) {
+            var dist = calculateDistance(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
+            totalPixelDist += dist;
+            segmentDistances.push(dist);
+        }
+        
+        // Umrechnung: 1 Pixel ≈ 0.18 km (angepasst für Shanghai)
+        var pixelToKm = 0.18;
+        var baseDist = totalPixelDist * pixelToKm;
+        var dist = baseDist * traffic.delay;
+        var timeMin = Math.round(dist * 3.2 * (traffic.delay > 1.2 ? 1.25 : 1));
+        
+        mapDistance.innerHTML = '📏 <span class="val">' + dist.toFixed(1) + '</span> km';
+        mapTime.innerHTML = '⏱️ <span class="val">' + timeMin + '</span> min';
+        mapStartDisplay.textContent = start.length > 18 ? start.substring(0, 18) + '…' : start;
+        mapLastDisplay.textContent = customers.length > 0 ? customers[customers.length - 1].name : '—';
+        mapStatusTime.innerHTML = '⏱️ <span style="font-weight:400;">' + timeMin + ' min</span>';
+        appleMapsBtn.disabled = false;
+        
+        // Für Apple Maps
+        window._routeDeliveries = customers.map(function(c) { return c.address; });
+        window._routeStart = start;
+        
+        // ROUTE LINIEN MIT RICHTUNGSPFEILEN
         var trafficColor = traffic.color;
         var strokeWidth = traffic.level === 'heavy' ? 3.5 : 2.5;
         var dashArray = traffic.level === 'heavy' ? '7,4' : 'none';
@@ -1183,30 +1174,60 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             line.setAttribute('stroke', trafficColor);
             line.setAttribute('stroke-width', strokeWidth);
             line.setAttribute('stroke-linecap', 'round');
-            line.setAttribute('stroke-dasharray', dashArray);
+            if (traffic.level === 'heavy') {
+                line.setAttribute('stroke-dasharray', '7,4');
+            }
             line.setAttribute('opacity', '0.6');
             group.appendChild(line);
+            
+            // RICHTUNGSPFEIL in der Mitte
+            var midX = (points[i].x + points[i+1].x) / 2;
+            var midY = (points[i].y + points[i+1].y) / 2;
+            var angle = Math.atan2(points[i+1].y - points[i].y, points[i+1].x - points[i].x);
+            
+            // Dreieck Pfeil
+            var arrowSize = 6;
+            var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            var a1x = midX + arrowSize * Math.cos(angle);
+            var a1y = midY + arrowSize * Math.sin(angle);
+            var a2x = midX + arrowSize * Math.cos(angle + 2.3);
+            var a2y = midY + arrowSize * Math.sin(angle + 2.3);
+            var a3x = midX + arrowSize * Math.cos(angle - 2.3);
+            var a3y = midY + arrowSize * Math.sin(angle - 2.3);
+            arrow.setAttribute('points', a1x + ',' + a1y + ' ' + a2x + ',' + a2y + ' ' + a3x + ',' + a3y);
+            arrow.setAttribute('fill', trafficColor);
+            arrow.setAttribute('opacity', '0.7');
+            group.appendChild(arrow);
+            
+            // Distanz-Label auf der Linie
+            var distLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            distLabel.setAttribute('x', midX);
+            distLabel.setAttribute('y', midY - 6);
+            distLabel.setAttribute('text-anchor', 'middle');
+            distLabel.setAttribute('font-size', '6');
+            distLabel.setAttribute('fill', '#6b4a1c');
+            distLabel.setAttribute('font-weight', '600');
+            var segDist = (segmentDistances[i] * pixelToKm * traffic.delay);
+            distLabel.textContent = (segDist).toFixed(1) + ' km';
+            group.appendChild(distLabel);
         }
         
-        // Draw points
+        // PUNKTE ZEICHNEN
         points.forEach(function(p, index) {
             var isStart = p.isStart;
             var radius = isStart ? 13 : 9;
             var color = isStart ? '#27ae60' : (p.color || '#e74c3c');
             
-            // Glow for start
             if (isStart) {
                 var glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                glow.setAttribute('cx', p.x);
-                glow.setAttribute('cy', p.y);
+                glow.setAttribute('cx', p.x); glow.setAttribute('cy', p.y);
                 glow.setAttribute('r', radius + 7);
                 glow.setAttribute('fill', 'rgba(39,174,96,0.12)');
                 group.appendChild(glow);
             }
             
             var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            circle.setAttribute('cx', p.x);
-            circle.setAttribute('cy', p.y);
+            circle.setAttribute('cx', p.x); circle.setAttribute('cy', p.y);
             circle.setAttribute('r', radius);
             circle.setAttribute('fill', color);
             circle.setAttribute('stroke', 'white');
@@ -1216,8 +1237,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             
             if (!isStart) {
                 var num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                num.setAttribute('x', p.x);
-                num.setAttribute('y', p.y + 3.5);
+                num.setAttribute('x', p.x); num.setAttribute('y', p.y + 3.5);
                 num.setAttribute('text-anchor', 'middle');
                 num.setAttribute('font-size', '8');
                 num.setAttribute('fill', 'white');
@@ -1226,8 +1246,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
                 group.appendChild(num);
             } else {
                 var icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                icon.setAttribute('x', p.x);
-                icon.setAttribute('y', p.y + 4);
+                icon.setAttribute('x', p.x); icon.setAttribute('y', p.y + 4);
                 icon.setAttribute('text-anchor', 'middle');
                 icon.setAttribute('font-size', '10');
                 icon.textContent = '🏠';
@@ -1245,8 +1264,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             
             if (!isStart && p.address) {
                 var addrLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                addrLabel.setAttribute('x', p.x + 12);
-                addrLabel.setAttribute('y', p.y + 11);
+                addrLabel.setAttribute('x', p.x + 12); addrLabel.setAttribute('y', p.y + 11);
                 addrLabel.setAttribute('font-size', '6');
                 addrLabel.setAttribute('fill', '#8a6a2a');
                 var shortAddr = p.address.length > 15 ? p.address.substring(0, 15) + '…' : p.address;
@@ -1256,8 +1274,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             
             if (!isStart && p.order) {
                 var orderText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                orderText.setAttribute('x', p.x + 12);
-                orderText.setAttribute('y', p.y + 18);
+                orderText.setAttribute('x', p.x + 12); orderText.setAttribute('y', p.y + 18);
                 orderText.setAttribute('font-size', '5.5');
                 orderText.setAttribute('fill', '#6b4a1c');
                 orderText.textContent = p.order.breadType + ' ' + p.order.size;
@@ -1265,19 +1282,16 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             }
         });
         
-        // Traffic indicator
+        // Traffic Indicator
         var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', '350');
-        rect.setAttribute('y', '6');
-        rect.setAttribute('width', '135');
-        rect.setAttribute('height', '22');
+        rect.setAttribute('x', '350'); rect.setAttribute('y', '6');
+        rect.setAttribute('width', '135'); rect.setAttribute('height', '22');
         rect.setAttribute('rx', '11');
         rect.setAttribute('fill', 'rgba(0,0,0,0.6)');
         group.appendChild(rect);
         
         var trafficText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        trafficText.setAttribute('x', '417');
-        trafficText.setAttribute('y', '22');
+        trafficText.setAttribute('x', '417'); trafficText.setAttribute('y', '22');
         trafficText.setAttribute('text-anchor', 'middle');
         trafficText.setAttribute('font-size', '9');
         trafficText.setAttribute('fill', traffic.color);
@@ -1286,19 +1300,16 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         trafficText.textContent = emoji + ' ' + traffic.label;
         group.appendChild(trafficText);
         
-        // Info box
+        // Info Box
         var infoRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        infoRect.setAttribute('x', '8');
-        infoRect.setAttribute('y', '6');
-        infoRect.setAttribute('width', '150');
-        infoRect.setAttribute('height', '22');
+        infoRect.setAttribute('x', '8'); infoRect.setAttribute('y', '6');
+        infoRect.setAttribute('width', '150'); infoRect.setAttribute('height', '22');
         infoRect.setAttribute('rx', '11');
         infoRect.setAttribute('fill', 'rgba(255,255,255,0.85)');
         group.appendChild(infoRect);
         
         var infoText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        infoText.setAttribute('x', '83');
-        infoText.setAttribute('y', '22');
+        infoText.setAttribute('x', '83'); infoText.setAttribute('y', '22');
         infoText.setAttribute('text-anchor', 'middle');
         infoText.setAttribute('font-size', '9');
         infoText.setAttribute('fill', '#2a1a08');
@@ -1370,10 +1381,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
         
         var traffic = currentTraffic;
-        var baseDist = customers.length * 2.5 + 1.5;
-        var dist = baseDist * traffic.delay;
-        var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
         
+        // Distanz berechnen (wird in drawStaticMap gemacht)
         var html = '<div style="font-weight:600;font-size:0.7rem;color:#27ae60;margin-bottom:6px;">📍 Start: ' + escapeHtml(start) + '</div>';
         html += '<div style="font-weight:600;font-size:0.65rem;color:#6b4a1c;margin-bottom:6px;">📦 Delivery Order (' + customers.length + ' stops):</div>';
         
@@ -1389,21 +1398,14 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             html += '<div style="margin-top:4px;padding:4px 8px;background:#fde8e8;border-radius:8px;font-size:0.55rem;color:#c0392b;">⚠️ No address for: ' + noAddress.join(', ') + ' (not in route)</div>';
         }
         
-        html += '<div class="route-no-distance" style="margin-top:6px;padding:6px 10px;background:rgba(46,204,113,0.1);border-radius:10px;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:0.6rem;">';
-        html += '<span>📏 <strong>' + dist.toFixed(1) + ' km</strong></span>';
-        html += '<span>⏱️ <strong>~' + timeMin + ' min</strong></span>';
-        html += '<span style="color:' + traffic.color + ';">🚦 ' + traffic.label + '</span>';
-        html += '</div>';
-        
         html += '<div class="traffic-info-display" style="margin-top:4px;font-size:0.55rem;color:' + traffic.color + ';text-align:center;">🚦 ' + traffic.label + ' (auto-updates every 30s)</div>';
         
         routeResult.innerHTML = html;
-        
         drawStaticMap();
     }
 
-    // ============ OPEN IN APPLE MAPS ============
-    function openInAppleMaps() {
+    // ============ APPLE MAPS - DIREKT & SCHNELL ============
+    window.openAppleMapsDirect = function() {
         var start = window._routeStart || routeStart.value.trim();
         var deliveries = window._routeDeliveries || [];
         
@@ -1412,17 +1414,20 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
+        // 1. Apple Maps App (maps://) - sofort öffnen
         var appUrl = 'maps://maps.apple.com/?';
-        var appParams = [];
-        appParams.push('saddr=' + encodeURIComponent(start));
+        var params = [];
+        params.push('saddr=' + encodeURIComponent(start));
         deliveries.forEach(function(addr) {
-            appParams.push('daddr=' + encodeURIComponent(addr));
+            params.push('daddr=' + encodeURIComponent(addr));
         });
-        appParams.push('dirflg=d');
-        appUrl += appParams.join('&');
+        params.push('dirflg=d');
+        appUrl += params.join('&');
         
-        window.open(appUrl, '_blank');
+        // App sofort öffnen
+        window.location.href = appUrl;
         
+        // Fallback: Nach 500ms Web-Version öffnen (falls App nicht installiert)
         setTimeout(function() {
             var webUrl = 'https://maps.apple.com/?';
             var webParams = [];
@@ -1434,8 +1439,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             webParams.push('hl=zh-CN');
             webUrl += webParams.join('&');
             window.open(webUrl, '_blank');
-        }, 300);
-    }
+        }, 500);
+    };
 
     // ============ MAIN RENDER ============
     function render() {
@@ -1723,7 +1728,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     });
 
-    document.getElementById("appleMapsBtn").addEventListener("click", openInAppleMaps);
+    // Apple Maps Button - onClick direkt in HTML
     routeStart.addEventListener('change', updateRoute);
     routeStart.addEventListener('input', updateRoute);
 
