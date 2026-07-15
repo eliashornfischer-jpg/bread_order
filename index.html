@@ -136,24 +136,26 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-start-container input{padding-right:70px;}
 .route-start-container .start-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:0.5rem;background:#27ae60;color:white;padding:2px 8px;border-radius:10px;}
 
-/* REAL MAP WITH MODERN DESIGN */
-.real-map-container{background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:14px;margin-top:12px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
-.real-map-container .map-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
-.real-map-container .map-header .map-title{font-size:0.7rem;font-weight:800;color:#6b4a1c;display:flex;align-items:center;gap:6px;}
-.real-map-container .map-header .map-title .city-badge{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;font-weight:700;}
-.real-map-container .map-header .map-stats{display:flex;gap:6px;flex-wrap:wrap;font-size:0.5rem;}
-.real-map-container .map-header .map-stats .stat{background:rgba(255,255,255,0.7);padding:2px 10px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,0.3);}
-.real-map-container .map-header .map-stats .stat .val{color:#27ae60;}
-.real-map-container .map-header .map-stats .stat.traffic-light{background:#d5f5e3;color:#27ae60;}
-.real-map-container .map-header .map-stats .stat.traffic-moderate{background:#fdebd0;color:#e67e22;}
-.real-map-container .map-header .map-stats .stat.traffic-heavy{background:#fadbd8;color:#e74c3c;}
-.real-map-wrapper{width:100%;border-radius:16px;overflow:hidden;position:relative;background:#e8f0e8;border:1px solid rgba(200,200,180,0.3);}
-.real-map-wrapper iframe{width:100%;height:280px;border:none;display:block;}
+/* STATIC MAP - SOFORT LADEND */
+.static-map-container{background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:14px;margin-top:12px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.static-map-container .map-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.static-map-container .map-header .map-title{font-size:0.7rem;font-weight:800;color:#6b4a1c;display:flex;align-items:center;gap:6px;}
+.static-map-container .map-header .map-title .city-badge{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;font-weight:700;}
+.static-map-container .map-header .map-stats{display:flex;gap:6px;flex-wrap:wrap;font-size:0.5rem;}
+.static-map-container .map-header .map-stats .stat{background:rgba(255,255,255,0.7);padding:2px 10px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,0.3);}
+.static-map-container .map-header .map-stats .stat .val{color:#27ae60;}
+.static-map-container .map-header .map-stats .stat.traffic-light{background:#d5f5e3;color:#27ae60;}
+.static-map-container .map-header .map-stats .stat.traffic-moderate{background:#fdebd0;color:#e67e22;}
+.static-map-container .map-header .map-stats .stat.traffic-heavy{background:#fadbd8;color:#e74c3c;}
+.static-map-wrapper{width:100%;border-radius:16px;overflow:hidden;position:relative;background:#eef3e8;border:1px solid rgba(200,200,180,0.3);}
+.static-map-wrapper svg{width:100%;height:auto;display:block;}
 .map-legend-modern{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.45rem;color:#6b4a1c;margin-top:8px;padding:4px 10px;background:rgba(255,255,255,0.4);border-radius:12px;}
 .map-legend-modern .legend-item{display:flex;align-items:center;gap:4px;}
 .map-legend-modern .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;border:1px solid rgba(0,0,0,0.05);}
 .map-legend-modern .legend-dot.start{background:#27ae60;}
 .map-legend-modern .legend-dot.dest{background:#e74c3c;}
+.map-legend-modern .legend-dot.route{background:#3498db;width:16px;height:2px;border-radius:1px;border:none;}
+.map-legend-modern .legend-dot.route-heavy{background:#e74c3c;width:16px;height:0;border-top:2px dashed #e74c3c;}
 .map-status-modern{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.45rem;margin-top:6px;padding:4px 10px;background:rgba(255,255,255,0.3);border-radius:12px;}
 .map-status-modern .status-item{display:flex;align-items:center;gap:3px;font-weight:600;}
 .map-status-modern .status-item .icon{font-size:0.6rem;}
@@ -321,8 +323,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 <div class="route-empty">Add orders → route will auto-update</div>
 </div>
 
-<!-- REAL MAP WITH MODERN DESIGN -->
-<div class="real-map-container">
+<!-- STATIC MAP - SOFORT LADEND -->
+<div class="static-map-container">
     <div class="map-header">
         <span class="map-title">🗺️ Shanghai Route <span class="city-badge">SH</span></span>
         <div class="map-stats">
@@ -333,18 +335,57 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         </div>
     </div>
 
-    <div class="real-map-wrapper" id="realMapWrapper">
-        <!-- Apple Maps iframe will be inserted here -->
-        <div id="mapPlaceholder" style="width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f0e8,#d4dcc4);border-radius:16px;color:#6b4a1c;font-size:0.65rem;text-align:center;padding:20px;">
-            <div style="font-size:2.5rem;margin-bottom:8px;">🗺️</div>
-            <div style="font-weight:600;">Add orders to see map</div>
-            <div style="font-size:0.5rem;color:#8a6a2a;margin-top:4px;">📍 中国上海市青浦区湖畔佳苑391号</div>
-        </div>
+    <div class="static-map-wrapper">
+        <svg viewBox="0 0 500 280" preserveAspectRatio="xMidYMid meet" id="routeSvg">
+            <!-- Background -->
+            <defs>
+                <filter id="shadow">
+                    <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.15"/>
+                </filter>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <rect width="500" height="280" fill="#eef3e8" rx="8"/>
+
+            <!-- Shanghai districts (simplified) -->
+            <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M80,30 L180,20 L230,70 L200,130 L130,150 L70,120 L50,70 Z"/>
+            <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M230,20 L380,15 L420,60 L380,120 L280,140 L230,100 Z"/>
+            <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M130,150 L230,130 L280,140 L320,190 L250,240 L140,230 L80,190 Z"/>
+            <path fill="rgba(200,210,190,0.15)" stroke="rgba(180,190,170,0.12)" stroke-width="0.5" d="M320,40 L440,30 L480,80 L450,140 L380,120 L320,90 Z"/>
+
+            <!-- Huangpu River (simplified) -->
+            <path d="M90,5 C110,50 130,100 150,160 C170,220 190,255 200,270" stroke="rgba(52,152,219,0.15)" stroke-width="14" fill="none" stroke-linecap="round"/>
+            <path d="M200,5 C220,50 240,100 260,160 C280,220 300,255 310,270" stroke="rgba(52,152,219,0.10)" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M150,160 C210,170 270,160 310,180" stroke="rgba(52,152,219,0.08)" stroke-width="6" fill="none"/>
+
+            <!-- Major roads -->
+            <g stroke="rgba(180,190,170,0.10)" stroke-width="1.5" fill="none">
+                <line x1="40" y1="140" x2="460" y2="140"/>
+                <line x1="40" y1="190" x2="460" y2="190"/>
+                <line x1="250" y1="10" x2="250" y2="270"/>
+                <line x1="150" y1="10" x2="150" y2="270"/>
+                <line x1="350" y1="10" x2="350" y2="270"/>
+            </g>
+
+            <!-- Map content group -->
+            <g id="mapGroup" filter="url(#shadow)">
+                <!-- Empty state -->
+                <text x="250" y="135" text-anchor="middle" font-size="13" fill="#b88c48" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600">Add orders to see route</text>
+                <text x="250" y="155" text-anchor="middle" font-size="9" fill="#c9a256" font-family="-apple-system,BlinkMacSystemFont,sans-serif">📍 中国上海市青浦区湖畔佳苑391号</text>
+            </g>
+        </svg>
     </div>
 
     <div class="map-legend-modern">
         <span class="legend-item"><span class="legend-dot start"></span> Start</span>
         <span class="legend-item"><span class="legend-dot dest"></span> Dest</span>
+        <span class="legend-item"><span class="legend-dot route"></span> Route</span>
         <span class="legend-item" id="legendTrafficLabel" style="font-weight:700;color:#27ae60;">🚦 Light</span>
     </div>
 
@@ -476,8 +517,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     var addressToggle = document.getElementById("addressToggle");
 
     // Map refs
-    var realMapWrapper = document.getElementById("realMapWrapper");
-    var mapPlaceholder = document.getElementById("mapPlaceholder");
+    var mapGroup = document.getElementById("mapGroup");
     var mapStopCount = document.getElementById("mapStopCount");
     var mapDistance = document.getElementById("mapDistance");
     var mapTime = document.getElementById("mapTime");
@@ -1029,7 +1069,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         legendTrafficLabel.textContent = '🚦 ' + traffic.label;
         legendTrafficLabel.style.color = traffic.color;
         
-        updateRealMap();
+        drawStaticMap();
     }
 
     function updateRouteTraffic() {
@@ -1041,21 +1081,37 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     }
 
-    // ============ REAL MAP ============
-    function updateRealMap() {
+    // ============ DRAW STATIC MAP (SOFORT) ============
+    function drawStaticMap() {
         var start = routeStart.value.trim();
         var customers = getCustomersWithAddress();
         var traffic = currentTraffic;
         
+        var group = mapGroup;
+        if (!group) return;
+        
+        // Clear previous content
+        group.innerHTML = '';
+        
         if (!start || customers.length === 0) {
-            // Show placeholder
-            realMapWrapper.innerHTML = `
-                <div id="mapPlaceholder" style="width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f0e8,#d4dcc4);border-radius:16px;color:#6b4a1c;font-size:0.65rem;text-align:center;padding:20px;">
-                    <div style="font-size:2.5rem;margin-bottom:8px;">🗺️</div>
-                    <div style="font-weight:600;">Add orders to see map</div>
-                    <div style="font-size:0.5rem;color:#8a6a2a;margin-top:4px;">📍 ${escapeHtml(start || 'No start address')}</div>
-                </div>
-            `;
+            var text1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text1.setAttribute('x', '250');
+            text1.setAttribute('y', '135');
+            text1.setAttribute('text-anchor', 'middle');
+            text1.setAttribute('font-size', '13');
+            text1.setAttribute('fill', '#b88c48');
+            text1.setAttribute('font-weight', '600');
+            text1.textContent = 'Add orders to see route';
+            group.appendChild(text1);
+            
+            var text2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text2.setAttribute('x', '250');
+            text2.setAttribute('y', '155');
+            text2.setAttribute('text-anchor', 'middle');
+            text2.setAttribute('font-size', '9');
+            text2.setAttribute('fill', '#c9a256');
+            text2.textContent = '📍 ' + (start || 'No start address set');
+            group.appendChild(text2);
             
             mapStopCount.innerHTML = '📍 <span class="val">0</span>';
             mapDistance.innerHTML = '📏 <span class="val">0.0</span> km';
@@ -1079,28 +1135,176 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         mapStartDisplay.textContent = start.length > 18 ? start.substring(0, 18) + '…' : start;
         mapLastDisplay.textContent = customers.length > 0 ? customers[customers.length - 1].name : '—';
         mapStatusTime.innerHTML = '⏱️ <span style="font-weight:400;">' + timeMin + ' min</span>';
-        
-        // Build Apple Maps URL with all stops
-        var mapUrl = 'https://maps.apple.com/?';
-        var params = [];
-        params.push('saddr=' + encodeURIComponent(start));
-        customers.forEach(function(c) {
-            params.push('daddr=' + encodeURIComponent(c.address));
-        });
-        params.push('dirflg=d');
-        params.push('hl=zh-CN');
-        mapUrl += params.join('&');
-        
-        // Create iframe with Apple Maps
-        realMapWrapper.innerHTML = `
-            <iframe src="${mapUrl}" allowfullscreen loading="lazy" style="width:100%;height:280px;border:none;border-radius:16px;"></iframe>
-        `;
-        
         appleMapsBtn.disabled = false;
         
-        // Store for button click
+        // Store for button
         window._routeDeliveries = customers.map(function(c) { return c.address; });
         window._routeStart = start;
+        
+        // Calculate positions on the map
+        var points = [];
+        
+        // Start point - Qingpu (west)
+        points.push({ x: 75, y: 110, label: 'Start', isStart: true });
+        
+        var destColors = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#1abc9c', '#e74c3c'];
+        
+        // Shanghai locations
+        var locations = [
+            { x: 350, y: 55 }, { x: 400, y: 95 }, { x: 310, y: 135 },
+            { x: 260, y: 165 }, { x: 200, y: 195 }, { x: 330, y: 205 },
+            { x: 180, y: 135 }, { x: 420, y: 175 }
+        ];
+        
+        customers.forEach(function(c, index) {
+            var loc = locations[index % locations.length];
+            var x = loc.x + (Math.random() - 0.5) * 30;
+            var y = loc.y + (Math.random() - 0.5) * 25;
+            x = Math.max(60, Math.min(460, x));
+            y = Math.max(35, Math.min(255, y));
+            points.push({
+                x: x, y: y, label: c.name, isStart: false,
+                index: index + 1, color: destColors[index % destColors.length],
+                address: c.address, order: c.order
+            });
+        });
+        
+        // Draw route lines
+        var trafficColor = traffic.color;
+        var strokeWidth = traffic.level === 'heavy' ? 3.5 : 2.5;
+        var dashArray = traffic.level === 'heavy' ? '7,4' : 'none';
+        
+        for (var i = 0; i < points.length - 1; i++) {
+            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', points[i].x);
+            line.setAttribute('y1', points[i].y);
+            line.setAttribute('x2', points[i+1].x);
+            line.setAttribute('y2', points[i+1].y);
+            line.setAttribute('stroke', trafficColor);
+            line.setAttribute('stroke-width', strokeWidth);
+            line.setAttribute('stroke-linecap', 'round');
+            line.setAttribute('stroke-dasharray', dashArray);
+            line.setAttribute('opacity', '0.6');
+            group.appendChild(line);
+        }
+        
+        // Draw points
+        points.forEach(function(p, index) {
+            var isStart = p.isStart;
+            var radius = isStart ? 13 : 9;
+            var color = isStart ? '#27ae60' : (p.color || '#e74c3c');
+            
+            // Glow for start
+            if (isStart) {
+                var glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                glow.setAttribute('cx', p.x);
+                glow.setAttribute('cy', p.y);
+                glow.setAttribute('r', radius + 7);
+                glow.setAttribute('fill', 'rgba(39,174,96,0.12)');
+                group.appendChild(glow);
+            }
+            
+            var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', p.x);
+            circle.setAttribute('cy', p.y);
+            circle.setAttribute('r', radius);
+            circle.setAttribute('fill', color);
+            circle.setAttribute('stroke', 'white');
+            circle.setAttribute('stroke-width', '2');
+            circle.setAttribute('filter', 'url(#shadow)');
+            group.appendChild(circle);
+            
+            if (!isStart) {
+                var num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                num.setAttribute('x', p.x);
+                num.setAttribute('y', p.y + 3.5);
+                num.setAttribute('text-anchor', 'middle');
+                num.setAttribute('font-size', '8');
+                num.setAttribute('fill', 'white');
+                num.setAttribute('font-weight', '700');
+                num.textContent = p.index;
+                group.appendChild(num);
+            } else {
+                var icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                icon.setAttribute('x', p.x);
+                icon.setAttribute('y', p.y + 4);
+                icon.setAttribute('text-anchor', 'middle');
+                icon.setAttribute('font-size', '10');
+                icon.textContent = '🏠';
+                group.appendChild(icon);
+            }
+            
+            var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            label.setAttribute('x', isStart ? p.x + 16 : p.x + 12);
+            label.setAttribute('y', isStart ? p.y + 4 : p.y + 3);
+            label.setAttribute('font-size', isStart ? '9' : '8');
+            label.setAttribute('fill', '#2a1a08');
+            label.setAttribute('font-weight', isStart ? '700' : '600');
+            label.textContent = isStart ? 'START' : p.label;
+            group.appendChild(label);
+            
+            if (!isStart && p.address) {
+                var addrLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                addrLabel.setAttribute('x', p.x + 12);
+                addrLabel.setAttribute('y', p.y + 11);
+                addrLabel.setAttribute('font-size', '6');
+                addrLabel.setAttribute('fill', '#8a6a2a');
+                var shortAddr = p.address.length > 15 ? p.address.substring(0, 15) + '…' : p.address;
+                addrLabel.textContent = shortAddr;
+                group.appendChild(addrLabel);
+            }
+            
+            if (!isStart && p.order) {
+                var orderText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                orderText.setAttribute('x', p.x + 12);
+                orderText.setAttribute('y', p.y + 18);
+                orderText.setAttribute('font-size', '5.5');
+                orderText.setAttribute('fill', '#6b4a1c');
+                orderText.textContent = p.order.breadType + ' ' + p.order.size;
+                group.appendChild(orderText);
+            }
+        });
+        
+        // Traffic indicator
+        var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', '350');
+        rect.setAttribute('y', '6');
+        rect.setAttribute('width', '135');
+        rect.setAttribute('height', '22');
+        rect.setAttribute('rx', '11');
+        rect.setAttribute('fill', 'rgba(0,0,0,0.6)');
+        group.appendChild(rect);
+        
+        var trafficText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        trafficText.setAttribute('x', '417');
+        trafficText.setAttribute('y', '22');
+        trafficText.setAttribute('text-anchor', 'middle');
+        trafficText.setAttribute('font-size', '9');
+        trafficText.setAttribute('fill', traffic.color);
+        trafficText.setAttribute('font-weight', '700');
+        var emoji = traffic.level === 'heavy' ? '🚨' : traffic.level === 'moderate' ? '🚦' : '🌿';
+        trafficText.textContent = emoji + ' ' + traffic.label;
+        group.appendChild(trafficText);
+        
+        // Info box
+        var infoRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        infoRect.setAttribute('x', '8');
+        infoRect.setAttribute('y', '6');
+        infoRect.setAttribute('width', '150');
+        infoRect.setAttribute('height', '22');
+        infoRect.setAttribute('rx', '11');
+        infoRect.setAttribute('fill', 'rgba(255,255,255,0.85)');
+        group.appendChild(infoRect);
+        
+        var infoText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        infoText.setAttribute('x', '83');
+        infoText.setAttribute('y', '22');
+        infoText.setAttribute('text-anchor', 'middle');
+        infoText.setAttribute('font-size', '9');
+        infoText.setAttribute('fill', '#2a1a08');
+        infoText.setAttribute('font-weight', '600');
+        infoText.textContent = '📏 ' + dist.toFixed(1) + ' km  ⏱️ ' + timeMin + ' min';
+        group.appendChild(infoText);
     }
 
     function getCustomersWithAddress() {
@@ -1121,7 +1325,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         if (!start) {
             routeResult.innerHTML = '<div class="route-empty">⚠️ Please enter your start address.</div>';
             autoRouteList.innerHTML = 'No start address set';
-            updateRealMap();
+            drawStaticMap();
             return;
         }
         
@@ -1130,7 +1334,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         if (normalOrders.length === 0) {
             routeResult.innerHTML = '<div class="route-empty">No orders yet → add some!</div>';
             autoRouteList.innerHTML = 'No orders yet';
-            updateRealMap();
+            drawStaticMap();
             return;
         }
         
@@ -1146,7 +1350,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             }
         });
         
-        // AutoRouteList
         var listHtml = '';
         normalOrders.forEach(function(order) {
             var addr = addressBook[order.name] || '';
@@ -1162,7 +1365,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         
         if (customers.length === 0) {
             routeResult.innerHTML = '<div class="route-empty">⚠️ No customers with address found. Add addresses in Address Book.</div>';
-            updateRealMap();
+            drawStaticMap();
             return;
         }
         
@@ -1196,8 +1399,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         
         routeResult.innerHTML = html;
         
-        // Update real map
-        updateRealMap();
+        drawStaticMap();
     }
 
     // ============ OPEN IN APPLE MAPS ============
@@ -1210,7 +1412,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
-        // Open in Apple Maps app
         var appUrl = 'maps://maps.apple.com/?';
         var appParams = [];
         appParams.push('saddr=' + encodeURIComponent(start));
@@ -1220,17 +1421,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         appParams.push('dirflg=d');
         appUrl += appParams.join('&');
         
-        // Try to open the app
-        var opened = window.open(appUrl, '_blank');
+        window.open(appUrl, '_blank');
         
-        // If app doesn't open (or user is not on iOS), open web version
-        setTimeout(function() {
-            if (opened && !opened.closed) {
-                // Check if the window is still open
-            }
-        }, 500);
-        
-        // Also open web version as backup
         setTimeout(function() {
             var webUrl = 'https://maps.apple.com/?';
             var webParams = [];
