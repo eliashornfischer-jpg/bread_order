@@ -140,35 +140,30 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-start-container input{padding-right:70px;}
 .route-start-container .start-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:0.5rem;background:#27ae60;color:white;padding:2px 8px;border-radius:10px;}
 
-/* Mini Map with Traffic - ALWAYS VISIBLE */
-.mini-map-container{background:rgba(255,255,255,0.5);border-radius:16px;padding:12px;margin-top:12px;border:1px solid #d4c090;overflow:hidden;}
-.mini-map-container .map-title{font-size:0.65rem;font-weight:700;color:#6b4a1c;margin-bottom:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.mini-map-container .map-title .map-badge{background:#27ae60;color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;}
-.mini-map-container .map-title .traffic-badge{color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;display:inline-block;}
-.mini-map-container .map-title .traffic-badge.light{background:#27ae60;}
-.mini-map-container .map-title .traffic-badge.moderate{background:#f39c12;}
-.mini-map-container .map-title .traffic-badge.heavy{background:#e74c3c;}
-.mini-map-content{width:100%;height:220px;border-radius:12px;background:#f5f0e0;position:relative;overflow:hidden;border:2px solid #e0d0a0;}
-.mini-map-content .map-svg{width:100%;height:100%;}
-.mini-map-content .map-overlay{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;padding:8px;}
-.mini-map-content .map-overlay .start-marker{position:absolute;top:15%;left:5%;display:flex;align-items:center;gap:4px;background:rgba(39,174,96,0.85);color:white;padding:2px 8px;border-radius:10px;font-size:0.45rem;font-weight:700;}
-.mini-map-content .map-overlay .dest-marker{position:absolute;display:flex;align-items:center;gap:3px;background:rgba(231,76,60,0.8);color:white;padding:2px 6px;border-radius:8px;font-size:0.4rem;font-weight:600;}
-.mini-map-content .map-overlay .traffic-indicator{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.6);color:white;padding:4px 10px;border-radius:12px;font-size:0.45rem;display:flex;align-items:center;gap:6px;}
-.mini-map-content .map-overlay .traffic-indicator .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
-.map-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.45rem;color:#6b4a1c;margin-top:6px;}
-.map-legend .legend-item{display:flex;align-items:center;gap:3px;background:rgba(255,255,255,0.5);padding:2px 8px;border-radius:8px;}
-.map-legend .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
+/* FULL MAP */
+.full-map-container{background:rgba(255,255,255,0.5);border-radius:16px;padding:12px;margin-top:12px;border:2px solid #27ae60;overflow:hidden;}
+.full-map-container .map-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:4px;}
+.full-map-container .map-header .map-title{font-size:0.7rem;font-weight:800;color:#27ae60;display:flex;align-items:center;gap:6px;}
+.full-map-container .map-header .map-stats{display:flex;gap:8px;flex-wrap:wrap;font-size:0.55rem;}
+.full-map-container .map-header .map-stats .stat{background:rgba(255,255,255,0.6);padding:2px 10px;border-radius:12px;font-weight:700;}
+.full-map-container .map-header .map-stats .stat .val{color:#27ae60;}
+.full-map-container .map-header .map-stats .stat.traffic-light{background:#d5f5e3;color:#27ae60;}
+.full-map-container .map-header .map-stats .stat.traffic-moderate{background:#fdebd0;color:#e67e22;}
+.full-map-container .map-header .map-stats .stat.traffic-heavy{background:#fadbd8;color:#e74c3c;}
+.map-svg-wrapper{width:100%;background:#f0ece0;border-radius:12px;border:2px solid #e0d0a0;overflow:hidden;position:relative;}
+.map-svg-wrapper svg{width:100%;height:auto;display:block;}
+.map-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.5rem;color:#6b4a1c;margin-top:6px;padding:4px 8px;background:rgba(255,255,255,0.4);border-radius:10px;}
+.map-legend .legend-item{display:flex;align-items:center;gap:4px;}
+.map-legend .legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0;border:1px solid rgba(0,0,0,0.1);}
 .map-legend .legend-dot.start{background:#27ae60;}
 .map-legend .legend-dot.dest{background:#e74c3c;}
-.map-legend .legend-dot.traffic-light{background:#27ae60;}
-.map-legend .legend-dot.traffic-moderate{background:#f39c12;}
-.map-legend .legend-dot.traffic-heavy{background:#e74c3c;}
-.map-status-bar{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap;justify-content:center;font-size:0.5rem;color:#6b4a1c;}
-.map-status-bar .status-item{padding:2px 10px;border-radius:10px;background:rgba(255,255,255,0.5);font-weight:600;}
-.map-status-bar .status-item.traffic-light{background:#d5f5e3;color:#27ae60;}
-.map-status-bar .status-item.traffic-moderate{background:#fdebd0;color:#e67e22;}
-.map-status-bar .status-item.traffic-heavy{background:#fadbd8;color:#e74c3c;}
-.map-status-bar .status-item .value{font-weight:700;}
+.map-legend .legend-dot.route{background:#3498db;width:20px;height:3px;border-radius:2px;border:none;}
+.map-legend .legend-dot.route-heavy{background:#e74c3c;width:20px;height:3px;border-radius:2px;border:none;border-top:2px dashed #e74c3c;height:0;}
+.map-legend .legend-line{width:20px;height:0;border-top:2px solid #3498db;}
+.map-legend .legend-line-heavy{width:20px;height:0;border-top:2px dashed #e74c3c;}
+.map-status{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.5rem;margin-top:6px;padding:6px 10px;background:rgba(255,255,255,0.5);border-radius:10px;}
+.map-status .status-item{display:flex;align-items:center;gap:4px;font-weight:600;}
+.map-status .status-item .icon{font-size:0.7rem;}
 </style>
 </head>
 <body>
@@ -332,50 +327,53 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 <div class="route-empty">Add orders → route will auto-update</div>
 </div>
 
-<!-- ====== MINI MAP - ALWAYS VISIBLE ====== -->
-<div class="mini-map-container" id="miniMapContainer">
-    <div class="map-title">
-        <span>📍 Route Overview</span>
-        <span class="map-badge" id="mapStopCount">0 stops</span>
-        <span class="traffic-badge light" id="trafficBadge">🚦 Live Traffic</span>
+<!-- ====== FULL MAP ====== -->
+<div class="full-map-container">
+    <div class="map-header">
+        <span class="map-title">🗺️ Route Overview</span>
+        <div class="map-stats">
+            <span class="stat" id="mapStopCount">📍 <span class="val">0</span> stops</span>
+            <span class="stat" id="mapDistance">📏 <span class="val">0.0</span> km</span>
+            <span class="stat" id="mapTime">⏱️ <span class="val">0</span> min</span>
+            <span class="stat traffic-light" id="mapTraffic">🚦 <span class="val">Light</span></span>
+        </div>
     </div>
 
-    <div class="mini-map-content" id="miniMapContent">
-        <svg class="map-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet">
-            <!-- Background with subtle grid -->
-            <rect width="400" height="220" fill="#f0ece0" rx="8"/>
-            <!-- Grid lines -->
-            <g stroke="#e0d8c8" stroke-width="0.5" opacity="0.5">
-                <line x1="0" y1="44" x2="400" y2="44"/>
-                <line x1="0" y1="88" x2="400" y2="88"/>
-                <line x1="0" y1="132" x2="400" y2="132"/>
-                <line x1="0" y1="176" x2="400" y2="176"/>
-                <line x1="80" y1="0" x2="80" y2="220"/>
-                <line x1="160" y1="0" x2="160" y2="220"/>
-                <line x1="240" y1="0" x2="240" y2="220"/>
-                <line x1="320" y1="0" x2="320" y2="220"/>
+    <div class="map-svg-wrapper" id="mapSvgWrapper">
+        <svg viewBox="0 0 600 320" preserveAspectRatio="xMidYMid meet" id="routeSvg">
+            <!-- Background -->
+            <rect width="600" height="320" fill="#f0ece0" rx="8"/>
+            <!-- Grid -->
+            <g stroke="#e0d8c8" stroke-width="0.5" opacity="0.4">
+                <line x1="0" y1="64" x2="600" y2="64"/>
+                <line x1="0" y1="128" x2="600" y2="128"/>
+                <line x1="0" y1="192" x2="600" y2="192"/>
+                <line x1="0" y1="256" x2="600" y2="256"/>
+                <line x1="120" y1="0" x2="120" y2="320"/>
+                <line x1="240" y1="0" x2="240" y2="320"/>
+                <line x1="360" y1="0" x2="360" y2="320"/>
+                <line x1="480" y1="0" x2="480" y2="320"/>
             </g>
-            <!-- Map content will be drawn here -->
-            <g id="mapRouteGroup">
-                <!-- Default empty state -->
-                <text x="200" y="110" text-anchor="middle" font-size="14" fill="#b88c48" font-family="sans-serif" font-weight="600">Add orders to see route</text>
-                <text x="200" y="130" text-anchor="middle" font-size="10" fill="#c9a256" font-family="sans-serif">📍 Start: 青浦区湖畔佳苑391号</text>
+            <!-- Map content group -->
+            <g id="mapGroup">
+                <!-- Empty state -->
+                <text x="300" y="155" text-anchor="middle" font-size="16" fill="#b88c48" font-family="sans-serif" font-weight="600">Add orders to see route</text>
+                <text x="300" y="180" text-anchor="middle" font-size="11" fill="#c9a256" font-family="sans-serif">📍 中国上海市青浦区湖畔佳苑391号</text>
             </g>
         </svg>
     </div>
 
-    <div class="map-legend" id="mapLegend">
+    <div class="map-legend">
         <span class="legend-item"><span class="legend-dot start"></span> Start</span>
         <span class="legend-item"><span class="legend-dot dest"></span> Destinations</span>
-        <span class="legend-item" id="trafficLegendItem"><span class="legend-dot traffic-light"></span> Light</span>
-        <span class="legend-item" id="trafficLegendModerate" style="display:none;"><span class="legend-dot traffic-moderate"></span> Moderate</span>
-        <span class="legend-item" id="trafficLegendHeavy" style="display:none;"><span class="legend-dot traffic-heavy"></span> Heavy</span>
+        <span class="legend-item"><span class="legend-dot route"></span> Route</span>
+        <span class="legend-item" id="legendTraffic"><span class="legend-dot route-heavy"></span> Traffic</span>
+        <span class="legend-item" id="legendTrafficLabel" style="font-weight:700;color:#27ae60;">🚦 Light</span>
     </div>
 
-    <div class="map-status-bar">
-        <span class="status-item" id="statusDistance">📏 <span class="value">—</span></span>
-        <span class="status-item" id="statusTime">⏱️ <span class="value">—</span></span>
-        <span class="status-item traffic-light" id="statusTraffic">🚦 <span class="value">Light traffic</span></span>
+    <div class="map-status">
+        <span class="status-item"><span class="icon">📍</span> Start: <span id="mapStartDisplay" style="font-weight:400;font-size:0.5rem;">青浦区湖畔佳苑391号</span></span>
+        <span class="status-item"><span class="icon">🏁</span> Last: <span id="mapLastDisplay" style="font-weight:400;font-size:0.5rem;">—</span></span>
     </div>
 </div>
 
@@ -499,14 +497,15 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     var addressBody = document.getElementById("addressBody");
     var addressToggle = document.getElementById("addressToggle");
 
-    // Mini Map refs
-    var miniMapContent = document.getElementById("miniMapContent");
+    // Map refs
+    var mapGroup = document.getElementById("mapGroup");
     var mapStopCount = document.getElementById("mapStopCount");
-    var trafficBadge = document.getElementById("trafficBadge");
-    var statusDistance = document.getElementById("statusDistance");
-    var statusTime = document.getElementById("statusTime");
-    var statusTraffic = document.getElementById("statusTraffic");
-    var mapRouteGroup = document.getElementById("mapRouteGroup");
+    var mapDistance = document.getElementById("mapDistance");
+    var mapTime = document.getElementById("mapTime");
+    var mapTraffic = document.getElementById("mapTraffic");
+    var mapStartDisplay = document.getElementById("mapStartDisplay");
+    var mapLastDisplay = document.getElementById("mapLastDisplay");
+    var legendTrafficLabel = document.getElementById("legendTrafficLabel");
 
     // ============ ADDRESS TOGGLE ============
     addressToggle.addEventListener('click', function() {
@@ -1013,15 +1012,15 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         var isNight = hour >= 22 || hour <= 5;
         
         if (isNight) {
-            return { level: 'light', label: '🌙 Light traffic (night)', color: '#27ae60', delay: 0.7 };
+            return { level: 'light', label: 'Light (night)', color: '#27ae60', delay: 0.7 };
         } else if (isRushHour) {
-            return { level: 'heavy', label: '🚨 Heavy traffic (rush hour)', color: '#e74c3c', delay: 1.8 };
+            return { level: 'heavy', label: 'Heavy (rush hour)', color: '#e74c3c', delay: 1.8 };
         } else if (isEvening) {
-            return { level: 'moderate', label: '🚦 Moderate traffic (evening)', color: '#f39c12', delay: 1.3 };
+            return { level: 'moderate', label: 'Moderate (evening)', color: '#f39c12', delay: 1.3 };
         } else if (isWeekend) {
-            return { level: 'light', label: '🌿 Light traffic (weekend)', color: '#27ae60', delay: 0.85 };
+            return { level: 'light', label: 'Light (weekend)', color: '#27ae60', delay: 0.85 };
         } else {
-            return { level: 'moderate', label: '🚦 Normal traffic', color: '#f39c12', delay: 1.15 };
+            return { level: 'moderate', label: 'Moderate', color: '#f39c12', delay: 1.15 };
         }
     }
 
@@ -1037,51 +1036,50 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 
     function updateTrafficDisplay() {
         currentTraffic = getTrafficForTime();
-        updateMiniMapTraffic();
+        updateMapTraffic();
+        updateRouteTraffic();
     }
 
-    function updateMiniMapTraffic() {
+    function updateMapTraffic() {
         var traffic = currentTraffic;
         
-        // Update traffic badge
-        trafficBadge.textContent = '🚦 ' + traffic.label;
-        trafficBadge.className = 'traffic-badge ' + traffic.level;
-        
-        // Update status
-        statusTraffic.className = 'status-item traffic-' + traffic.level;
-        statusTraffic.innerHTML = '🚦 <span class="value">' + traffic.label + '</span>';
+        // Update traffic badge in map header
+        mapTraffic.className = 'stat traffic-' + traffic.level;
+        mapTraffic.innerHTML = '🚦 <span class="val">' + traffic.label + '</span>';
         
         // Update legend
-        var legendLight = document.getElementById('trafficLegendItem');
-        var legendModerate = document.getElementById('trafficLegendModerate');
-        var legendHeavy = document.getElementById('trafficLegendHeavy');
+        legendTrafficLabel.textContent = '🚦 ' + traffic.label;
+        legendTrafficLabel.style.color = traffic.color;
         
-        legendLight.style.display = traffic.level === 'light' ? 'inline-flex' : 'none';
-        legendModerate.style.display = traffic.level === 'moderate' ? 'inline-flex' : 'none';
-        legendHeavy.style.display = traffic.level === 'heavy' ? 'inline-flex' : 'none';
-        
-        // Update route display with traffic info
-        var routeResultDiv = document.getElementById('routeResult');
-        var trafficInfo = routeResultDiv.querySelector('.traffic-info-display');
-        if (trafficInfo) {
-            trafficInfo.textContent = '🚦 ' + traffic.label;
-            trafficInfo.style.color = traffic.color;
-        }
-        
-        // Update map drawing
+        // Update route display
         drawMap();
     }
 
-    // ============ DRAW MAP ============
+    function updateRouteTraffic() {
+        var routeResultDiv = document.getElementById('routeResult');
+        var trafficInfo = routeResultDiv.querySelector('.traffic-info-display');
+        if (trafficInfo) {
+            trafficInfo.textContent = '🚦 ' + currentTraffic.label;
+            trafficInfo.style.color = currentTraffic.color;
+        } else {
+            var existing = routeResultDiv.querySelector('.route-no-distance');
+            if (existing) {
+                var info = document.createElement('div');
+                info.className = 'traffic-info-display';
+                info.style.cssText = 'margin-top:4px;font-size:0.55rem;color:' + currentTraffic.color + ';text-align:center;';
+                info.textContent = '🚦 ' + currentTraffic.label;
+                existing.parentNode.insertBefore(info, existing.nextSibling);
+            }
+        }
+    }
+
+    // ============ DRAW FULL MAP ============
     function drawMap() {
         var start = routeStart.value.trim();
         var customers = getCustomersWithAddress();
         var traffic = currentTraffic;
         
-        var svg = miniMapContent.querySelector('svg');
-        if (!svg) return;
-        
-        var group = svg.querySelector('#mapRouteGroup');
+        var group = mapGroup;
         if (!group) return;
         
         // Clear previous content
@@ -1090,49 +1088,63 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         if (!start || customers.length === 0) {
             // Empty state
             var text1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text1.setAttribute('x', '200');
-            text1.setAttribute('y', '100');
+            text1.setAttribute('x', '300');
+            text1.setAttribute('y', '155');
             text1.setAttribute('text-anchor', 'middle');
-            text1.setAttribute('font-size', '14');
+            text1.setAttribute('font-size', '16');
             text1.setAttribute('fill', '#b88c48');
             text1.setAttribute('font-weight', '600');
             text1.textContent = 'Add orders to see route';
             group.appendChild(text1);
             
             var text2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text2.setAttribute('x', '200');
-            text2.setAttribute('y', '125');
+            text2.setAttribute('x', '300');
+            text2.setAttribute('y', '180');
             text2.setAttribute('text-anchor', 'middle');
-            text2.setAttribute('font-size', '10');
+            text2.setAttribute('font-size', '11');
             text2.setAttribute('fill', '#c9a256');
             text2.textContent = '📍 ' + (start || 'No start address set');
             group.appendChild(text2);
             
-            mapStopCount.textContent = '0 stops';
-            statusDistance.innerHTML = '📏 <span class="value">—</span>';
-            statusTime.innerHTML = '⏱️ <span class="value">—</span>';
+            mapStopCount.innerHTML = '📍 <span class="val">0</span> stops';
+            mapDistance.innerHTML = '📏 <span class="val">0.0</span> km';
+            mapTime.innerHTML = '⏱️ <span class="val">0</span> min';
+            mapStartDisplay.textContent = start || '—';
+            mapLastDisplay.textContent = '—';
             return;
         }
         
-        mapStopCount.textContent = customers.length + ' stops';
+        // Update stats
+        mapStopCount.innerHTML = '📍 <span class="val">' + customers.length + '</span> stops';
+        
+        // Calculate distance and time with traffic
+        var baseDist = customers.length * 2.5 + 1.5;
+        var dist = baseDist * traffic.delay;
+        var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
+        
+        mapDistance.innerHTML = '📏 <span class="val">' + dist.toFixed(1) + '</span> km';
+        mapTime.innerHTML = '⏱️ <span class="val">' + timeMin + '</span> min';
+        mapStartDisplay.textContent = start.length > 20 ? start.substring(0, 20) + '…' : start;
+        mapLastDisplay.textContent = customers.length > 0 ? customers[customers.length - 1].name : '—';
         
         // Calculate positions on the map
         var points = [];
         var totalPoints = customers.length + 1;
         
         // Start point (top left area)
-        points.push({ x: 40, y: 50, label: 'Start', isStart: true });
+        points.push({ x: 50, y: 60, label: 'Start', isStart: true });
         
-        // Distribute destinations across the map with some randomness
-        var destColors = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#1abc9c'];
+        // Distribute destinations across the map
+        var destColors = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#1abc9c', '#e74c3c', '#2c3e50', '#16a085'];
+        
         customers.forEach(function(c, index) {
-            var angle = (index / customers.length) * 2 * Math.PI + 0.5;
-            var radius = 60 + (index % 3) * 20;
-            var x = 200 + Math.cos(angle) * radius * (0.7 + Math.random() * 0.3);
-            var y = 110 + Math.sin(angle) * radius * 0.5 * (0.7 + Math.random() * 0.3);
+            var angle = (index / customers.length) * 2 * Math.PI + 0.3;
+            var radius = 70 + (index % 4) * 25;
+            var x = 300 + Math.cos(angle) * radius * (0.7 + Math.random() * 0.2);
+            var y = 160 + Math.sin(angle) * radius * 0.5 * (0.7 + Math.random() * 0.2);
             // Keep within bounds
-            x = Math.max(60, Math.min(340, x));
-            y = Math.max(40, Math.min(190, y));
+            x = Math.max(70, Math.min(530, x));
+            y = Math.max(50, Math.min(270, y));
             points.push({ 
                 x: x, 
                 y: y, 
@@ -1140,12 +1152,16 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
                 isStart: false,
                 index: index + 1,
                 color: destColors[index % destColors.length],
-                address: c.address
+                address: c.address,
+                order: c.order
             });
         });
         
         // Draw route lines
         var trafficColor = traffic.color;
+        var strokeWidth = traffic.level === 'heavy' ? 4 : 3;
+        var dashArray = traffic.level === 'heavy' ? '10,6' : 'none';
+        
         for (var i = 0; i < points.length - 1; i++) {
             var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', points[i].x);
@@ -1153,82 +1169,155 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             line.setAttribute('x2', points[i+1].x);
             line.setAttribute('y2', points[i+1].y);
             line.setAttribute('stroke', trafficColor);
-            line.setAttribute('stroke-width', '3');
+            line.setAttribute('stroke-width', strokeWidth);
             line.setAttribute('stroke-linecap', 'round');
-            line.setAttribute('stroke-dasharray', traffic.level === 'heavy' ? '8,4' : 'none');
+            line.setAttribute('stroke-dasharray', dashArray);
             line.setAttribute('opacity', '0.6');
             group.appendChild(line);
+            
+            // Add direction arrow
+            if (i < points.length - 2) {
+                var midX = (points[i].x + points[i+1].x) / 2;
+                var midY = (points[i].y + points[i+1].y) / 2;
+                var angle = Math.atan2(points[i+1].y - points[i].y, points[i+1].x - points[i].x);
+                var arrowSize = 6;
+                var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                var x1 = midX + arrowSize * Math.cos(angle);
+                var y1 = midY + arrowSize * Math.sin(angle);
+                var x2 = midX + arrowSize * Math.cos(angle + 2.5);
+                var y2 = midY + arrowSize * Math.sin(angle + 2.5);
+                var x3 = midX + arrowSize * Math.cos(angle - 2.5);
+                var y3 = midY + arrowSize * Math.sin(angle - 2.5);
+                arrow.setAttribute('points', x1 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3);
+                arrow.setAttribute('fill', trafficColor);
+                arrow.setAttribute('opacity', '0.5');
+                group.appendChild(arrow);
+            }
         }
         
         // Draw points
         points.forEach(function(p, index) {
-            // Circle
+            var isStart = p.isStart;
+            var radius = isStart ? 14 : 10;
+            var color = isStart ? '#27ae60' : (p.color || '#e74c3c');
+            
+            // Glow effect for start
+            if (isStart) {
+                var glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                glow.setAttribute('cx', p.x);
+                glow.setAttribute('cy', p.y);
+                glow.setAttribute('r', radius + 6);
+                glow.setAttribute('fill', 'rgba(39,174,96,0.15)');
+                group.appendChild(glow);
+            }
+            
+            // Main circle
             var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             circle.setAttribute('cx', p.x);
             circle.setAttribute('cy', p.y);
-            circle.setAttribute('r', p.isStart ? '12' : '9');
-            circle.setAttribute('fill', p.isStart ? '#27ae60' : (p.color || '#e74c3c'));
+            circle.setAttribute('r', radius);
+            circle.setAttribute('fill', color);
             circle.setAttribute('stroke', 'white');
-            circle.setAttribute('stroke-width', '2');
+            circle.setAttribute('stroke-width', '2.5');
             group.appendChild(circle);
+            
+            // Number inside circle for destinations
+            if (!isStart) {
+                var num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                num.setAttribute('x', p.x);
+                num.setAttribute('y', p.y + 4);
+                num.setAttribute('text-anchor', 'middle');
+                num.setAttribute('font-size', '9');
+                num.setAttribute('fill', 'white');
+                num.setAttribute('font-weight', '700');
+                num.textContent = p.index;
+                group.appendChild(num);
+            } else {
+                // Start icon
+                var icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                icon.setAttribute('x', p.x);
+                icon.setAttribute('y', p.y + 5);
+                icon.setAttribute('text-anchor', 'middle');
+                icon.setAttribute('font-size', '12');
+                icon.textContent = '🏠';
+                group.appendChild(icon);
+            }
             
             // Label
             var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            label.setAttribute('x', p.isStart ? p.x + 16 : p.x + 12);
-            label.setAttribute('y', p.isStart ? p.y + 4 : p.y + 3);
-            label.setAttribute('font-size', p.isStart ? '9' : '8');
+            label.setAttribute('x', isStart ? p.x + 18 : p.x + 14);
+            label.setAttribute('y', isStart ? p.y + 5 : p.y + 4);
+            label.setAttribute('font-size', isStart ? '10' : '9');
             label.setAttribute('fill', '#2a1a08');
-            label.setAttribute('font-weight', p.isStart ? '700' : '600');
-            var labelText = p.isStart ? '🏠 Start' : (p.index + '. ' + p.label);
-            if (p.isStart) {
-                // Show start address
-                var shortStart = start.length > 12 ? start.substring(0, 12) + '...' : start;
-                labelText = '🏠 ' + shortStart;
-            }
+            label.setAttribute('font-weight', isStart ? '700' : '600');
+            var labelText = isStart ? 'START' : p.label;
             label.textContent = labelText;
             group.appendChild(label);
             
-            // Small address label for destinations
-            if (!p.isStart) {
+            // Address label for destinations
+            if (!isStart && p.address) {
                 var addrLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                addrLabel.setAttribute('x', p.x + 12);
-                addrLabel.setAttribute('y', p.y + 12);
-                addrLabel.setAttribute('font-size', '6');
+                addrLabel.setAttribute('x', p.x + 14);
+                addrLabel.setAttribute('y', p.y + 13);
+                addrLabel.setAttribute('font-size', '7');
                 addrLabel.setAttribute('fill', '#8a6a2a');
-                var shortAddr = p.address.length > 15 ? p.address.substring(0, 15) + '…' : p.address;
+                var shortAddr = p.address.length > 18 ? p.address.substring(0, 18) + '…' : p.address;
                 addrLabel.textContent = shortAddr;
                 group.appendChild(addrLabel);
+            }
+            
+            // Order details for destinations
+            if (!isStart && p.order) {
+                var orderText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                orderText.setAttribute('x', p.x + 14);
+                orderText.setAttribute('y', p.y + 21);
+                orderText.setAttribute('font-size', '6');
+                orderText.setAttribute('fill', '#6b4a1c');
+                orderText.textContent = p.order.breadType + ' ' + p.order.size;
+                group.appendChild(orderText);
             }
         });
         
         // Traffic indicator on map
-        var trafficRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        trafficRect.setAttribute('x', '300');
-        trafficRect.setAttribute('y', '8');
-        trafficRect.setAttribute('width', '90');
-        trafficRect.setAttribute('height', '22');
-        trafficRect.setAttribute('rx', '10');
-        trafficRect.setAttribute('fill', 'rgba(0,0,0,0.7)');
-        group.appendChild(trafficRect);
+        var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', '420');
+        rect.setAttribute('y', '8');
+        rect.setAttribute('width', '170');
+        rect.setAttribute('height', '28');
+        rect.setAttribute('rx', '12');
+        rect.setAttribute('fill', 'rgba(0,0,0,0.7)');
+        group.appendChild(rect);
         
         var trafficText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        trafficText.setAttribute('x', '345');
-        trafficText.setAttribute('y', '24');
+        trafficText.setAttribute('x', '505');
+        trafficText.setAttribute('y', '27');
         trafficText.setAttribute('text-anchor', 'middle');
-        trafficText.setAttribute('font-size', '9');
+        trafficText.setAttribute('font-size', '11');
         trafficText.setAttribute('fill', traffic.color);
-        trafficText.setAttribute('font-weight', '600');
+        trafficText.setAttribute('font-weight', '700');
         var emoji = traffic.level === 'heavy' ? '🚨' : traffic.level === 'moderate' ? '🚦' : '🌿';
-        trafficText.textContent = emoji + ' ' + traffic.level;
+        trafficText.textContent = emoji + ' ' + traffic.label.toUpperCase();
         group.appendChild(trafficText);
         
-        // Update distance and time
-        var baseDist = customers.length * 2.5 + 1.5;
-        var dist = baseDist * traffic.delay;
-        var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
+        // Distance and time on map
+        var infoRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        infoRect.setAttribute('x', '8');
+        infoRect.setAttribute('y', '8');
+        infoRect.setAttribute('width', '180');
+        infoRect.setAttribute('height', '28');
+        infoRect.setAttribute('rx', '12');
+        infoRect.setAttribute('fill', 'rgba(255,255,255,0.8)');
+        group.appendChild(infoRect);
         
-        statusDistance.innerHTML = '📏 <span class="value">' + dist.toFixed(1) + ' km</span>';
-        statusTime.innerHTML = '⏱️ <span class="value">~' + timeMin + ' min</span>';
+        var infoText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        infoText.setAttribute('x', '98');
+        infoText.setAttribute('y', '27');
+        infoText.setAttribute('text-anchor', 'middle');
+        infoText.setAttribute('font-size', '10');
+        infoText.setAttribute('fill', '#2a1a08');
+        infoText.setAttribute('font-weight', '600');
+        infoText.textContent = '📏 ' + dist.toFixed(1) + ' km  ⏱️ ' + timeMin + ' min';
+        group.appendChild(infoText);
     }
 
     function getCustomersWithAddress() {
@@ -1315,8 +1404,18 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             html += '<div style="margin-top:4px;padding:4px 8px;background:#fde8e8;border-radius:8px;font-size:0.55rem;color:#c0392b;">⚠️ No address for: ' + noAddress.join(', ') + ' (not in route)</div>';
         }
         
-        html += '<div class="route-no-distance">📱 Tap Apple Maps button below for real distance & traffic</div>';
-        html += '<div class="traffic-info-display" style="margin-top:4px;font-size:0.55rem;color:' + traffic.color + ';text-align:center;">🚦 ' + traffic.label + '</div>';
+        // Calculate total distance and time
+        var baseDist = customers.length * 2.5 + 1.5;
+        var dist = baseDist * traffic.delay;
+        var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
+        
+        html += '<div class="route-no-distance" style="margin-top:6px;padding:6px 10px;background:rgba(46,204,113,0.1);border-radius:10px;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:0.6rem;">';
+        html += '<span>📏 <strong>' + dist.toFixed(1) + ' km</strong></span>';
+        html += '<span>⏱️ <strong>~' + timeMin + ' min</strong></span>';
+        html += '<span style="color:' + traffic.color + ';">🚦 ' + traffic.label + '</span>';
+        html += '</div>';
+        
+        html += '<div class="traffic-info-display" style="margin-top:4px;font-size:0.55rem;color:' + traffic.color + ';text-align:center;">🚦 ' + traffic.label + ' (auto-updates every 30s)</div>';
         
         routeResult.innerHTML = html;
         appleMapsBtn.disabled = false;
