@@ -109,7 +109,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-input-group input{width:100%;padding:8px 12px;border-radius:16px;border:1px solid #e0d0a0;font-size:0.75rem;}
 .route-input-group input:focus{outline:none;border-color:#27ae60;box-shadow:0 0 0 3px rgba(39,174,96,0.2);}
 .route-result{margin-top:10px;}
-.route-apple-btn{width:100%;padding:12px;margin-top:8px;border-radius:20px;border:none;font-weight:700;font-size:0.8rem;background:linear-gradient(135deg,#007aff,#0055cc);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;box-shadow:0 4px 12px rgba(0,122,255,0.3);}
+.route-apple-btn{width:100%;padding:14px;margin-top:8px;border-radius:20px;border:none;font-weight:700;font-size:0.8rem;background:linear-gradient(135deg,#007aff,#0055cc);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;box-shadow:0 4px 12px rgba(0,122,255,0.3);}
 .route-apple-btn:active{transform:scale(0.97);}
 .route-apple-btn svg{width:20px;height:20px;fill:white;}
 .route-apple-btn:disabled{opacity:0.4;cursor:not-allowed;box-shadow:none;}
@@ -136,34 +136,28 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-start-container input{padding-right:70px;}
 .route-start-container .start-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:0.5rem;background:#27ae60;color:white;padding:2px 8px;border-radius:10px;}
 
-/* MODERN MAP - SHANGHAI STYLE */
-.modern-map-container{background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:14px;margin-top:12px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
-.modern-map-container .map-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
-.modern-map-container .map-header .map-title{font-size:0.7rem;font-weight:800;color:#6b4a1c;display:flex;align-items:center;gap:6px;}
-.modern-map-container .map-header .map-title .city-badge{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;font-weight:700;}
-.modern-map-container .map-header .map-stats{display:flex;gap:6px;flex-wrap:wrap;font-size:0.5rem;}
-.modern-map-container .map-header .map-stats .stat{background:rgba(255,255,255,0.7);padding:2px 10px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,0.3);}
-.modern-map-container .map-header .map-stats .stat .val{color:#27ae60;}
-.modern-map-container .map-header .map-stats .stat.traffic-light{background:#d5f5e3;color:#27ae60;}
-.modern-map-container .map-header .map-stats .stat.traffic-moderate{background:#fdebd0;color:#e67e22;}
-.modern-map-container .map-header .map-stats .stat.traffic-heavy{background:#fadbd8;color:#e74c3c;}
-.map-wrapper{width:100%;border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(180deg,#e8f0e8 0%,#d4dcc4 100%);border:1px solid rgba(200,200,180,0.3);}
-.map-wrapper svg{width:100%;height:auto;display:block;}
+/* REAL MAP WITH MODERN DESIGN */
+.real-map-container{background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:14px;margin-top:12px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.real-map-container .map-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.real-map-container .map-header .map-title{font-size:0.7rem;font-weight:800;color:#6b4a1c;display:flex;align-items:center;gap:6px;}
+.real-map-container .map-header .map-title .city-badge{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;font-weight:700;}
+.real-map-container .map-header .map-stats{display:flex;gap:6px;flex-wrap:wrap;font-size:0.5rem;}
+.real-map-container .map-header .map-stats .stat{background:rgba(255,255,255,0.7);padding:2px 10px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,0.3);}
+.real-map-container .map-header .map-stats .stat .val{color:#27ae60;}
+.real-map-container .map-header .map-stats .stat.traffic-light{background:#d5f5e3;color:#27ae60;}
+.real-map-container .map-header .map-stats .stat.traffic-moderate{background:#fdebd0;color:#e67e22;}
+.real-map-container .map-header .map-stats .stat.traffic-heavy{background:#fadbd8;color:#e74c3c;}
+.real-map-wrapper{width:100%;border-radius:16px;overflow:hidden;position:relative;background:#e8f0e8;border:1px solid rgba(200,200,180,0.3);}
+.real-map-wrapper iframe{width:100%;height:280px;border:none;display:block;}
 .map-legend-modern{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.45rem;color:#6b4a1c;margin-top:8px;padding:4px 10px;background:rgba(255,255,255,0.4);border-radius:12px;}
 .map-legend-modern .legend-item{display:flex;align-items:center;gap:4px;}
 .map-legend-modern .legend-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;border:1px solid rgba(0,0,0,0.05);}
 .map-legend-modern .legend-dot.start{background:#27ae60;}
 .map-legend-modern .legend-dot.dest{background:#e74c3c;}
-.map-legend-modern .legend-dot.route{background:#3498db;width:16px;height:2px;border-radius:1px;border:none;}
-.map-legend-modern .legend-dot.route-heavy{background:#e74c3c;width:16px;height:0;border-top:2px dashed #e74c3c;}
 .map-status-modern{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;font-size:0.45rem;margin-top:6px;padding:4px 10px;background:rgba(255,255,255,0.3);border-radius:12px;}
 .map-status-modern .status-item{display:flex;align-items:center;gap:3px;font-weight:600;}
 .map-status-modern .status-item .icon{font-size:0.6rem;}
 .map-status-modern .status-item .addr{font-weight:400;color:#8a6a2a;font-size:0.4rem;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.shanghai-river{fill:rgba(52,152,219,0.12);stroke:rgba(52,152,219,0.2);stroke-width:0.5;}
-.shanghai-district{fill:rgba(200,210,190,0.2);stroke:rgba(180,190,170,0.15);stroke-width:0.3;}
-.map-pin{transition:all 0.3s ease;}
-.map-pin:hover{transform:scale(1.2);}
 </style>
 </head>
 <body>
@@ -327,8 +321,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 <div class="route-empty">Add orders → route will auto-update</div>
 </div>
 
-<!-- MODERN MAP - SHANGHAI -->
-<div class="modern-map-container">
+<!-- REAL MAP WITH MODERN DESIGN -->
+<div class="real-map-container">
     <div class="map-header">
         <span class="map-title">🗺️ Shanghai Route <span class="city-badge">SH</span></span>
         <div class="map-stats">
@@ -339,64 +333,18 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         </div>
     </div>
 
-    <div class="map-wrapper">
-        <svg viewBox="0 0 500 300" preserveAspectRatio="xMidYMid meet" id="routeSvg">
-            <!-- Shanghai Background -->
-            <defs>
-                <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#b5d8e8;stop-opacity:0.3"/>
-                    <stop offset="100%" style="stop-color:#8ec5d8;stop-opacity:0.15"/>
-                </linearGradient>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
-                <filter id="shadow">
-                    <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.2"/>
-                </filter>
-            </defs>
-
-            <!-- Base map -->
-            <rect width="500" height="300" fill="#eef3e8" rx="8"/>
-
-            <!-- Shanghai districts (simplified) -->
-            <path class="shanghai-district" d="M80,40 L180,30 L230,80 L200,140 L130,160 L70,130 L50,80 Z"/>
-            <path class="shanghai-district" d="M230,30 L380,20 L420,70 L380,130 L280,150 L230,110 Z"/>
-            <path class="shanghai-district" d="M130,160 L230,140 L280,150 L320,200 L250,260 L140,250 L80,200 Z"/>
-            <path class="shanghai-district" d="M320,50 L440,40 L480,90 L450,150 L380,130 L320,100 Z"/>
-            <path class="shanghai-district" d="M250,150 L380,130 L400,180 L330,230 L280,200 Z"/>
-
-            <!-- Huangpu River (simplified) -->
-            <path class="shanghai-river" d="M100,10 C120,60 140,120 160,180 C180,240 200,280 210,290" stroke-width="12" fill="none"/>
-            <path class="shanghai-river" d="M210,10 C230,60 250,120 270,180 C290,240 310,280 320,290" stroke-width="8" fill="none"/>
-            <path class="shanghai-river" d="M160,180 C220,190 280,180 320,200" stroke-width="6" fill="none"/>
-
-            <!-- Major roads (simplified) -->
-            <g stroke="rgba(180,190,170,0.15)" stroke-width="2" fill="none">
-                <line x1="50" y1="150" x2="450" y2="150"/>
-                <line x1="50" y1="200" x2="450" y2="200"/>
-                <line x1="250" y1="20" x2="250" y2="280"/>
-                <line x1="150" y1="20" x2="150" y2="280"/>
-                <line x1="350" y1="20" x2="350" y2="280"/>
-            </g>
-
-            <!-- Map content group -->
-            <g id="mapGroup" filter="url(#shadow)">
-                <!-- Empty state -->
-                <text x="250" y="145" text-anchor="middle" font-size="14" fill="#b88c48" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-weight="600">Add orders to see route</text>
-                <text x="250" y="168" text-anchor="middle" font-size="10" fill="#c9a256" font-family="-apple-system,BlinkMacSystemFont,sans-serif">📍 中国上海市青浦区湖畔佳苑391号</text>
-            </g>
-        </svg>
+    <div class="real-map-wrapper" id="realMapWrapper">
+        <!-- Apple Maps iframe will be inserted here -->
+        <div id="mapPlaceholder" style="width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f0e8,#d4dcc4);border-radius:16px;color:#6b4a1c;font-size:0.65rem;text-align:center;padding:20px;">
+            <div style="font-size:2.5rem;margin-bottom:8px;">🗺️</div>
+            <div style="font-weight:600;">Add orders to see map</div>
+            <div style="font-size:0.5rem;color:#8a6a2a;margin-top:4px;">📍 中国上海市青浦区湖畔佳苑391号</div>
+        </div>
     </div>
 
     <div class="map-legend-modern">
         <span class="legend-item"><span class="legend-dot start"></span> Start</span>
         <span class="legend-item"><span class="legend-dot dest"></span> Dest</span>
-        <span class="legend-item"><span class="legend-dot route"></span> Route</span>
-        <span class="legend-item" id="legendTraffic"><span class="legend-dot route-heavy"></span> Traffic</span>
         <span class="legend-item" id="legendTrafficLabel" style="font-weight:700;color:#27ae60;">🚦 Light</span>
     </div>
 
@@ -413,7 +361,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     </span>
     <span class="btn-text">
         <span>🗺️ Open in Apple Maps</span>
-        <span class="sub">📍 Shanghai · real-time traffic</span>
+        <span class="sub">📍 Shanghai · real-time traffic & navigation</span>
     </span>
 </button>
 
@@ -528,7 +476,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     var addressToggle = document.getElementById("addressToggle");
 
     // Map refs
-    var mapGroup = document.getElementById("mapGroup");
+    var realMapWrapper = document.getElementById("realMapWrapper");
+    var mapPlaceholder = document.getElementById("mapPlaceholder");
     var mapStopCount = document.getElementById("mapStopCount");
     var mapDistance = document.getElementById("mapDistance");
     var mapTime = document.getElementById("mapTime");
@@ -1074,16 +1023,13 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     function updateMapTraffic() {
         var traffic = currentTraffic;
         
-        // Update traffic badge in map header
         mapTraffic.className = 'stat traffic-' + traffic.level;
         mapTraffic.innerHTML = '🚦 <span class="val">' + traffic.label + '</span>';
         
-        // Update legend
         legendTrafficLabel.textContent = '🚦 ' + traffic.label;
         legendTrafficLabel.style.color = traffic.color;
         
-        // Update route display
-        drawMap();
+        updateRealMap();
     }
 
     function updateRouteTraffic() {
@@ -1095,38 +1041,21 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     }
 
-    // ============ DRAW MODERN MAP ============
-    function drawMap() {
+    // ============ REAL MAP ============
+    function updateRealMap() {
         var start = routeStart.value.trim();
         var customers = getCustomersWithAddress();
         var traffic = currentTraffic;
         
-        var group = mapGroup;
-        if (!group) return;
-        
-        // Clear previous content
-        group.innerHTML = '';
-        
         if (!start || customers.length === 0) {
-            // Empty state
-            var text1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text1.setAttribute('x', '250');
-            text1.setAttribute('y', '145');
-            text1.setAttribute('text-anchor', 'middle');
-            text1.setAttribute('font-size', '14');
-            text1.setAttribute('fill', '#b88c48');
-            text1.setAttribute('font-weight', '600');
-            text1.textContent = 'Add orders to see route';
-            group.appendChild(text1);
-            
-            var text2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text2.setAttribute('x', '250');
-            text2.setAttribute('y', '168');
-            text2.setAttribute('text-anchor', 'middle');
-            text2.setAttribute('font-size', '10');
-            text2.setAttribute('fill', '#c9a256');
-            text2.textContent = '📍 ' + (start || 'No start address set');
-            group.appendChild(text2);
+            // Show placeholder
+            realMapWrapper.innerHTML = `
+                <div id="mapPlaceholder" style="width:100%;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f0e8,#d4dcc4);border-radius:16px;color:#6b4a1c;font-size:0.65rem;text-align:center;padding:20px;">
+                    <div style="font-size:2.5rem;margin-bottom:8px;">🗺️</div>
+                    <div style="font-weight:600;">Add orders to see map</div>
+                    <div style="font-size:0.5rem;color:#8a6a2a;margin-top:4px;">📍 ${escapeHtml(start || 'No start address')}</div>
+                </div>
+            `;
             
             mapStopCount.innerHTML = '📍 <span class="val">0</span>';
             mapDistance.innerHTML = '📏 <span class="val">0.0</span> km';
@@ -1134,13 +1063,13 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             mapStartDisplay.textContent = start || '—';
             mapLastDisplay.textContent = '—';
             mapStatusTime.innerHTML = '⏱️ <span style="font-weight:400;">0 min</span>';
+            appleMapsBtn.disabled = true;
             return;
         }
         
         // Update stats
         mapStopCount.innerHTML = '📍 <span class="val">' + customers.length + '</span>';
         
-        // Calculate distance and time with traffic
         var baseDist = customers.length * 2.5 + 1.5;
         var dist = baseDist * traffic.delay;
         var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
@@ -1151,221 +1080,27 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         mapLastDisplay.textContent = customers.length > 0 ? customers[customers.length - 1].name : '—';
         mapStatusTime.innerHTML = '⏱️ <span style="font-weight:400;">' + timeMin + ' min</span>';
         
-        // Calculate positions on the map (Shanghai style distribution)
-        var points = [];
-        
-        // Start point - Qingpu district (west of Shanghai)
-        points.push({ x: 80, y: 110, label: 'Start', isStart: true });
-        
-        // Destination colors
-        var destColors = ['#e74c3c', '#e67e22', '#f39c12', '#2ecc71', '#3498db', '#9b59b6', '#1abc9c', '#e74c3c'];
-        
-        // Distribute destinations across Shanghai map
-        var locations = [
-            { x: 350, y: 60 },  // Yangpu / Hongkou
-            { x: 400, y: 100 }, // Pudong
-            { x: 310, y: 140 }, // Jing'an
-            { x: 260, y: 170 }, // Xuhui
-            { x: 200, y: 200 }, // Minhang
-            { x: 330, y: 210 }, // Pudong south
-            { x: 180, y: 140 }, // Changning
-            { x: 420, y: 180 }  // Pudong east
-        ];
-        
-        customers.forEach(function(c, index) {
-            var loc = locations[index % locations.length];
-            // Add slight randomness
-            var x = loc.x + (Math.random() - 0.5) * 40;
-            var y = loc.y + (Math.random() - 0.5) * 30;
-            // Keep within bounds
-            x = Math.max(60, Math.min(470, x));
-            y = Math.max(40, Math.min(270, y));
-            points.push({ 
-                x: x, 
-                y: y, 
-                label: c.name, 
-                isStart: false,
-                index: index + 1,
-                color: destColors[index % destColors.length],
-                address: c.address,
-                order: c.order
-            });
+        // Build Apple Maps URL with all stops
+        var mapUrl = 'https://maps.apple.com/?';
+        var params = [];
+        params.push('saddr=' + encodeURIComponent(start));
+        customers.forEach(function(c) {
+            params.push('daddr=' + encodeURIComponent(c.address));
         });
+        params.push('dirflg=d');
+        params.push('hl=zh-CN');
+        mapUrl += params.join('&');
         
-        // Draw route lines
-        var trafficColor = traffic.color;
-        var strokeWidth = traffic.level === 'heavy' ? 4 : 2.5;
-        var dashArray = traffic.level === 'heavy' ? '8,5' : 'none';
+        // Create iframe with Apple Maps
+        realMapWrapper.innerHTML = `
+            <iframe src="${mapUrl}" allowfullscreen loading="lazy" style="width:100%;height:280px;border:none;border-radius:16px;"></iframe>
+        `;
         
-        // Sort points by order
-        for (var i = 0; i < points.length - 1; i++) {
-            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', points[i].x);
-            line.setAttribute('y1', points[i].y);
-            line.setAttribute('x2', points[i+1].x);
-            line.setAttribute('y2', points[i+1].y);
-            line.setAttribute('stroke', trafficColor);
-            line.setAttribute('stroke-width', strokeWidth);
-            line.setAttribute('stroke-linecap', 'round');
-            line.setAttribute('stroke-dasharray', dashArray);
-            line.setAttribute('opacity', '0.6');
-            group.appendChild(line);
-            
-            // Add direction arrow
-            if (i < points.length - 2) {
-                var midX = (points[i].x + points[i+1].x) / 2;
-                var midY = (points[i].y + points[i+1].y) / 2;
-                var angle = Math.atan2(points[i+1].y - points[i].y, points[i+1].x - points[i].x);
-                var arrowSize = 5;
-                var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-                var x1 = midX + arrowSize * Math.cos(angle);
-                var y1 = midY + arrowSize * Math.sin(angle);
-                var x2 = midX + arrowSize * Math.cos(angle + 2.3);
-                var y2 = midY + arrowSize * Math.sin(angle + 2.3);
-                var x3 = midX + arrowSize * Math.cos(angle - 2.3);
-                var y3 = midY + arrowSize * Math.sin(angle - 2.3);
-                arrow.setAttribute('points', x1 + ',' + y1 + ' ' + x2 + ',' + y2 + ' ' + x3 + ',' + y3);
-                arrow.setAttribute('fill', trafficColor);
-                arrow.setAttribute('opacity', '0.4');
-                group.appendChild(arrow);
-            }
-        }
+        appleMapsBtn.disabled = false;
         
-        // Draw points
-        points.forEach(function(p, index) {
-            var isStart = p.isStart;
-            var radius = isStart ? 14 : 9;
-            var color = isStart ? '#27ae60' : (p.color || '#e74c3c');
-            
-            // Glow effect for start
-            if (isStart) {
-                var glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                glow.setAttribute('cx', p.x);
-                glow.setAttribute('cy', p.y);
-                glow.setAttribute('r', radius + 8);
-                glow.setAttribute('fill', 'rgba(39,174,96,0.12)');
-                group.appendChild(glow);
-            }
-            
-            // Main circle
-            var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            circle.setAttribute('cx', p.x);
-            circle.setAttribute('cy', p.y);
-            circle.setAttribute('r', radius);
-            circle.setAttribute('fill', color);
-            circle.setAttribute('stroke', 'white');
-            circle.setAttribute('stroke-width', '2');
-            circle.setAttribute('filter', 'url(#shadow)');
-            group.appendChild(circle);
-            
-            // Number inside circle for destinations
-            if (!isStart) {
-                var num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                num.setAttribute('x', p.x);
-                num.setAttribute('y', p.y + 3.5);
-                num.setAttribute('text-anchor', 'middle');
-                num.setAttribute('font-size', '8');
-                num.setAttribute('fill', 'white');
-                num.setAttribute('font-weight', '700');
-                num.textContent = p.index;
-                group.appendChild(num);
-            } else {
-                // Start icon
-                var icon = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                icon.setAttribute('x', p.x);
-                icon.setAttribute('y', p.y + 4);
-                icon.setAttribute('text-anchor', 'middle');
-                icon.setAttribute('font-size', '10');
-                icon.textContent = '🏠';
-                group.appendChild(icon);
-            }
-            
-            // Label
-            var label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            label.setAttribute('x', isStart ? p.x + 17 : p.x + 12);
-            label.setAttribute('y', isStart ? p.y + 4 : p.y + 3);
-            label.setAttribute('font-size', isStart ? '9' : '8');
-            label.setAttribute('fill', '#2a1a08');
-            label.setAttribute('font-weight', isStart ? '700' : '600');
-            var labelText = isStart ? 'START' : p.label;
-            label.textContent = labelText;
-            group.appendChild(label);
-            
-            // Address label for destinations
-            if (!isStart && p.address) {
-                var addrLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                addrLabel.setAttribute('x', p.x + 12);
-                addrLabel.setAttribute('y', p.y + 11);
-                addrLabel.setAttribute('font-size', '6');
-                addrLabel.setAttribute('fill', '#8a6a2a');
-                var shortAddr = p.address.length > 15 ? p.address.substring(0, 15) + '…' : p.address;
-                addrLabel.textContent = shortAddr;
-                group.appendChild(addrLabel);
-            }
-            
-            // Order details for destinations
-            if (!isStart && p.order) {
-                var orderText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                orderText.setAttribute('x', p.x + 12);
-                orderText.setAttribute('y', p.y + 18);
-                orderText.setAttribute('font-size', '5.5');
-                orderText.setAttribute('fill', '#6b4a1c');
-                orderText.textContent = p.order.breadType + ' ' + p.order.size;
-                group.appendChild(orderText);
-            }
-        });
-        
-        // Traffic indicator on map
-        var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('x', '350');
-        rect.setAttribute('y', '8');
-        rect.setAttribute('width', '140');
-        rect.setAttribute('height', '24');
-        rect.setAttribute('rx', '12');
-        rect.setAttribute('fill', 'rgba(0,0,0,0.6)');
-        group.appendChild(rect);
-        
-        var trafficText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        trafficText.setAttribute('x', '420');
-        trafficText.setAttribute('y', '24');
-        trafficText.setAttribute('text-anchor', 'middle');
-        trafficText.setAttribute('font-size', '9');
-        trafficText.setAttribute('fill', traffic.color);
-        trafficText.setAttribute('font-weight', '700');
-        var emoji = traffic.level === 'heavy' ? '🚨' : traffic.level === 'moderate' ? '🚦' : '🌿';
-        trafficText.textContent = emoji + ' ' + traffic.label;
-        group.appendChild(trafficText);
-        
-        // Distance and time on map
-        var infoRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        infoRect.setAttribute('x', '8');
-        infoRect.setAttribute('y', '8');
-        infoRect.setAttribute('width', '155');
-        infoRect.setAttribute('height', '24');
-        infoRect.setAttribute('rx', '12');
-        infoRect.setAttribute('fill', 'rgba(255,255,255,0.8)');
-        group.appendChild(infoRect);
-        
-        var infoText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        infoText.setAttribute('x', '85');
-        infoText.setAttribute('y', '24');
-        infoText.setAttribute('text-anchor', 'middle');
-        infoText.setAttribute('font-size', '9');
-        infoText.setAttribute('fill', '#2a1a08');
-        infoText.setAttribute('font-weight', '600');
-        infoText.textContent = '📏 ' + dist.toFixed(1) + ' km  ⏱️ ' + timeMin + ' min';
-        group.appendChild(infoText);
-        
-        // Shanghai label
-        var shLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        shLabel.setAttribute('x', '250');
-        shLabel.setAttribute('y', '24');
-        shLabel.setAttribute('text-anchor', 'middle');
-        shLabel.setAttribute('font-size', '8');
-        shLabel.setAttribute('fill', 'rgba(0,0,0,0.1)');
-        shLabel.setAttribute('font-weight', '700');
-        shLabel.textContent = 'SHANGHAI';
-        group.appendChild(shLabel);
+        // Store for button click
+        window._routeDeliveries = customers.map(function(c) { return c.address; });
+        window._routeStart = start;
     }
 
     function getCustomersWithAddress() {
@@ -1386,8 +1121,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         if (!start) {
             routeResult.innerHTML = '<div class="route-empty">⚠️ Please enter your start address.</div>';
             autoRouteList.innerHTML = 'No start address set';
-            appleMapsBtn.disabled = true;
-            drawMap();
+            updateRealMap();
             return;
         }
         
@@ -1396,8 +1130,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         if (normalOrders.length === 0) {
             routeResult.innerHTML = '<div class="route-empty">No orders yet → add some!</div>';
             autoRouteList.innerHTML = 'No orders yet';
-            appleMapsBtn.disabled = true;
-            drawMap();
+            updateRealMap();
             return;
         }
         
@@ -1413,7 +1146,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             }
         });
         
-        // AutoRouteList - all orders with status
+        // AutoRouteList
         var listHtml = '';
         normalOrders.forEach(function(order) {
             var addr = addressBook[order.name] || '';
@@ -1429,15 +1162,11 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         
         if (customers.length === 0) {
             routeResult.innerHTML = '<div class="route-empty">⚠️ No customers with address found. Add addresses in Address Book.</div>';
-            appleMapsBtn.disabled = true;
-            drawMap();
+            updateRealMap();
             return;
         }
         
-        var routeDeliveries = customers.map(function(c) { return c.address; });
         var traffic = currentTraffic;
-        
-        // Calculate total distance and time
         var baseDist = customers.length * 2.5 + 1.5;
         var dist = baseDist * traffic.delay;
         var timeMin = Math.round(dist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
@@ -1466,13 +1195,9 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         html += '<div class="traffic-info-display" style="margin-top:4px;font-size:0.55rem;color:' + traffic.color + ';text-align:center;">🚦 ' + traffic.label + ' (auto-updates every 30s)</div>';
         
         routeResult.innerHTML = html;
-        appleMapsBtn.disabled = false;
         
-        window._routeDeliveries = routeDeliveries;
-        window._routeStart = start;
-        
-        // Draw map
-        drawMap();
+        // Update real map
+        updateRealMap();
     }
 
     // ============ OPEN IN APPLE MAPS ============
@@ -1485,16 +1210,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
-        var url = 'http://maps.apple.com/?';
-        var params = [];
-        params.push('saddr=' + encodeURIComponent(start));
-        deliveries.forEach(function(addr) {
-            params.push('daddr=' + encodeURIComponent(addr));
-        });
-        params.push('dirflg=d');
-        params.push('hl=zh-CN');
-        url += params.join('&');
-        
+        // Open in Apple Maps app
         var appUrl = 'maps://maps.apple.com/?';
         var appParams = [];
         appParams.push('saddr=' + encodeURIComponent(start));
@@ -1504,10 +1220,28 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         appParams.push('dirflg=d');
         appUrl += appParams.join('&');
         
-        window.open(appUrl, '_blank');
+        // Try to open the app
+        var opened = window.open(appUrl, '_blank');
         
+        // If app doesn't open (or user is not on iOS), open web version
         setTimeout(function() {
-            window.open(url, '_blank');
+            if (opened && !opened.closed) {
+                // Check if the window is still open
+            }
+        }, 500);
+        
+        // Also open web version as backup
+        setTimeout(function() {
+            var webUrl = 'https://maps.apple.com/?';
+            var webParams = [];
+            webParams.push('saddr=' + encodeURIComponent(start));
+            deliveries.forEach(function(addr) {
+                webParams.push('daddr=' + encodeURIComponent(addr));
+            });
+            webParams.push('dirflg=d');
+            webParams.push('hl=zh-CN');
+            webUrl += webParams.join('&');
+            window.open(webUrl, '_blank');
         }, 300);
     }
 
