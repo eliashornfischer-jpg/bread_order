@@ -28,6 +28,7 @@ button:active{transform:scale(0.97);}
 .btn-reset{background:#d4c090;margin-top:8px;}
 .btn-screenshot{background:linear-gradient(135deg,#6c8ebf,#4a6f9e);color:white;width:auto;padding:8px 16px;margin:0;font-size:0.75rem;}
 .btn-screenshot:active{transform:scale(0.97);}
+.btn-small{width:auto;padding:4px 12px;margin:2px;font-size:0.65rem;display:inline-block;}
 table{width:100%;border-collapse:collapse;font-size:0.7rem;background:white;border-radius:16px;overflow:hidden;margin:8px 0;}
 th{padding:8px 4px;font-weight:800;color:#2a1a08;}
 th.bread-th{background:#e2aa54;}
@@ -104,6 +105,12 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-step .step-num{background:#27ae60;color:white;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:800;flex-shrink:0;}
 .route-step .step-name{flex:1;font-weight:600;color:#2a1a08;word-break:break-all;font-size:0.6rem;}
 .route-step .step-detail{color:#6b4a1c;font-size:0.55rem;flex-shrink:0;}
+.route-step.pickup{background:rgba(231,76,60,0.05);border-radius:6px;padding-left:4px;}
+.route-step.pickup .step-num{background:#e74c3c;}
+.route-step .pickup-badge{background:#e74c3c;color:white;padding:0px 6px;border-radius:8px;font-size:0.45rem;font-weight:700;margin-left:4px;}
+.route-step.return-home{background:rgba(39,174,96,0.08);border-radius:6px;padding-left:4px;}
+.route-step.return-home .step-num{background:#2ecc71;}
+.route-step .home-badge{background:#2ecc71;color:white;padding:0px 6px;border-radius:8px;font-size:0.45rem;font-weight:700;margin-left:4px;}
 .route-empty{color:#b88c48;font-size:0.6rem;text-align:center;padding:8px;}
 .route-input-group{display:grid;grid-template-columns:1fr;gap:6px;margin-top:6px;}
 .route-input-group input{width:100%;padding:8px 12px;border-radius:16px;border:1px solid #e0d0a0;font-size:0.75rem;}
@@ -138,6 +145,42 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .optimized-badge{display:inline-block;background:#27ae60;color:white;padding:0px 8px;border-radius:10px;font-size:0.45rem;font-weight:700;margin-left:4px;}
 .route-optimized{background:rgba(39,174,96,0.08);border-radius:10px;padding:4px 10px;margin-top:4px;font-size:0.55rem;color:#27ae60;text-align:center;border:1px solid rgba(39,174,96,0.15);}
 .route-compare{background:rgba(52,152,219,0.06);border-radius:8px;padding:4px 8px;margin-top:4px;font-size:0.5rem;color:#6b4a1c;text-align:center;border:1px dashed rgba(52,152,219,0.2);}
+
+/* PICKUP LIST */
+.pickup-container{background:rgba(231,76,60,0.06);border-radius:16px;padding:12px;margin-top:12px;border:1px solid rgba(231,76,60,0.15);}
+.pickup-container .pickup-title{font-size:0.7rem;font-weight:800;color:#e74c3c;display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.pickup-container .pickup-title .count-badge{background:#e74c3c;color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;}
+.pickup-container .pickup-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:4px;}
+.pickup-container .pickup-row input{flex:1;min-width:80px;padding:6px 10px;border-radius:16px;border:1px solid #e0d0a0;font-size:0.65rem;margin:0;}
+.pickup-container .pickup-row input:focus{outline:none;border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.15);}
+.pickup-container .pickup-row button{padding:6px 14px;border-radius:16px;border:none;font-weight:700;font-size:0.65rem;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;cursor:pointer;margin:0;white-space:nowrap;}
+.pickup-container .pickup-row button:active{transform:scale(0.95);}
+.pickup-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.pickup-list .pickup-item{display:flex;align-items:center;gap:4px;background:rgba(231,76,60,0.08);padding:2px 10px;border-radius:12px;font-size:0.55rem;border:1px solid rgba(231,76,60,0.1);}
+.pickup-list .pickup-item .name{font-weight:600;color:#c0392b;}
+.pickup-list .pickup-item .del{color:#c0392b;cursor:pointer;font-weight:700;margin-left:4px;padding:0 2px;}
+.pickup-list .pickup-item .del:hover{color:#e74c3c;}
+.pickup-empty{color:#b88c48;font-size:0.5rem;text-align:center;padding:4px;}
+
+/* HISTORY */
+.history-container{background:rgba(52,152,219,0.06);border-radius:16px;padding:12px;margin-top:12px;border:1px solid rgba(52,152,219,0.15);}
+.history-container .history-title{font-size:0.7rem;font-weight:800;color:#2c3e50;display:flex;align-items:center;gap:6px;margin-bottom:6px;cursor:pointer;}
+.history-container .history-title .count-badge{background:#3498db;color:white;padding:0px 8px;border-radius:10px;font-size:0.5rem;}
+.history-container .history-title .arrow{font-size:0.6rem;transition:transform 0.3s;}
+.history-container .history-title .arrow.open{transform:rotate(180deg);}
+.history-body{display:none;margin-top:6px;}
+.history-body.open{display:block;}
+.history-item{display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid rgba(0,0,0,0.04);font-size:0.55rem;}
+.history-item:last-child{border-bottom:none;}
+.history-item .week{font-weight:700;color:#2c3e50;}
+.history-item .orders{color:#6b4a1c;}
+.history-item .total{font-weight:700;color:#27ae60;}
+.history-empty{color:#b88c48;font-size:0.5rem;text-align:center;padding:6px;}
+.history-item .pickup-count{color:#e74c3c;font-size:0.45rem;margin-left:4px;}
+.history-summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;padding:6px 8px;background:rgba(255,255,255,0.3);border-radius:10px;font-size:0.5rem;}
+.history-summary .stat{display:flex;align-items:center;gap:3px;}
+.history-summary .stat .val{font-weight:700;color:#27ae60;}
+.history-summary .stat .val.pickup{color:#e74c3c;}
 </style>
 </head>
 <body>
@@ -264,7 +307,22 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 
 <!-- ====== ROUTE PLANNING ====== -->
 <div class="card">
-<div style="font-weight:800;font-size:0.9rem;color:#27ae60;margin-bottom:8px;">🚚 ROUTE PLANNING <span class="optimized-badge">🧠 AI OPTIMIZED</span></div>
+<div style="font-weight:800;font-size:0.9rem;color:#27ae60;margin-bottom:8px;">🚚 ROUTE PLANNING <span class="optimized-badge">🔄 ROUND TRIP</span></div>
+
+<!-- PICKUP LIST -->
+<div class="pickup-container">
+    <div class="pickup-title">
+        📦 PICKUP LIST <span class="count-badge" id="pickupCount">0</span>
+        <span style="font-size:0.5rem;font-weight:400;color:#8a6a2a;">(Add people you need to pick up from)</span>
+    </div>
+    <div class="pickup-row">
+        <input id="pickupNameInput" placeholder="Name (e.g. Anna)" style="text-transform:capitalize;">
+        <button id="addPickupBtn">➕ Add</button>
+    </div>
+    <div class="pickup-list" id="pickupList">
+        <div class="pickup-empty">No pickups yet</div>
+    </div>
+</div>
 
 <!-- ADDRESS MANAGER -->
 <div class="address-manager">
@@ -285,10 +343,10 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 </div>
 
 <div class="route-input-group">
-<label style="font-size:0.7rem;color:#6b4a1c;margin-bottom:2px;">🏠 Your Start Address</label>
+<label style="font-size:0.7rem;color:#6b4a1c;margin-bottom:2px;">🏠 Your Start Address (Home)</label>
 <div class="route-start-container">
     <input id="routeStart" placeholder="e.g. 中国上海市青浦区湖畔佳苑391号" value="中国上海市青浦区湖畔佳苑391号">
-    <span class="start-badge">📍 fixed</span>
+    <span class="start-badge">🏠 home</span>
 </div>
 </div>
 
@@ -298,10 +356,10 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 </div>
 
 <div class="route-container route-result" id="routeResult">
-<div class="route-empty">Add orders → AI will find shortest route</div>
+<div class="route-empty">Add orders → AI will find shortest round trip</div>
 </div>
 
-<div class="route-optimized" id="routeOptimizedInfo">🧠 AI using Branch & Bound algorithm for optimal route</div>
+<div class="route-optimized" id="routeOptimizedInfo">🔄 AI finding optimal round trip (start & end at home)</div>
 <div class="route-compare" id="routeCompareInfo"></div>
 
 <button class="route-apple-btn" id="appleMapsBtn" disabled onclick="openAppleMapsDirect()">
@@ -310,11 +368,33 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     </span>
     <span class="btn-text">
         <span>🗺️ Open in Apple Maps</span>
-        <span class="sub">📍 AI-optimized route · real-time navigation</span>
+        <span class="sub">🔄 Round trip · start & end at home</span>
     </span>
 </button>
 
-<div class="auto-route-info">✅ AI finds shortest route automatically</div>
+<div class="auto-route-info">✅ AI finds shortest round trip (returns home)</div>
+</div>
+
+<!-- ====== HISTORY ====== -->
+<div class="card">
+<div class="history-container">
+    <div class="history-title" id="historyToggle">
+        <span>📊 WEEKLY HISTORY</span>
+        <span class="count-badge" id="historyCount">0</span>
+        <span class="arrow" id="historyArrow">▼</span>
+    </div>
+    <div class="history-body" id="historyBody">
+        <div id="historyList">
+            <div class="history-empty">No history yet</div>
+        </div>
+        <div class="history-summary" id="historySummary">
+            <span class="stat">📋 Total Orders: <span class="val" id="histTotalOrders">0</span></span>
+            <span class="stat">💰 Total Revenue: <span class="val" id="histTotalRevenue">0 ¥</span></span>
+            <span class="stat">📦 Pickups: <span class="val pickup" id="histTotalPickups">0</span></span>
+            <span class="stat">📅 Weeks: <span class="val" id="histTotalWeeks">0</span></span>
+        </div>
+    </div>
+</div>
 </div>
 
 <footer style="text-align:center;font-size:0.55rem;color:#c29d5a;margin-top:8px;">🌾 Original recipe | 200er & 208er share same recipe | CNY</footer>
@@ -364,19 +444,21 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     var hummusOrders = [];
     var addBreadOrders = [];
     var addHummusOrders = [];
+    var pickupList = [];
     var addressBook = {};
     var nextId = 1;
     var currentWeek = calculateCurrentWeek();
     var addBreadCount = 1;
     var addHummusCount = 1;
     var addressBookOpen = false;
+    var historyOpen = false;
+
+    // History Store
+    var weekHistory = {};
 
     // Traffic state
     var trafficSimulationInterval = null;
     var currentTraffic = { level: 'light', label: 'Light traffic', color: '#27ae60', delay: 0.9 };
-
-    // Optimized route
-    var optimizedRoute = [];
 
     // ============ DOM REFS ============
     var customerName = document.getElementById("customerName");
@@ -429,11 +511,35 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     var routeOptimizedInfo = document.getElementById("routeOptimizedInfo");
     var routeCompareInfo = document.getElementById("routeCompareInfo");
 
+    // Pickup refs
+    var pickupNameInput = document.getElementById("pickupNameInput");
+    var addPickupBtn = document.getElementById("addPickupBtn");
+    var pickupListEl = document.getElementById("pickupList");
+    var pickupCount = document.getElementById("pickupCount");
+
+    // History refs
+    var historyToggle = document.getElementById("historyToggle");
+    var historyBody = document.getElementById("historyBody");
+    var historyArrow = document.getElementById("historyArrow");
+    var historyList = document.getElementById("historyList");
+    var historyCount = document.getElementById("historyCount");
+    var histTotalOrders = document.getElementById("histTotalOrders");
+    var histTotalRevenue = document.getElementById("histTotalRevenue");
+    var histTotalPickups = document.getElementById("histTotalPickups");
+    var histTotalWeeks = document.getElementById("histTotalWeeks");
+
     // ============ ADDRESS TOGGLE ============
     addressToggle.addEventListener('click', function() {
         addressBookOpen = !addressBookOpen;
         addressBody.classList.toggle('open');
         addressToggleBtn.textContent = addressBookOpen ? '▲ Hide' : '▼ Show';
+    });
+
+    // ============ HISTORY TOGGLE ============
+    historyToggle.addEventListener('click', function() {
+        historyOpen = !historyOpen;
+        historyBody.classList.toggle('open');
+        historyArrow.classList.toggle('open');
     });
 
     // ============ AUTO CAPITALIZE ============
@@ -447,6 +553,10 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     });
 
     addressNameInput.addEventListener('blur', function() {
+        this.value = capitalizeName(this.value.trim());
+    });
+
+    pickupNameInput.addEventListener('blur', function() {
         this.value = capitalizeName(this.value.trim());
     });
 
@@ -619,6 +729,131 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         addressAddrInput.value = '';
         addressNameInput.focus();
         updateRoute();
+    }
+
+    // ============ PICKUP FUNKTIONEN ============
+    function loadPickups() {
+        var data = localStorage.getItem("microbiome_pickups");
+        if (data) {
+            try { pickupList = JSON.parse(data); } catch(e) { pickupList = []; }
+        }
+        renderPickups();
+    }
+
+    function savePickups() {
+        localStorage.setItem("microbiome_pickups", JSON.stringify(pickupList));
+        renderPickups();
+    }
+
+    function renderPickups() {
+        pickupCount.textContent = pickupList.length;
+        
+        if (pickupList.length === 0) {
+            pickupListEl.innerHTML = '<div class="pickup-empty">No pickups yet</div>';
+            return;
+        }
+        
+        var html = '';
+        pickupList.forEach(function(name, index) {
+            html += '<span class="pickup-item">' +
+                '<span class="name">📦 ' + escapeHtml(name) + '</span>' +
+                ' <span class="del" data-index="' + index + '">✖</span>' +
+            '</span>';
+        });
+        pickupListEl.innerHTML = html;
+        
+        document.querySelectorAll('.pickup-item .del').forEach(function(el) {
+            el.addEventListener('click', function() {
+                var idx = parseInt(this.dataset.index);
+                pickupList.splice(idx, 1);
+                savePickups();
+                updateRoute();
+            });
+        });
+    }
+
+    function addPickup(name) {
+        name = capitalizeName(name.trim());
+        if (!name) { alert('Please enter a name.'); return; }
+        if (pickupList.indexOf(name) !== -1) { alert('Name already in pickup list!'); return; }
+        pickupList.push(name);
+        savePickups();
+        pickupNameInput.value = '';
+        pickupNameInput.focus();
+        updateRoute();
+    }
+
+    // ============ HISTORY FUNKTIONEN ============
+    function loadHistory() {
+        var data = localStorage.getItem("microbiome_history");
+        if (data) {
+            try { weekHistory = JSON.parse(data); } catch(e) { weekHistory = {}; }
+        }
+        renderHistory();
+    }
+
+    function saveHistory() {
+        localStorage.setItem("microbiome_history", JSON.stringify(weekHistory));
+        renderHistory();
+    }
+
+    function saveCurrentWeekToHistory() {
+        var week = currentWeek;
+        var orders = breadOrders.filter(function(o) { return !o.isAdd && !o.isAddBread; });
+        
+        if (orders.length === 0 && pickupList.length === 0) return;
+        
+        var totalRevenue = 0;
+        orders.forEach(function(o) {
+            totalRevenue += getPriceForOrder(o);
+        });
+        
+        var pickupCount = pickupList.length;
+        
+        if (!weekHistory[week]) {
+            weekHistory[week] = { orders: 0, revenue: 0, pickups: 0 };
+        }
+        
+        weekHistory[week].orders += orders.length;
+        weekHistory[week].revenue += totalRevenue;
+        weekHistory[week].pickups += pickupCount;
+        
+        saveHistory();
+    }
+
+    function renderHistory() {
+        var weeks = Object.keys(weekHistory).sort(function(a, b) { return parseInt(b) - parseInt(a); });
+        historyCount.textContent = weeks.length;
+        
+        if (weeks.length === 0) {
+            historyList.innerHTML = '<div class="history-empty">No history yet. Complete a week to save!</div>';
+        } else {
+            var html = '';
+            var totalOrders = 0;
+            var totalRevenue = 0;
+            var totalPickups = 0;
+            
+            weeks.forEach(function(week) {
+                var data = weekHistory[week];
+                totalOrders += data.orders || 0;
+                totalRevenue += data.revenue || 0;
+                totalPickups += data.pickups || 0;
+                
+                html += '<div class="history-item">' +
+                    '<span class="week">📅 Week ' + week + '</span>' +
+                    '<span class="orders">📋 ' + (data.orders || 0) + ' orders' + 
+                    (data.pickups ? ' <span class="pickup-count">📦 +' + data.pickups + ' pickups</span>' : '') + '</span>' +
+                    '<span class="total">💰 ' + (data.revenue || 0).toFixed(2) + ' ¥</span>' +
+                '</div>';
+            });
+            historyList.innerHTML = html;
+            
+            // Summary
+            histTotalOrders.textContent = totalOrders;
+            histTotalRevenue.textContent = totalRevenue.toFixed(2) + ' ¥';
+            histTotalPickups.textContent = totalPickups;
+            histTotalWeeks.textContent = weeks.length;
+        }
     }
 
     // ============ HELPERS ============
@@ -977,7 +1212,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     }
 
-    // ============ DISTANZMATRIX FÜR SHANGHAI ============
+    // ============ DISTANZMATRIX ============
     function getBezirk(adresse) {
         if (adresse.includes('青浦')) return 'qingpu';
         if (adresse.includes('静安')) return 'jingan';
@@ -1026,8 +1261,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         return 12;
     }
 
-    // ============ INTELLIGENTE ROUTENOPTIMIERUNG (BRANCH AND BOUND) ============
-    function findOptimalRoute(startAddr, customers) {
+    // ============ INTELLIGENTE ROUTENOPTIMIERUNG MIT RÜCKFAHRT ============
+    function findOptimalRoundTrip(startAddr, customers) {
         if (!customers || customers.length === 0) return [];
         if (customers.length === 1) return customers;
         
@@ -1035,7 +1270,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         var bestRoute = null;
         var bestDist = Infinity;
         
-        // Distanzmatrix erstellen
         var distMatrix = [];
         for (var i = 0; i < n; i++) {
             distMatrix[i] = [];
@@ -1048,27 +1282,26 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             }
         }
         
-        // Distanz vom Start zu jedem Kunden
         var startDist = [];
         for (var i = 0; i < n; i++) {
             startDist[i] = getDistance(startAddr, customers[i].address);
         }
         
-        // Branch and Bound - optimierte Suche
         function branchAndBound(currentPos, visited, currentDist, route) {
-            // Pruning: Wenn aktuelle Distanz schon schlechter als beste, abbrechen
+            // Pruning: Wenn aktuelle Distanz + minimale Rückfahrt schon schlechter als beste
             if (currentDist >= bestDist) return;
-            
-            // Alle besucht -> Lösung gefunden
             if (visited.length === n) {
-                if (currentDist < bestDist) {
-                    bestDist = currentDist;
+                // Rückfahrt nach Hause hinzufügen
+                var returnDist = getDistance(customers[currentPos].address, startAddr);
+                var totalDist = currentDist + returnDist;
+                if (totalDist < bestDist) {
+                    bestDist = totalDist;
                     bestRoute = route.slice();
+                    bestRoute.push({ isReturn: true, address: startAddr, label: '🏠 HOME' });
                 }
                 return;
             }
             
-            // Mögliche nächste Ziele nach Distanz sortieren (Heuristik)
             var candidates = [];
             for (var i = 0; i < n; i++) {
                 if (visited.indexOf(i) === -1) {
@@ -1076,11 +1309,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
                     candidates.push({ index: i, dist: dist });
                 }
             }
-            
-            // Nach Distanz sortieren (am nächsten zuerst)
             candidates.sort(function(a, b) { return a.dist - b.dist; });
             
-            // Max 8 Verzweigungen für Performance
             var maxBranches = Math.min(candidates.length, 8);
             for (var b = 0; b < maxBranches; b++) {
                 var next = candidates[b];
@@ -1090,21 +1320,18 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             }
         }
         
-        // Starte Suche von jedem möglichen Startpunkt
         for (var start = 0; start < n; start++) {
             branchAndBound(start, [start], startDist[start], [customers[start]]);
         }
         
-        // Fallback: Wenn keine Route gefunden (sollte nicht passieren), Nearest Neighbor
         if (!bestRoute || bestRoute.length === 0) {
-            return nearestNeighborRoute(startAddr, customers);
+            var nnRoute = nearestNeighborRoundTrip(startAddr, customers);
+            return nnRoute;
         }
-        
         return bestRoute;
     }
 
-    // ============ NEAREST NEIGHBOR (FALLBACK) ============
-    function nearestNeighborRoute(startAddr, customers) {
+    function nearestNeighborRoundTrip(startAddr, customers) {
         var unvisited = customers.slice();
         var route = [];
         var current = { address: startAddr };
@@ -1112,7 +1339,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         while (unvisited.length > 0) {
             var nearest = null;
             var nearestDist = Infinity;
-            
             for (var i = 0; i < unvisited.length; i++) {
                 var dist = getDistance(current.address, unvisited[i].address);
                 if (dist < nearestDist) {
@@ -1120,14 +1346,13 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
                     nearest = i;
                 }
             }
-            
             if (nearest !== null) {
                 route.push(unvisited[nearest]);
                 current = unvisited[nearest];
                 unvisited.splice(nearest, 1);
             }
         }
-        
+        route.push({ isReturn: true, address: startAddr, label: '🏠 HOME' });
         return route;
     }
 
@@ -1135,39 +1360,62 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     function updateRoute() {
         var start = routeStart.value.trim();
         if (!start) {
-            routeResult.innerHTML = '<div class="route-empty">⚠️ Please enter your start address.</div>';
+            routeResult.innerHTML = '<div class="route-empty">⚠️ Please enter your home address.</div>';
             autoRouteList.innerHTML = 'No start address set';
             appleMapsBtn.disabled = true;
-            routeOptimizedInfo.textContent = '🧠 Waiting for start address...';
+            routeOptimizedInfo.textContent = '🔄 Waiting for home address...';
             routeCompareInfo.textContent = '';
             return;
         }
         
         var normalOrders = breadOrders.filter(function(o) { return !o.isAdd && !o.isAddBread; });
         
-        if (normalOrders.length === 0) {
-            routeResult.innerHTML = '<div class="route-empty">No orders yet → add some!</div>';
-            autoRouteList.innerHTML = 'No orders yet';
+        if (normalOrders.length === 0 && pickupList.length === 0) {
+            routeResult.innerHTML = '<div class="route-empty">No orders or pickups yet → add some!</div>';
+            autoRouteList.innerHTML = 'No orders or pickups';
             appleMapsBtn.disabled = true;
-            routeOptimizedInfo.textContent = '🧠 Add orders to optimize route';
+            routeOptimizedInfo.textContent = '🔄 Add orders or pickups to optimize round trip';
             routeCompareInfo.textContent = '';
             return;
         }
         
-        var customers = [];
+        var allDestinations = [];
+        var pickupDestinations = [];
         var noAddress = [];
+        
+        pickupList.forEach(function(name) {
+            var addr = addressBook[name] || '';
+            if (addr && addr.trim()) {
+                pickupDestinations.push({ name: name, address: addr, isPickup: true, order: null });
+            } else {
+                noAddress.push(name + ' (pickup)');
+            }
+        });
         
         normalOrders.forEach(function(order) {
             var addr = addressBook[order.name] || '';
             if (addr && addr.trim()) {
-                customers.push({ name: order.name, address: addr, order: order });
+                allDestinations.push({ name: order.name, address: addr, isPickup: false, order: order });
             } else {
                 noAddress.push(order.name);
             }
         });
         
-        // AutoRouteList
+        var allCustomers = pickupDestinations.concat(allDestinations);
+        
         var listHtml = '';
+        
+        pickupList.forEach(function(name) {
+            var addr = addressBook[name] || '';
+            var hasAddr = addr && addr.trim();
+            var statusIcon = hasAddr ? '✅' : '⚠️';
+            var statusText = hasAddr ? '📍 ' + addr : 'no address';
+            listHtml += '<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #f0e2c8;font-size:0.6rem;border-left:3px solid #e74c3c;padding-left:4px;">' +
+                '<span>📦 ' + escapeHtml(name) + ' <span style="color:#e74c3c;font-size:0.45rem;font-weight:700;">PICKUP</span></span>' +
+                '<span style="color:' + (hasAddr ? '#27ae60' : '#c0392b') + ';">' + statusIcon + ' ' + statusText + '</span>' +
+            '</div>';
+        });
+        
         normalOrders.forEach(function(order) {
             var addr = addressBook[order.name] || '';
             var hasAddr = addr && addr.trim();
@@ -1180,64 +1428,77 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         });
         autoRouteList.innerHTML = listHtml;
         
-        if (customers.length === 0) {
-            routeResult.innerHTML = '<div class="route-empty">⚠️ No customers with address found. Add addresses in Address Book.</div>';
+        if (allCustomers.length === 0) {
+            routeResult.innerHTML = '<div class="route-empty">⚠️ No valid addresses found. Add addresses in Address Book.</div>';
             appleMapsBtn.disabled = true;
-            routeOptimizedInfo.textContent = '🧠 No valid addresses found';
+            routeOptimizedInfo.textContent = '🔄 No valid addresses found';
             routeCompareInfo.textContent = '';
             return;
         }
         
-        // ============ AI OPTIMIERUNG ============
         var startTime = performance.now();
-        var optimizedCustomers = findOptimalRoute(start, customers);
+        var optimizedRoute = findOptimalRoundTrip(start, allCustomers);
         var endTime = performance.now();
         var calcTime = (endTime - startTime).toFixed(1);
         
-        // Vergleich: Random Route
-        var randomCustomers = customers.slice();
-        // Shuffle
-        for (var i = randomCustomers.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var temp = randomCustomers[i];
-            randomCustomers[i] = randomCustomers[j];
-            randomCustomers[j] = temp;
+        // Distanz berechnen
+        var totalDist = 0;
+        var currentAddr = start;
+        var routeWithoutHome = optimizedRoute.filter(function(c) { return !c.isReturn; });
+        
+        optimizedRoute.forEach(function(c, index) {
+            if (index === 0) {
+                totalDist += getDistance(start, c.address);
+            } else {
+                var prev = optimizedRoute[index - 1];
+                if (prev.isReturn) {
+                    totalDist += getDistance(prev.address, c.address);
+                } else {
+                    totalDist += getDistance(prev.address, c.address);
+                }
+            }
+        });
+        
+        // Für den Fall dass kein Return-Eintrag existiert
+        var lastStop = optimizedRoute[optimizedRoute.length - 1];
+        if (lastStop && !lastStop.isReturn) {
+            totalDist += getDistance(lastStop.address, start);
+            optimizedRoute.push({ isReturn: true, address: start, label: '🏠 HOME' });
         }
         
-        // Distanzen berechnen
-        var optimizedDist = 0;
-        var currentAddr = start;
-        optimizedCustomers.forEach(function(c) {
-            optimizedDist += getDistance(currentAddr, c.address);
-            currentAddr = c.address;
-        });
-        
-        var randomDist = 0;
-        currentAddr = start;
-        randomCustomers.forEach(function(c) {
-            randomDist += getDistance(currentAddr, c.address);
-            currentAddr = c.address;
-        });
-        
         var traffic = currentTraffic;
-        var optDistWithTraffic = optimizedDist * traffic.delay;
-        var randomDistWithTraffic = randomDist * traffic.delay;
-        var savings = Math.round((randomDistWithTraffic - optDistWithTraffic) * 10) / 10;
-        var savingsPercent = Math.round(((randomDistWithTraffic - optDistWithTraffic) / randomDistWithTraffic) * 100);
+        var totalDistWithTraffic = totalDist * traffic.delay;
+        var timeMin = Math.round(totalDist * 3.2 * (traffic.delay > 1.2 ? 1.3 : 1));
         
-        var timeMin = Math.round(optimizedDist * 3.2 * (traffic.delay > 1.2 ? 1.3 : 1));
+        var routeDeliveries = optimizedRoute.filter(function(c) { return !c.isReturn; }).map(function(c) { return c.address; });
+        routeDeliveries.push(start); // Rückfahrt
         
-        var routeDeliveries = optimizedCustomers.map(function(c) { return c.address; });
+        var html = '<div style="font-weight:600;font-size:0.7rem;color:#27ae60;margin-bottom:6px;">🏠 Start & End: ' + escapeHtml(start) + '</div>';
+        html += '<div style="font-weight:600;font-size:0.65rem;color:#6b4a1c;margin-bottom:6px;">🔄 Round Trip (' + (optimizedRoute.length - 1) + ' stops) <span class="optimized-badge">optimized</span></div>';
         
-        var html = '<div style="font-weight:600;font-size:0.7rem;color:#27ae60;margin-bottom:6px;">📍 Start: ' + escapeHtml(start) + '</div>';
-        html += '<div style="font-weight:600;font-size:0.65rem;color:#6b4a1c;margin-bottom:6px;">🧠 AI-Optimized Route (' + optimizedCustomers.length + ' stops) <span class="optimized-badge">' + savingsPercent + '% shorter</span></div>';
-        
-        optimizedCustomers.forEach(function(c, index) {
-            var distFromPrev = index === 0 ? getDistance(start, c.address) : getDistance(optimizedCustomers[index-1].address, c.address);
-            html += '<div class="route-step">' +
+        optimizedRoute.forEach(function(c, index) {
+            var isReturn = c.isReturn || false;
+            var isPickup = c.isPickup || false;
+            var distFromPrev = 0;
+            
+            if (index === 0) {
+                distFromPrev = getDistance(start, c.address);
+            } else {
+                var prev = optimizedRoute[index - 1];
+                distFromPrev = getDistance(prev.address, c.address);
+            }
+            
+            var pickupClass = isPickup ? 'pickup' : '';
+            var returnClass = isReturn ? 'return-home' : '';
+            var pickupBadge = isPickup ? ' <span class="pickup-badge">📦 PICKUP</span>' : '';
+            var homeBadge = isReturn ? ' <span class="home-badge">🏠 HOME</span>' : '';
+            var nameDisplay = isReturn ? '🏠 ' + c.label : (isPickup ? '📦 ' + c.name : c.name);
+            var orderInfo = c.order ? ' (' + c.order.breadType + ' ' + c.order.size + ')' : '';
+            
+            html += '<div class="route-step ' + pickupClass + ' ' + returnClass + '">' +
                 '<span class="step-num">' + (index + 1) + '</span>' +
-                '<span class="step-name">' + escapeHtml(c.name) + ' (' + c.order.breadType + ' ' + c.order.size + ')</span>' +
-                '<span class="step-detail">📍 ' + escapeHtml(c.address) + ' <span style="color:#27ae60;font-size:0.5rem;">+' + (distFromPrev * traffic.delay).toFixed(1) + 'km</span></span>' +
+                '<span class="step-name">' + escapeHtml(nameDisplay) + orderInfo + pickupBadge + homeBadge + '</span>' +
+                '<span class="step-detail">📍 ' + escapeHtml(c.address) + ' <span style="color:' + (isReturn ? '#2ecc71' : (isPickup ? '#e74c3c' : '#27ae60')) + ';font-size:0.5rem;">+' + (distFromPrev * traffic.delay).toFixed(1) + 'km</span></span>' +
             '</div>';
         });
         
@@ -1246,7 +1507,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
         
         html += '<div class="route-no-distance" style="margin-top:6px;padding:6px 10px;background:rgba(46,204,113,0.1);border-radius:10px;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:0.6rem;">';
-        html += '<span>📏 <strong>' + optDistWithTraffic.toFixed(1) + ' km</strong> (AI optimized)</span>';
+        html += '<span>📏 <strong>' + totalDistWithTraffic.toFixed(1) + ' km</strong> (round trip)</span>';
         html += '<span>⏱️ <strong>~' + timeMin + ' min</strong></span>';
         html += '<span style="color:' + traffic.color + ';">🚦 ' + traffic.label + '</span>';
         html += '</div>';
@@ -1259,13 +1520,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         window._routeDeliveries = routeDeliveries;
         window._routeStart = start;
         
-        // Optimierungs-Info
-        routeOptimizedInfo.textContent = '🧠 AI found optimal route in ' + calcTime + 'ms using Branch & Bound algorithm';
-        if (savings > 0) {
-            routeCompareInfo.innerHTML = '📊 Compared to random order: <strong>' + savings.toFixed(1) + ' km saved</strong> (' + savingsPercent + '% shorter)';
-        } else {
-            routeCompareInfo.innerHTML = '📊 Route is already optimal (all orders perfectly ordered)';
-        }
+        routeOptimizedInfo.textContent = '🔄 AI found optimal round trip in ' + calcTime + 'ms (returns home)';
+        routeCompareInfo.textContent = '📍 Route starts and ends at ' + start.substring(0, 20) + '...';
     }
 
     // ============ APPLE MAPS ============
@@ -1562,17 +1818,19 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     document.getElementById("addHummusAddBtn").addEventListener("click", addAddHummusOrder);
 
     document.getElementById("resetTableBtn").addEventListener("click", function() {
-        if ((breadOrders.length || hummusOrders.length || addBreadOrders.length || addHummusOrders.length) && confirm("Delete all orders?")) {
+        if ((breadOrders.length || hummusOrders.length || addBreadOrders.length || addHummusOrders.length || pickupList.length) && confirm("Delete all orders and pickups?")) {
             breadOrders = [];
             hummusOrders = [];
             addBreadOrders = [];
             addHummusOrders = [];
+            pickupList = [];
             render();
             saveToLocal();
+            savePickups();
             nextId = 1;
             updateRoute();
-        } else if (!breadOrders.length && !hummusOrders.length && !addBreadOrders.length && !addHummusOrders.length) {
-            alert("No orders");
+        } else if (!breadOrders.length && !hummusOrders.length && !addBreadOrders.length && !addHummusOrders.length && !pickupList.length) {
+            alert("No orders or pickups");
         }
     });
 
@@ -1612,15 +1870,35 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     });
 
+    // Pickup Add
+    addPickupBtn.addEventListener('click', function() {
+        addPickup(pickupNameInput.value);
+    });
+
+    pickupNameInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            addPickup(pickupNameInput.value);
+        }
+    });
+
     // ============ INIT ============
     loadAddressBook();
     loadFromLocal();
+    loadPickups();
+    loadHistory();
     startTrafficSimulation();
     updateRoute();
     appleMapsBtn.disabled = true;
 
+    // Save current week to history when page unloads or after changes
+    window.addEventListener('beforeunload', function() {
+        saveCurrentWeekToHistory();
+    });
+
     console.log("✅ Microbiome Warrior started!");
-    console.log("🧠 AI Route Optimizer active (Branch & Bound)");
+    console.log("🔄 Round Trip Mode active - starts and ends at home!");
+    console.log("📦 Pickup List active");
+    console.log("📊 Weekly History active (no deletion)");
 })();
 </script>
 </body>
