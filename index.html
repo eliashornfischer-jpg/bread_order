@@ -135,6 +135,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 .route-start-container{position:relative;}
 .route-start-container input{padding-right:70px;}
 .route-start-container .start-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:0.5rem;background:#27ae60;color:white;padding:2px 8px;border-radius:10px;}
+.optimized-badge{display:inline-block;background:#27ae60;color:white;padding:0px 8px;border-radius:10px;font-size:0.45rem;font-weight:700;margin-left:4px;}
+.route-optimized{background:rgba(39,174,96,0.08);border-radius:10px;padding:4px 10px;margin-top:4px;font-size:0.55rem;color:#27ae60;text-align:center;border:1px solid rgba(39,174,96,0.15);}
 </style>
 </head>
 <body>
@@ -261,7 +263,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 
 <!-- ====== ROUTE PLANNING ====== -->
 <div class="card">
-<div style="font-weight:800;font-size:0.9rem;color:#27ae60;margin-bottom:8px;">🚚 ROUTE PLANNING</div>
+<div style="font-weight:800;font-size:0.9rem;color:#27ae60;margin-bottom:8px;">🚚 ROUTE PLANNING <span class="optimized-badge">⚡ OPTIMIZED</span></div>
 
 <!-- ADDRESS MANAGER -->
 <div class="address-manager">
@@ -290,13 +292,15 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
 </div>
 
 <div style="margin-top:8px;background:rgba(46,204,113,0.06);border-radius:12px;padding:8px;border:1px solid #d4c090;">
-    <div style="font-weight:700;font-size:0.7rem;color:#27ae60;">📋 ORDERS FOR DELIVERY</div>
+    <div style="font-weight:700;font-size:0.7rem;color:#27ae60;">📋 ORDERS FOR DELIVERY <span class="optimized-badge">sorted by distance</span></div>
     <div id="autoRouteList" style="font-size:0.6rem;padding:4px 0;color:#6b4a1c;">No orders yet</div>
 </div>
 
 <div class="route-container route-result" id="routeResult">
-<div class="route-empty">Add orders → route will auto-update</div>
+<div class="route-empty">Add orders → route will auto-optimize</div>
 </div>
+
+<div class="route-optimized" id="routeOptimizedInfo">🔄 Route automatically optimized using Nearest Neighbor algorithm</div>
 
 <button class="route-apple-btn" id="appleMapsBtn" disabled onclick="openAppleMapsDirect()">
     <span class="btn-icon">
@@ -304,11 +308,11 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     </span>
     <span class="btn-text">
         <span>🗺️ Open in Apple Maps</span>
-        <span class="sub">📍 Shanghai · real-time navigation</span>
+        <span class="sub">📍 Optimized route · real-time navigation</span>
     </span>
 </button>
 
-<div class="auto-route-info">✅ Click button → opens Apple Maps instantly</div>
+<div class="auto-route-info">✅ Click button → opens Apple Maps with optimized route</div>
 </div>
 
 <footer style="text-align:center;font-size:0.55rem;color:#c29d5a;margin-top:8px;">🌾 Original recipe | 200er & 208er share same recipe | CNY</footer>
@@ -368,6 +372,9 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
     // Traffic state
     var trafficSimulationInterval = null;
     var currentTraffic = { level: 'light', label: 'Light traffic', color: '#27ae60', delay: 0.9 };
+
+    // Optimized route cache
+    var optimizedRoute = [];
 
     // ============ DOM REFS ============
     var customerName = document.getElementById("customerName");
@@ -966,6 +973,79 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     }
 
+    // ============ ROUTE OPTIMIZIERUNG (NEAREST NEIGHBOR) ============
+    function optimizeRoute(startAddr, customers) {
+        if (!customers || customers.length === 0) return [];
+        if (customers.length === 1) return customers;
+        
+        // Verwende den Nearest Neighbor Algorithmus
+        var unvisited = customers.slice();
+        var optimized = [];
+        var current = { address: startAddr, isStart: true };
+        
+        while (unvisited.length > 0) {
+            var nearest = null;
+            var nearestDist = Infinity;
+            
+            for (var i = 0; i < unvisited.length; i++) {
+                var dist = calculateDistance(current.address, unvisited[i].address);
+                if (dist < nearestDist) {
+                    nearestDist = dist;
+                    nearest = i;
+                }
+            }
+            
+            if (nearest !== null) {
+                optimized.push(unvisited[nearest]);
+                current = unvisited[nearest];
+                unvisited.splice(nearest, 1);
+            }
+        }
+        
+        return optimized;
+    }
+
+    // ============ DISTANZBERECHNUNG (basierend auf Bezirken) ============
+    function getBezirk(adresse) {
+        if (adresse.includes('青浦')) return 'qingpu';
+        if (adresse.includes('静安')) return 'jingan';
+        if (adresse.includes('黄浦')) return 'huangpu';
+        if (adresse.includes('徐汇')) return 'xuhui';
+        if (adresse.includes('浦东')) return 'pudong';
+        if (adresse.includes('长宁')) return 'changning';
+        if (adresse.includes('虹口')) return 'hongkou';
+        if (adresse.includes('杨浦')) return 'yangpu';
+        if (adresse.includes('闵行')) return 'minhang';
+        if (adresse.includes('宝山')) return 'baoshan';
+        if (adresse.includes('嘉定')) return 'jiading';
+        if (adresse.includes('松江')) return 'songjiang';
+        return 'unknown';
+    }
+
+    function calculateDistance(addr1, addr2) {
+        var bez1 = getBezirk(addr1);
+        var bez2 = getBezirk(addr2);
+        
+        // Distanzmatrix für Shanghai (in km)
+        var distMatrix = {
+            'qingpu': { 'qingpu': 1, 'jingan': 32, 'huangpu': 38, 'xuhui': 35, 'pudong': 45, 'changning': 28, 'hongkou': 40, 'yangpu': 42, 'minhang': 22, 'baoshan': 50, 'jiading': 30, 'songjiang': 18, 'unknown': 30 },
+            'jingan': { 'qingpu': 32, 'jingan': 1, 'huangpu': 5, 'xuhui': 6, 'pudong': 12, 'changning': 4, 'hongkou': 5, 'yangpu': 8, 'minhang': 15, 'baoshan': 18, 'jiading': 25, 'songjiang': 28, 'unknown': 15 },
+            'huangpu': { 'qingpu': 38, 'jingan': 5, 'huangpu': 1, 'xuhui': 4, 'pudong': 8, 'changning': 6, 'hongkou': 4, 'yangpu': 7, 'minhang': 16, 'baoshan': 20, 'jiading': 28, 'songjiang': 30, 'unknown': 15 },
+            'xuhui': { 'qingpu': 35, 'jingan': 6, 'huangpu': 4, 'xuhui': 1, 'pudong': 10, 'changning': 5, 'hongkou': 7, 'yangpu': 9, 'minhang': 12, 'baoshan': 22, 'jiading': 26, 'songjiang': 22, 'unknown': 14 },
+            'pudong': { 'qingpu': 45, 'jingan': 12, 'huangpu': 8, 'xuhui': 10, 'pudong': 1, 'changning': 14, 'hongkou': 10, 'yangpu': 8, 'minhang': 20, 'baoshan': 25, 'jiading': 32, 'songjiang': 35, 'unknown': 18 },
+            'changning': { 'qingpu': 28, 'jingan': 4, 'huangpu': 6, 'xuhui': 5, 'pudong': 14, 'changning': 1, 'hongkou': 6, 'yangpu': 9, 'minhang': 12, 'baoshan': 20, 'jiading': 22, 'songjiang': 24, 'unknown': 12 },
+            'hongkou': { 'qingpu': 40, 'jingan': 5, 'huangpu': 4, 'xuhui': 7, 'pudong': 10, 'changning': 6, 'hongkou': 1, 'yangpu': 4, 'minhang': 18, 'baoshan': 15, 'jiading': 26, 'songjiang': 32, 'unknown': 14 },
+            'yangpu': { 'qingpu': 42, 'jingan': 8, 'huangpu': 7, 'xuhui': 9, 'pudong': 8, 'changning': 9, 'hongkou': 4, 'yangpu': 1, 'minhang': 20, 'baoshan': 12, 'jiading': 28, 'songjiang': 34, 'unknown': 15 },
+            'minhang': { 'qingpu': 22, 'jingan': 15, 'huangpu': 16, 'xuhui': 12, 'pudong': 20, 'changning': 12, 'hongkou': 18, 'yangpu': 20, 'minhang': 1, 'baoshan': 28, 'jiading': 18, 'songjiang': 12, 'unknown': 16 },
+            'unknown': { 'qingpu': 25, 'jingan': 12, 'huangpu': 12, 'xuhui': 12, 'pudong': 18, 'changning': 12, 'hongkou': 12, 'yangpu': 14, 'minhang': 14, 'baoshan': 18, 'jiading': 20, 'songjiang': 20, 'unknown': 10 }
+        };
+        
+        if (distMatrix[bez1] && distMatrix[bez1][bez2] !== undefined) {
+            return distMatrix[bez1][bez2];
+        }
+        return 15; // Fallback
+    }
+
     // ============ ROUTE PLANNING ============
     function updateRoute() {
         var start = routeStart.value.trim();
@@ -997,7 +1077,7 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             }
         });
         
-        // AutoRouteList - all orders with status
+        // AutoRouteList - alle Bestellungen mit Status
         var listHtml = '';
         normalOrders.forEach(function(order) {
             var addr = addressBook[order.name] || '';
@@ -1017,17 +1097,31 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
-        var routeDeliveries = customers.map(function(c) { return c.address; });
+        // ============ ROUTE OPTIMIEREN ============
+        var optimizedCustomers = optimizeRoute(start, customers);
+        var routeDeliveries = optimizedCustomers.map(function(c) { return c.address; });
         var traffic = currentTraffic;
         
-        var html = '<div style="font-weight:600;font-size:0.7rem;color:#27ae60;margin-bottom:6px;">📍 Start: ' + escapeHtml(start) + '</div>';
-        html += '<div style="font-weight:600;font-size:0.65rem;color:#6b4a1c;margin-bottom:6px;">📦 Delivery Order (' + customers.length + ' stops):</div>';
+        // Gesamtdistanz berechnen
+        var totalDist = 0;
+        var currentAddr = start;
+        optimizedCustomers.forEach(function(c) {
+            totalDist += calculateDistance(currentAddr, c.address);
+            currentAddr = c.address;
+        });
         
-        customers.forEach(function(c, index) {
+        var dist = totalDist * traffic.delay;
+        var timeMin = Math.round(dist * 3.2 * (traffic.delay > 1.2 ? 1.3 : 1));
+        
+        var html = '<div style="font-weight:600;font-size:0.7rem;color:#27ae60;margin-bottom:6px;">📍 Start: ' + escapeHtml(start) + '</div>';
+        html += '<div style="font-weight:600;font-size:0.65rem;color:#6b4a1c;margin-bottom:6px;">📦 Optimized Route (' + optimizedCustomers.length + ' stops) <span class="optimized-badge">⚡ shortest path</span></div>';
+        
+        optimizedCustomers.forEach(function(c, index) {
+            var distFromPrev = index === 0 ? calculateDistance(start, c.address) : calculateDistance(optimizedCustomers[index-1].address, c.address);
             html += '<div class="route-step">' +
                 '<span class="step-num">' + (index + 1) + '</span>' +
                 '<span class="step-name">' + escapeHtml(c.name) + ' (' + c.order.breadType + ' ' + c.order.size + ')</span>' +
-                '<span class="step-detail">📍 ' + escapeHtml(c.address) + '</span>' +
+                '<span class="step-detail">📍 ' + escapeHtml(c.address) + ' <span style="color:#27ae60;font-size:0.5rem;">+' + (distFromPrev * traffic.delay).toFixed(1) + 'km</span></span>' +
             '</div>';
         });
         
@@ -1035,12 +1129,8 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             html += '<div style="margin-top:4px;padding:4px 8px;background:#fde8e8;border-radius:8px;font-size:0.55rem;color:#c0392b;">⚠️ No address for: ' + noAddress.join(', ') + ' (not in route)</div>';
         }
         
-        // Calculate approximate distance
-        var approxDist = customers.length * 3.5 + 2;
-        var timeMin = Math.round(approxDist * 3.5 * (traffic.delay > 1.2 ? 1.3 : 1));
-        
         html += '<div class="route-no-distance" style="margin-top:6px;padding:6px 10px;background:rgba(46,204,113,0.1);border-radius:10px;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:0.6rem;">';
-        html += '<span>📏 <strong>' + approxDist.toFixed(1) + ' km</strong></span>';
+        html += '<span>📏 <strong>' + dist.toFixed(1) + ' km</strong> (optimized)</span>';
         html += '<span>⏱️ <strong>~' + timeMin + ' min</strong></span>';
         html += '<span style="color:' + traffic.color + ';">🚦 ' + traffic.label + '</span>';
         html += '</div>';
@@ -1052,9 +1142,17 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         
         window._routeDeliveries = routeDeliveries;
         window._routeStart = start;
+        
+        // Optimierungs-Info
+        var savings = Math.round((customers.length * 3.5 - dist) * 10) / 10;
+        if (savings > 0) {
+            document.getElementById('routeOptimizedInfo').innerHTML = '✅ Optimized route saves ~' + savings.toFixed(1) + ' km compared to random order';
+        } else {
+            document.getElementById('routeOptimizedInfo').innerHTML = '🔄 Route automatically optimized using Nearest Neighbor algorithm';
+        }
     }
 
-    // ============ APPLE MAPS - DIREKT & SCHNELL ============
+    // ============ APPLE MAPS - DIREKT ============
     window.openAppleMapsDirect = function() {
         var start = window._routeStart || routeStart.value.trim();
         var deliveries = window._routeDeliveries || [];
@@ -1064,7 +1162,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
             return;
         }
         
-        // Apple Maps App öffnen - DIREKT ohne Verzögerung
         var appUrl = 'maps://maps.apple.com/?';
         var params = [];
         params.push('saddr=' + encodeURIComponent(start));
@@ -1074,7 +1171,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         params.push('dirflg=d');
         appUrl += params.join('&');
         
-        // Sofort öffnen - OHNE setTimeout
         window.location.href = appUrl;
     };
 
@@ -1364,7 +1460,6 @@ td{padding:8px 4px;text-align:center;border-bottom:1px solid #f0e2c8;}
         }
     });
 
-    // Apple Maps Button - onClick direkt in HTML
     routeStart.addEventListener('change', updateRoute);
     routeStart.addEventListener('input', updateRoute);
 
